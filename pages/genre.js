@@ -93,7 +93,13 @@ export default function Home() {
     setOpenDeleteDialog(true)
   }
 
-  if (error) return <div>failed to load</div>
+  if (error) {
+    return (
+      <Layout title="Genre">
+        <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
+      </Layout>
+    )
+  }
 
   return (
     <Layout title="Genre">
@@ -115,7 +121,6 @@ export default function Home() {
       >
         <div className="mt-5">
           <LabeledInput label="Name" type="text" name="name"
-
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Pop"
@@ -138,7 +143,6 @@ export default function Home() {
             onChange={(e) =>
               setEditItem({ ...editItem, name: e.target.value })
             }
-            placeholder="Pop"
           />
         </div>
       </Dialog>
@@ -162,7 +166,7 @@ export default function Home() {
             <>
               <TableSimple.td small>No</TableSimple.td>
               <TableSimple.td>Name</TableSimple.td>
-              <TableSimple.td>Action</TableSimple.td>
+              <TableSimple.td small>Action</TableSimple.td>
             </>
           }
         >
@@ -186,7 +190,7 @@ export default function Home() {
           })}
         </TableSimple>
         :
-        <Shimer className="h-20" />
+        <Shimer className="h-24" />
       }
 
     </Layout>

@@ -14,9 +14,9 @@ export default function Button({
       onClick={onClick}
       value={value}
       className={`${className ? className + " " : ""
-        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-sky-500 dark:bg-sky-500 ${disabled
+        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-sky-600 ${disabled
           ? "cursor-not-allowed"
-          : "hover:bg-sky-600 dark:hover:bg-sky-600"
+          : "hover:bg-sky-700"
         } text-white`}
     >
       {children}
@@ -94,9 +94,9 @@ Button.success = ({
       onClick={onClick}
       value={value}
       className={`${className ? className + " " : ""
-        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-emerald-600 dark:bg-emerald-600 ${disabled
+        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-emerald-600 ${disabled
           ? "cursor-not-allowed"
-          : "hover:bg-emerald-700 dark:hover:bg-emerald-700"
+          : "hover:bg-emerald-700"
         } text-white`}
     >
       {children}
@@ -120,9 +120,9 @@ Button.danger = ({
       onClick={onClick}
       value={value}
       className={`${className ? className + " " : ""
-        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-red-500 dark:bg-red-500 ${disabled
+        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-red-500 ${disabled
           ? "cursor-not-allowed"
-          : "hover:bg-red-600 dark:hover:bg-red-600"
+          : "hover:bg-red-600"
         } text-white`}
     >
       {children}
