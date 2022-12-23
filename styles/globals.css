@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+.scrollbar-track-rounded::-webkit-scrollbar-track {
+	border-radius: 999px;
+}
+
+.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+	border-radius: 999px;
+}
+
+.banner {
+	background: linear-gradient(
+			145deg,
+			rgba(4, 120, 87, 0.5) 34%,
+			transparent 34%,
+			transparent 64%,
+			rgba(5, 150, 105, 0.5) 64%,
+			rgba(5, 150, 105, 0.5) 100%
+		),
+		linear-gradient(
+			40deg,
+			rgb(4, 120, 87) 0%,
+			rgb(4, 120, 87) 62%,
+			rgb(16, 185, 129) 62%,
+			rgb(16, 185, 129) 100%
+		);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	cursor: pointer;
+	filter: invert(0.6);
+	font-size: 16px !important;
+}
