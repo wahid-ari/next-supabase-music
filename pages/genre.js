@@ -13,7 +13,7 @@ import LabeledInput from "@components/systems/LabeledInput";
 
 const fetcher = url => axios.get(url).then(res => res.data)
 
-export default function Home() {
+export default function Genre() {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/genre`, fetcher)
   const { updateToast, pushToast, dismissToast } = useToast();
   const [openCreateDialog, setOpenCreateDialog] = useState(false)
@@ -176,11 +176,11 @@ export default function Home() {
                 <TableSimple.td small>{index + 1}</TableSimple.td>
                 <TableSimple.td>{item.name}</TableSimple.td>
                 <TableSimple.td>
-                  <Button className="py-0.5 px-1.5 mr-2"
+                  <Button className="py-[2px] px-[6px] mr-2"
                     onClick={() => handleShowEditModal(item.id, item.name)}>
                     Edit
                   </Button>
-                  <Button.danger className="py-0.5 px-1.5"
+                  <Button.danger className="py-[2px] px-[6px]"
                     onClick={() => handleShowDeleteModal(item.id, item.name)}>
                     Delete
                   </Button.danger>
