@@ -1,12 +1,13 @@
 import { supabase } from '@libs/supabase';
 
 export default async function handler(req, res) {
-  const method = req.method
-  const body = req.body
+  const { method, body } = req
 
   switch (method) {
     case "GET":
-      const { data } = await supabase.from('genre').select(`*`).order('id');
+      const { data } = await supabase.from('genre')
+        .select(`*`)
+        .order('id');
       res.status(200).json(data);
       break;
 
@@ -14,8 +15,7 @@ export default async function handler(req, res) {
       if (!body.name) {
         res.status(422).json({ error: "Name required" })
       } else {
-        const { error } = await supabase
-          .from('genre')
+        const { error } = await supabase.from('genre')
           .insert([{ name: body.name }])
         if (error) {
           res.status(422).json({ error: error.message })
@@ -28,8 +28,7 @@ export default async function handler(req, res) {
       if (!body.name) {
         res.status(422).json({ error: "Name required" })
       } else {
-        const { error } = await supabase
-          .from('genre')
+        const { error } = await supabase.from('genre')
           .update({ name: body.name })
           .eq('id', body.id)
         if (error) {
@@ -40,8 +39,7 @@ export default async function handler(req, res) {
       break;
 
     case "DELETE":
-      const { error } = await supabase
-        .from('genre')
+      const { error } = await supabase.from('genre')
         .delete()
         .eq('id', body)
       if (error) {
