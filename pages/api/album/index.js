@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       const { data } = await supabase.from('album')
-        .select(`*, artists (*)`)
+        .select(`*, artists (*), songs (*)`)
         .order('id');
       res.status(200).json(data);
       break;

@@ -66,7 +66,8 @@ export const ReactTable = forwardRef(({ columns, data, page_size = 5, className,
               <tr key={i + 1} {...headerGroup.getHeaderGroupProps()} className="text-left border-b text-sm dark:border-neutral-800 font-medium bg-gray-50 dark:bg-[#202020]">
                 {headerGroup.headers.map((column, i) => (
                   <th key={i + 1} {...column.getHeaderProps(column.getSortByToggleProps())}
-                    className={`font-semibold p-3 first:w-1 ${bordered && "first:border-l-0 last:border-r-0 border-x dark:border-x-neutral-800"}`}>
+                    className={`font-semibold p-3 first:w-1 ${column.Header == "Action" && "w-1"}
+                    ${bordered && "first:border-l-0 last:border-r-0 border-x dark:border-x-neutral-800"}`}>
                     <span className="flex items-center gap-1.5">
                       {column.render('Header')}
                       {!column.disableSortBy ?
@@ -166,7 +167,7 @@ export const ReactTable = forwardRef(({ columns, data, page_size = 5, className,
             onChange={(e) => {
               setPageSize(Number(e.target.value));
             }}
-            className="cursor-pointer block w-24 px-3 py-[0.4rem] text-sm rounded-md transition-all
+            className="cursor-pointer block w-[100px] px-3 py-[0.4rem] text-sm rounded-md transition-all
             dark:text-white bg-white dark:bg-neutral-900  
             border border-gray-300 dark:border-neutral-700 
             focus:ring-1 focus:outline-none focus:ring-blue-500 focus:border-blue-500 outline-none"

@@ -176,11 +176,11 @@ export default function Genre() {
                 <TableSimple.td small>{index + 1}</TableSimple.td>
                 <TableSimple.td>{item.name}</TableSimple.td>
                 <TableSimple.td>
-                  <Button className="py-[2px] px-[6px] mr-2"
+                  <Button className="!py-[2px] !px-[6px] mr-2"
                     onClick={() => handleShowEditModal(item.id, item.name)}>
                     Edit
                   </Button>
-                  <Button.danger className="py-[2px] px-[6px]"
+                  <Button.danger className="!py-[2px] !px-[6px]"
                     onClick={() => handleShowDeleteModal(item.id, item.name)}>
                     Delete
                   </Button.danger>

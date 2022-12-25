@@ -103,6 +103,8 @@ export default function Artist() {
     )
   }
 
+  console.log(data)
+
   return (
     <Layout title="Artist">
 
@@ -207,6 +209,8 @@ export default function Artist() {
               <TableSimple.td small>No</TableSimple.td>
               <TableSimple.td>Name</TableSimple.td>
               <TableSimple.td>Genre</TableSimple.td>
+              <TableSimple.td>Albums</TableSimple.td>
+              <TableSimple.td>Songs</TableSimple.td>
               <TableSimple.td small>Action</TableSimple.td>
             </>
           }
@@ -217,12 +221,14 @@ export default function Artist() {
                 <TableSimple.td small>{index + 1}</TableSimple.td>
                 <TableSimple.td>{item.name}</TableSimple.td>
                 <TableSimple.td>{item.genre?.name}</TableSimple.td>
+                <TableSimple.td>{item.album?.length}</TableSimple.td>
+                <TableSimple.td>{item.songs?.length}</TableSimple.td>
                 <TableSimple.td>
-                  <Button className="py-[2px] px-[6px] mr-2"
+                  <Button className="!py-[2px] !px-[6px] mr-2"
                     onClick={() => handleShowEditModal(item.id, item.name, item.cover_url, item.genre?.id)}>
                     Edit
                   </Button>
-                  <Button.danger className="py-[2px] px-[6px]"
+                  <Button.danger className="!py-[2px] !px-[6px]"
                     onClick={() => handleShowDeleteModal(item.id, item.name)}>
                     Delete
                   </Button.danger>

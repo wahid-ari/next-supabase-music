@@ -16,7 +16,7 @@ import ReactTable from "@components/systems/ReactTable";
 const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function Album() {
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/album`, fetcher)
+  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song`, fetcher)
   const { data: artist, error: errorArtist } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher)
   const { updateToast, pushToast, dismissToast } = useToast();
   const [openCreateDialog, setOpenCreateDialog] = useState(false)
@@ -24,7 +24,7 @@ export default function Album() {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
   const [createItem, setCreateItem] = useState({ name: "", cover_url: "", artist_id: null })
   const [editItem, setEditItem] = useState({ name: "", cover_url: "", artist_id: null })
-  const [deleteItem, setDeleteItem] = useState({ name: "", artist_id: null })
+  const [deleteItem, setDeleteItem] = useState({ id: null, name: "" })
 
   async function handleCreate() {
     const toastId = pushToast({
@@ -68,11 +68,11 @@ export default function Album() {
 
   async function handleDelete() {
     const toastId = pushToast({
-      message: "Deleting Album...",
+      message: "Deleting Song...",
       isLoading: true,
     });
     try {
-      const res = await axios.delete(`${process.env.API_ROUTE}/api/album`, { data: deleteItem.id })
+      const res = await axios.delete(`${process.env.API_ROUTE}/api/song`, { data: deleteItem.id })
       if (res.status == 200) {
         setOpenDeleteDialog(false)
         setDeleteItem({ id: null, name: "" })
@@ -82,7 +82,7 @@ export default function Album() {
       console.error(error)
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/album`)
+      mutate(`${process.env.API_ROUTE}/api/song`)
     }
   }
 
@@ -113,23 +113,17 @@ export default function Album() {
         Header: 'Name',
         accessor: 'name',
         width: 300,
+      },
+      {
+        Header: 'Album',
+        accessor: 'album.name',
+        width: 300,
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`album/detail/${values.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
-              {values.name}
+            <Link href={`album/detail/${original.album?.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+              {original.album?.name}
             </Link>
-          )
-        }
-      },
-      {
-        Header: 'Songs',
-        accessor: 'songs',
-        width: 300,
-        Cell: (row) => {
-          const { values, original } = row.cell.row
-          return (
-            original.songs.length
           )
         }
       },
@@ -179,18 +173,20 @@ export default function Album() {
 
   if (error || errorArtist) {
     return (
-      <Layout title="Album">
+      <Layout title="Song">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
+  console.log(deleteItem)
+
   return (
-    <Layout title="Album">
+    <Layout title="Song">
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
-        <Title>Album</Title>
+        <Title>Song</Title>
         <Button.success onClick={() => setOpenCreateDialog(true)} className="flex gap-2 items-center">
-          <PlusSmIcon className="h-5 w-5" />Add Album
+          <PlusSmIcon className="h-5 w-5" />Add Song
         </Button.success>
       </div>
 
@@ -288,7 +284,7 @@ export default function Album() {
       </Dialog>
 
       <Dialog
-        title="Delete Album"
+        title="Delete Song"
         open={openDeleteDialog}
         isDanger
         setOpen={setOpenDeleteDialog}
@@ -296,7 +292,7 @@ export default function Album() {
         onConfirm={handleDelete}
       >
         <div className="mt-5">
-          Are you sure want to delete album <span className="font-semibold">{deleteItem.name}</span> ?
+          Are you sure want to delete song <span className="font-semibold">{deleteItem.name}</span> ?
         </div>
       </Dialog>
 
