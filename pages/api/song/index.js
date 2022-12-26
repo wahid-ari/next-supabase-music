@@ -25,18 +25,20 @@ export default async function handler(req, res) {
       } else if (!body.artist_id) {
         res.status(422).json({ error: "Artist required" })
       } else {
-        const { error } = await supabase.from('album')
+        const { error } = await supabase.from('songs')
           .insert([
             {
               name: body.name,
-              cover: body.cover_url,
-              artists_id: body.artist_id
+              album_id: body.album_id,
+              youtube_url: body.youtube_url,
+              cover_url: body.cover_url,
+              artist_id: body.artist_id
             }
           ])
         if (error) {
           res.status(422).json({ error: error.message })
         }
-        res.status(200).json({ message: "Success add album" });
+        res.status(200).json({ message: "Success add song" });
       }
       break;
 
@@ -44,17 +46,18 @@ export default async function handler(req, res) {
       if (!body.name) {
         res.status(422).json({ error: "Name required" })
       } else {
-        const { error } = await supabase.from('album')
+        const { error } = await supabase.from('songs')
           .update({
             name: body.name,
-            cover: body.cover_url,
-            artists_id: body.artist_id
+            album_id: body.album_id,
+            youtube_url: body.youtube_url,
+            cover_url: body.cover_url
           })
           .eq('id', body.id)
         if (error) {
           res.status(422).json({ error: error.message })
         }
-        res.status(201).json({ message: "Success update album" });
+        res.status(201).json({ message: "Success update song" });
       }
       break;
 

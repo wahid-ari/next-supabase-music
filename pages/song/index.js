@@ -12,6 +12,7 @@ import Button from "@components/systems/Button";
 import LabeledInput from "@components/systems/LabeledInput";
 import Select from "@components/systems/Select";
 import ReactTable from "@components/systems/ReactTable";
+import LinkButton from "@components/systems/LinkButton";
 
 const fetcher = url => axios.get(url).then(res => res.data)
 
@@ -19,32 +20,10 @@ export default function Album() {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song`, fetcher)
   const { data: artist, error: errorArtist } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher)
   const { updateToast, pushToast, dismissToast } = useToast();
-  const [openCreateDialog, setOpenCreateDialog] = useState(false)
   const [openEditDialog, setOpenEditDialog] = useState(false)
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
-  const [createItem, setCreateItem] = useState({ name: "", cover_url: "", artist_id: null })
   const [editItem, setEditItem] = useState({ name: "", cover_url: "", artist_id: null })
   const [deleteItem, setDeleteItem] = useState({ id: null, name: "" })
-
-  async function handleCreate() {
-    const toastId = pushToast({
-      message: "Saving Album...",
-      isLoading: true,
-    });
-    try {
-      const res = await axios.post(`${process.env.API_ROUTE}/api/album`, createItem)
-      if (res.status == 200) {
-        setOpenCreateDialog(false)
-        setCreateItem({ name: "", cover_url: "", artist_id: null })
-        updateToast({ toastId, message: res.data.message, isError: false });
-      }
-    } catch (error) {
-      console.error(error)
-      updateToast({ toastId, message: error.response.data.error, isError: true });
-    } finally {
-      mutate(`${process.env.API_ROUTE}/api/album`)
-    }
-  }
 
   async function handleEdit() {
     const toastId = pushToast({
@@ -191,9 +170,9 @@ export default function Album() {
     <Layout title="Song">
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         <Title>Song</Title>
-        <Button.success onClick={() => setOpenCreateDialog(true)} className="flex gap-2 items-center">
+        <LinkButton href="song/add" className="flex gap-2 items-center">
           <PlusSmIcon className="h-5 w-5" />Add Song
-        </Button.success>
+        </LinkButton>
       </div>
 
       {data ?
@@ -214,43 +193,6 @@ export default function Album() {
         :
         <Shimer className="h-24" />
       }
-
-      <Dialog
-        title="Create Album"
-        open={openCreateDialog}
-        setOpen={setOpenCreateDialog}
-        onClose={() => setOpenCreateDialog(false)}
-        onConfirm={handleCreate}
-        confirmText="Save"
-      >
-        <div className="mt-5">
-          <LabeledInput label="Name" type="text" name="name"
-            value={createItem.name}
-            onChange={(e) =>
-              setCreateItem({ ...createItem, name: e.target.value }
-              )}
-            placeholder="Album Name"
-          />
-          <LabeledInput label="Cover URL (Optional)" type="text" name="cover"
-            value={createItem.cover_url}
-            onChange={(e) =>
-              setCreateItem({ ...createItem, cover_url: e.target.value }
-              )}
-            placeholder="https://i.scdn.co/image/ab67616d00001e02b151437d4adc97ce6c828d4a"
-          />
-          <Select label="Artist" name="genre" className="h-10"
-            value={createItem.artist_id}
-            onChange={(e) =>
-              setCreateItem({ ...createItem, artist_id: e.target.value })
-            }
-          >
-            <Select.option className="hidden" value={null}>Select Artist</Select.option>
-            {artist?.map(item => (
-              <Select.option key={item.id} value={item.id}>{item.name}</Select.option>
-            ))}
-          </Select>
-        </div>
-      </Dialog>
 
       <Dialog
         title="Edit Artist"
