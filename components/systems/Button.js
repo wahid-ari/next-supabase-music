@@ -14,7 +14,7 @@ export default function Button({
       onClick={onClick}
       value={value}
       className={`${className ? className + " " : ""
-        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-sky-600 ${disabled
+        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-sky-600 focus:ring-2 focus:ring-sky-400 ${disabled
           ? "cursor-not-allowed"
           : "hover:bg-sky-700"
         } text-white`}
@@ -94,7 +94,7 @@ Button.success = ({
       onClick={onClick}
       value={value}
       className={`${className ? className + " " : ""
-        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-emerald-600 ${disabled
+        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-emerald-600 focus:ring-2 focus:ring-emerald-400 ${disabled
           ? "cursor-not-allowed"
           : "hover:bg-emerald-700"
         } text-white`}
@@ -120,7 +120,7 @@ Button.danger = ({
       onClick={onClick}
       value={value}
       className={`${className ? className + " " : ""
-        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-red-500 ${disabled
+        }text-sm transition-all outline-none px-3 py-1.5 rounded font-medium bg-red-500 focus:ring-2 focus:ring-red-400 ${disabled
           ? "cursor-not-allowed"
           : "hover:bg-red-600"
         } text-white`}

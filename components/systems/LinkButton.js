@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function LinkButton({ className, href, children, ...rest }) {
   return (
     <Link href={href} {...rest} className={`${className ? className + " " : ""
-      }text-sm transition-all px-3 py-1.5 rounded font-medium bg-emerald-600 hover:bg-emerald-700 text-white`}>
+      }text-sm transition-all px-3 py-1.5 rounded font-medium bg-emerald-600 hover:bg-emerald-700 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400`}>
       {children}
     </Link>
   );

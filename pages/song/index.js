@@ -99,7 +99,7 @@ export default function Album() {
           // console.log(`${values.id} - ${values.name} - ${original.cover} - ${original.artists.id} - ${original.artists.name}`)
           return (
             <div>
-              <Link href={`song/edit/${values.id}`} className="py-[3px] px-[6px] bg-sky-600 hover:bg-sky-700 text-sm font-medium mr-2 text-white rounded">
+              <Link href={`song/edit/${values.id}`} className="py-[3px] px-[6px] bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-400 text-sm font-medium mr-2 text-white rounded">
 								Edit
 							</Link>
               <Button.danger className="!py-[2px] !px-[6px]"

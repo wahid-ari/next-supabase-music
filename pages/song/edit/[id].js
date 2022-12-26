@@ -131,7 +131,7 @@ export default function Song({ id }) {
                 <Label>Artist</Label>
                 <div className="relative my-2 w-full cursor-default overflow-hidden rounded text-left border border-neutral-300 dark:border-neutral-600 text-sm">
                   <Combobox.Input
-                    className="w-full border-none py-2.5 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900"
+                    className="w-full py-2.5 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900 rounded border border-transparent focus:border-emerald-500"
                     displayValue={(artist) => artist?.name}
                     placeholder="Search Artist"
                     onChange={(e) => setQueryArtist(e.target.value)}
@@ -200,7 +200,7 @@ export default function Song({ id }) {
                 <Label>Album (Optional)</Label>
                 <div className="relative my-2 w-full cursor-default overflow-hidden rounded text-left border border-neutral-300 dark:border-neutral-600 text-sm">
                   <Combobox.Input
-                    className="w-full border-none py-2.5 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900"
+                    className="w-full py-2.5 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900 rounded border border-transparent focus:border-emerald-500"
                     displayValue={(album) => album?.name}
                     placeholder="Search Album"
                     onChange={(e) => setQueryAlbum(e.target.value)}
