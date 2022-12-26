@@ -51,9 +51,10 @@ export default async function handler(req, res) {
             name: body.name,
             album_id: body.album_id,
             youtube_url: body.youtube_url,
-            cover_url: body.cover_url
+            cover_url: body.cover_url,
+            artist_id: body.artist_id
           })
-          .eq('id', body.id)
+          .eq('id', query.id)
         if (error) {
           res.status(422).json({ error: error.message })
         }

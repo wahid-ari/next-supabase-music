@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
-import useSWR, { mutate } from "swr";
 import { useRouter } from "next/router"
+import useSWR, { mutate } from "swr";
 import axios from "axios";
 import useToast from "@utils/useToast";
 import Layout from "@components/layout/Layout";
@@ -67,8 +67,11 @@ export default function AddSong() {
 
   useEffect(() => {
     if (selectedArtist) setCreateItem({ ...createItem, artist_id: selectedArtist.id })
+  }, [selectedArtist])
+
+  useEffect(() => {
     if (selectedAlbum) setCreateItem({ ...createItem, album_id: selectedAlbum.id })
-  }, [selectedArtist, selectedAlbum])
+  }, [selectedAlbum])
 
   if (errorAlbum || errorArtist) {
     return (
@@ -84,7 +87,7 @@ export default function AddSong() {
         <Title>Add Song</Title>
       </div>
 
-      <div className="max-w-lg">
+      <div className="max-w-lg border dark:border-neutral-800 p-8 shadow rounded">
         <LabeledInput label="Name" type="text" name="name"
           value={createItem.name}
           onChange={(e) =>
@@ -92,28 +95,16 @@ export default function AddSong() {
             )}
           placeholder="Song Name"
         />
-        <LabeledInput label="Cover URL (Optional)" type="text" name="cover"
-          value={createItem.cover_url}
-          onChange={(e) =>
-            setCreateItem({ ...createItem, cover_url: e.target.value }
-            )}
-          placeholder="https://i.scdn.co/image/ab67616d00001e02b151437d4adc97ce6c828d4a"
-        />
-        <LabeledInput label="Youtube URL (Optional)" type="text" name="youtube"
-          value={createItem.youtube_url}
-          onChange={(e) =>
-            setCreateItem({ ...createItem, youtube_url: e.target.value }
-            )}
-          placeholder="1G4isv_Fylg"
-        />
+
         {filteredArtist ?
           <Combobox value={selectedArtist} onChange={setSelectedArtist}>
-            <div className="relative mt-1 pb-3">
+            <div className="relative mt-1 pb-1">
               <Label>Artist</Label>
               <div className="relative my-2 w-full cursor-default overflow-hidden rounded text-left border border-neutral-300 dark:border-neutral-600 text-sm">
                 <Combobox.Input
                   className="w-full border-none py-2.5 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900"
-                  displayValue={(artist) => artist?.name ? artist.name : "Select Artist"}
+                  displayValue={(artist) => artist?.name}
+                  placeholder="Search Artist"
                   onChange={(e) => setQueryArtist(e.target.value)}
                 />
                 <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -130,7 +121,7 @@ export default function AddSong() {
                 leaveTo="opacity-0"
                 afterLeave={() => setQueryArtist('')}
               >
-                <Combobox.Options className="absolute z-10 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-neutral-800 py-1 text-sm shadow-lg">
+                <Combobox.Options className="absolute z-10 max-h-40 w-full overflow-auto rounded-md bg-white dark:bg-neutral-800 py-1 text-sm shadow-lg">
                   {filteredArtist.length === 0 && queryArtist !== '' ? (
                     <div className="relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-white">
                       Nothing found.
@@ -177,11 +168,12 @@ export default function AddSong() {
         {filteredAlbum ?
           <Combobox value={selectedAlbum} onChange={setSelectedAlbum}>
             <div className="relative mt-1 pb-3">
-              <Label>Album</Label>
+              <Label>Album (Optional)</Label>
               <div className="relative my-2 w-full cursor-default overflow-hidden rounded text-left border border-neutral-300 dark:border-neutral-600 text-sm">
                 <Combobox.Input
                   className="w-full border-none py-2.5 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900"
-                  displayValue={(album) => album?.name ? album.name : "Select Album"}
+                  displayValue={(album) => album?.name}
+                  placeholder="Search Album"
                   onChange={(e) => setQueryAlbum(e.target.value)}
                 />
                 <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -198,7 +190,7 @@ export default function AddSong() {
                 leaveTo="opacity-0"
                 afterLeave={() => setQueryAlbum('')}
               >
-                <Combobox.Options className="absolute z-10 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-neutral-800 py-1 text-sm shadow-lg">
+                <Combobox.Options className="absolute z-10 max-h-40 w-full overflow-auto rounded-md bg-white dark:bg-neutral-800 py-1 text-sm shadow-lg">
                   {filteredAlbum.length === 0 && queryAlbum !== '' ? (
                     <div className="relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-white">
                       Nothing found.
@@ -241,6 +233,23 @@ export default function AddSong() {
           :
           <Shimer className="h-8" />
         }
+
+        <LabeledInput label="Cover URL (Optional)" type="text" name="cover"
+          value={createItem.cover_url}
+          onChange={(e) =>
+            setCreateItem({ ...createItem, cover_url: e.target.value }
+            )}
+          placeholder="https://i.scdn.co/image/ab67616d00001e02b151437d4adc97ce6c828d4a"
+        />
+
+        <LabeledInput label="Youtube URL (Optional)" type="text" name="youtube"
+          value={createItem.youtube_url}
+          onChange={(e) =>
+            setCreateItem({ ...createItem, youtube_url: e.target.value }
+            )}
+          placeholder="1G4isv_Fylg"
+        />
+
         <Button.success onClick={handleCreate} className="w-full">Save</Button.success>
       </div>
 
