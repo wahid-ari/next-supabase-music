@@ -41,14 +41,14 @@ export default function Login() {
       try {
         updateToast({
           toastId,
-          message: "Berhasil Login Admin",
+          message: "Success Login",
           isError: false,
         });
         Router.replace("/");
       } catch (error) {
         updateToast({
           toastId,
-          message: "Gagal login, periksa Username dan Password !",
+          message: "Failed login, check Username and Password !",
           isError: true,
         });
         updateToast({
@@ -65,23 +65,38 @@ export default function Login() {
     <div className="text-sm font-medium">
 
       <Head>
-        <title>Login Admin | Music</title>
+        <title>Login | Music</title>
       </Head>
 
       <div
-        className="min-h-screen w-screen sm:grid"
-        style={{ gridTemplateColumns: "auto 1fr" }}
+        className="min-h-screen w-screen sm:grid sm:grid-cols-2"
       >
         <div className="sm:hidden banner p-8 flex flex-col justify-between gap-2">
           <div>
             <h1 className="text-white font-bold text-4xl">Music</h1>
           </div>
+          <p className="text-white text-base font-normal">
+            With Music, it’s easy to find the right music or podcast for every moment – on your phone, your computer, your tablet and more.
+          </p>
           <p className="text-white font-bold">2022</p>
         </div>
-        <div className="w-full px-8 md:px-16 py-12">
+        
+        <div className="hidden sm:flex banner px-8 py-12 flex-col justify-between gap-2">
+          <div>
+            <h1 className="text-white font-bold sm:text-4xl md:text-5xl">
+              Music
+            </h1>
+            <br />
+            <p className="text-white text-base font-normal">
+              With Music, it’s easy to find the right music or podcast for every moment – on your phone, your computer, your tablet and more.
+            </p>
+          </div>
+          <p className="text-white font-bold">2022</p>
+        </div>
+        <div className="w-full px-8 md:px-16 py-16 md:py-0 flex items-center justify-center">
           <div className="w-full sm:max-w-md">
             <Heading h1 className="font-semibold !text-neutral-800 mb-6">
-              Login Admin
+              Login
             </Heading>
             <div className="mb-5">
               <label className="text-sm block text-gray-800" htmlFor="username">
@@ -93,7 +108,7 @@ export default function Login() {
                 placeholder="Username"
                 value={form.username}
                 onChange={handleChange}
-                className="text-sm transition-all font-medium bg-white w-full px-4 py-[0.6rem] rounded-md mt-2 border focus:ring-1 ring-gray-300 focus:ring-blue-800 border-gray-300 focus:border-blue-800 outline-none"
+                className="text-sm transition-all font-medium bg-white w-full px-4 py-[0.6rem] rounded-md mt-2 border focus:ring-1 ring-gray-300 focus:ring-emerald-600 border-gray-300 focus:border-emerald-600 outline-none"
                 autoComplete="off"
                 required
               />
@@ -109,7 +124,7 @@ export default function Login() {
                   placeholder="Password"
                   value={form.password}
                   onChange={handleChange}
-                  className="text-sm transition-all font-medium bg-white w-full px-4 py-[0.6rem] rounded-md mt-2 border focus:ring-1 ring-gray-300 focus:ring-blue-800 border-gray-300 focus:border-blue-800 outline-none"
+                  className="text-sm transition-all font-medium bg-white w-full px-4 py-[0.6rem] rounded-md mt-2 border focus:ring-1 ring-gray-300 focus:ring-emerald-600 border-gray-300 focus:border-emerald-600 outline-none"
                   autoComplete="off"
                   required
                 />
@@ -125,21 +140,8 @@ export default function Login() {
                 </button>
               </div>
             </div>
-            <Button onClick={handleLogin} className="w-full">Login Admin</Button>
+            <Button.success onClick={handleLogin} className="w-full">Login Admin</Button.success>
           </div>
-        </div>
-        <div className="hidden sm:flex banner px-8 py-12 flex-col justify-between gap-2">
-          <div>
-            <h1 className="text-white font-bold sm:text-5xl md:text-6xl">
-              Music
-            </h1>
-            <br />
-            <p className="text-white">
-              Lorem aute ad laborum consequat qui mollit minim. Ullamco in
-              incididunt et minim cupidatat ullamco dolore.
-            </p>
-          </div>
-          <p className="text-white font-bold">2022</p>
         </div>
       </div>
       

@@ -1,14 +1,22 @@
 import { supabase } from '@libs/supabase';
 
 export default async function handler(req, res) {
-  const { method, body } = req
+  const { method, body, query } = req
 
   switch (method) {
     case "GET":
-      const { data } = await supabase.from('songs')
-        .select(`*, artists (*), album (*)`)
-        .order('id');
-      res.status(200).json(data);
+      if (!query.id) {
+        const { data } = await supabase.from('songs')
+          .select(`*, artists (*), album (*)`)
+          .order('id');
+        res.status(200).json(data);
+      } else {
+        const { data } = await supabase.from('songs')
+          .select(`*, artists (*), album (*)`)
+          .eq('id', query.id)
+          .order('id');
+        res.status(200).json(data);
+      }
       break;
 
     case "POST":
@@ -57,7 +65,7 @@ export default async function handler(req, res) {
       if (error) {
         res.status(422).json({ error: error.message })
       }
-      res.status(200).json({ message: "Success delete album" });
+      res.status(200).json({ message: "Success delete song" });
       break;
 
     default:

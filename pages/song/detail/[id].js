@@ -1,5 +1,5 @@
-import { useState } from "react";
-import Link from "next/link";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import useSWR, { mutate } from "swr";
 import axios from "axios";
 import useToast from "@utils/useToast";
@@ -22,10 +22,11 @@ export async function getServerSideProps(context) {
 }
 
 export default function Album({ id }) {
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/album/detail?id=${id}`, fetcher)
+  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song?id=${id}`, fetcher)
   const { updateToast, pushToast, dismissToast } = useToast();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
   const [deleteItem, setDeleteItem] = useState({ name: "", cover_url: "", artist_id: null })
+  const [isLoading, setLoading] = useState(true)
 
   async function handleDelete() {
     const toastId = pushToast({
@@ -54,56 +55,51 @@ export default function Album({ id }) {
 
   if (error) {
     return (
-      <Layout title="Album">
+      <Layout title="Song Detail">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title={`Album ${data ? data[0]?.name : 'Detail'}`}>
+    <Layout title={`${data ? data[0]?.name : 'Song Detail'}`}>
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         {data ?
           <Title>{data[0]?.name}</Title>
           :
-          <Title>Album Detail</Title>
+          <Title>Song Detail</Title>
         }
       </div>
 
+
       {data ?
-        data[0]?.songs?.length > 0 ?
-          <TableSimple
-            head={
-              <>
-                <TableSimple.td small>No</TableSimple.td>
-                <TableSimple.td>Name</TableSimple.td>
-                <TableSimple.td small>Action</TableSimple.td>
-              </>
-            }
-          >
-            {data[0]?.songs?.map((item, index) => {
-              return (
-                <TableSimple.tr key={index}>
-                  <TableSimple.td small>{index + 1}</TableSimple.td>
-                  <TableSimple.td>
-                    <Link href={`/song/detail/${item.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
-                      {item.name}
-                    </Link>
-                  </TableSimple.td>
-                  <TableSimple.td>
-                    <Button.danger className="py-[2px] px-[6px]"
-                      onClick={() => handleShowDeleteModal(item.id, item.name)}>
-                      Delete
-                    </Button.danger>
-                  </TableSimple.td>
-                </TableSimple.tr>
-              );
-            })}
-          </TableSimple>
-          :
-          <div className="rounded border border-red-500 p-3">
-            <p className="text-red-500">No Song in Album {data[0]?.name} </p>
-          </div>
+        <div>
+          <p className="text-lg">{data[0].artists.name}</p>
+          <p className="text-lg">{data[0].album.name}</p>
+          {data[0]?.cover_url &&
+            <div className="overflow-hidden">
+              <Image
+                alt={data[0]?.name}
+                src={data[0]?.cover_url}
+                width={300}
+                height={300}
+                className={`rounded my-4 ${isLoading ? 'blur-2xl' : 'blur-0'}`}
+                onLoadingComplete={() => setLoading(false)}
+              />
+            </div>
+          }
+          {data[0].youtube_url &&
+            <iframe className="rounded my-2"
+              width="560"
+              height="315"
+              src={`https://www.youtube.com/embed/${data[0].youtube_url}`}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          }
+        </div>
         :
         <Shimer className="h-24" />
       }

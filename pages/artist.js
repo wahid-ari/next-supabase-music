@@ -103,8 +103,6 @@ export default function Artist() {
     )
   }
 
-  console.log(data)
-
   return (
     <Layout title="Artist">
 

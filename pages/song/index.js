@@ -113,6 +113,14 @@ export default function Album() {
         Header: 'Name',
         accessor: 'name',
         width: 300,
+        Cell: (row) => {
+          const { values, original } = row.cell.row;
+          return (
+            <Link href={`song/detail/${values.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+              {values.name}
+            </Link>
+          )
+        }
       },
       {
         Header: 'Album',
@@ -178,8 +186,6 @@ export default function Album() {
       </Layout>
     )
   }
-
-  console.log(deleteItem)
 
   return (
     <Layout title="Song">
