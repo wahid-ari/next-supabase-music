@@ -67,15 +67,6 @@ export default function Sidebar() {
           </NavLink>
         </NavAccordion>
 
-        <NavAccordion title="Keuangan" routeName="keuangan">
-          <NavLink
-            href="/keuangan"
-            icon={<CashIcon className="w-4 h-4" />}
-          >
-            Dana Desa
-          </NavLink>
-        </NavAccordion>
-
         <NavLink href="/song" icon={<MusicNoteIcon className="w-4 h-4" />} className="mt-2">
           Song
         </NavLink>

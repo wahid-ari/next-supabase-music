@@ -27,6 +27,22 @@ import Section from "@components/systems/Section";
 import { ArrowSmRightIcon } from "@heroicons/react/outline";
 import Tabs from "@components/systems/Tabs";
 import Dialog from "@components/systems/Dialog";
+import SearchBox from "@components/systems/SearchBox";
+
+const searchBoxData = [
+  {
+    id: 1,
+    name: "Option 1"
+  },
+  {
+    id: 2,
+    name: "Option 2"
+  },
+  {
+    id: 3,
+    name: "Option 3"
+  },
+]
 
 export default function Example() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -144,6 +160,18 @@ export default function Example() {
 
   const onPrev = () => { };
 
+  const [selectedSearchBox, setSelectedSearchBox] = useState()
+  const [querySearchBox, setQuerySearchBox] = useState('')
+  const filteredSearchBox =
+    querySearchBox === ''
+      ? searchBoxData
+      : searchBoxData.filter((item) =>
+        item.name
+          .toLowerCase()
+          .replace(/\s+/g, '')
+          .includes(querySearchBox.toLowerCase().replace(/\s+/g, ''))
+      )
+
   return (
     <Layout title="Design System">
       <Title>Example</Title>
@@ -162,6 +190,11 @@ export default function Example() {
           <span className="underline block mb-3">
             <Link href="#dialog">
               Dialog
+            </Link>
+          </span>
+          <span className="underline block mb-3">
+            <Link href="#searchbox">
+              SearchBox
             </Link>
           </span>
           <span className="underline block mb-3">
@@ -319,6 +352,26 @@ export default function Example() {
         >
           Danger Content Fugiat consectetur nulla qui veniam. Aliquip ipsum dolore eiusmod Lorem ipsum fugiat.
         </Dialog>
+      </Wrapper>
+
+      <Wrapper
+        id="searchbox"
+        name="SearchBox"
+        noClassName
+        noProps
+        noChildren
+        props={["label", "value", "placeholder", "onChange", "query", "onChangeQuery", "afterLeave", "filtered"]}
+      >
+        <SearchBox
+          label="Search Box"
+          value={selectedSearchBox}
+          placeholder="Search or Select"
+          onChange={setSelectedSearchBox}
+          onChangeQuery={(e) => setQuerySearchBox(e.target.value)}
+          afterLeave={() => setQuerySearchBox('')}
+          filtered={filteredSearchBox}
+          query={querySearchBox}
+        />
       </Wrapper>
 
       <Wrapper
