@@ -2,9 +2,10 @@ const colors = ["#36b9cc", "#1cc88a", "#6f42c1", "#e74a3b", "#fd7e14", "#f6c23e"
 
 // Populate Data for ChartJS 
 function populateData(param, type) {
-  const labels = [];
-  const totals = [];
+  let labels = [];
+  let totals = [];
   let bgColor = []
+  let labelName = ''
   switch (type) {
     // type genre = label & total
     case "genre":
@@ -15,6 +16,7 @@ function populateData(param, type) {
         totals.push(item.total)
       );
       bgColor = colors.slice(0, 13)
+      labelName = "Total Artist"
       break;
     // type song = label & total
     case "song":
@@ -25,6 +27,7 @@ function populateData(param, type) {
         totals.push(item.total)
       );
       bgColor = colors.slice(1, 13)
+      labelName = "Total Song"
       break;
     // type album = label & total
     case "album":
@@ -35,6 +38,7 @@ function populateData(param, type) {
         totals.push(item.total)
       );
       bgColor = colors.slice(2, 13)
+      labelName = "Total Album"
       break;
     default:
       param.map(item =>
@@ -44,12 +48,14 @@ function populateData(param, type) {
         totals.push(item.total)
       );
       bgColor = colors.slice(2, 13)
+      labelName = "Total"
       break;
   }
 
   const data = {
     labels: labels,
     datasets: [{
+      label: labelName,
       data: totals,
       backgroundColor: bgColor,
       categoryPercentage: 0.8,
@@ -113,6 +119,7 @@ function optionsHorizontalBarChart(theme, windowWidth) {
       x: {
         ticks: {
           color: "#888",
+          stepSize: 1
         },
         grid: {
           color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"

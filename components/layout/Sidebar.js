@@ -14,6 +14,7 @@ import {
   MusicNoteIcon,
   ColorSwatchIcon,
   BookmarkIcon,
+  ChartPieIcon,
 } from "@heroicons/react/outline";
 import NavLink from "@components/systems/NavLink";
 import NavAccordion from "@components/systems/NavAccordion";
@@ -67,16 +68,20 @@ export default function Sidebar() {
           </NavLink>
         </NavAccordion>
 
-        <NavLink href="/song" icon={<MusicNoteIcon className="w-4 h-4" />} className="mt-2">
-          Song
+        <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-2">
+          Statistics
         </NavLink>
         
-        <NavLink href="/artist" icon={<UserGroupIcon className="w-4 h-4" />} className="mt-1">
-          Artist
+        <NavLink href="/song" icon={<MusicNoteIcon className="w-4 h-4" />} className="mt-1">
+          Song
         </NavLink>
         
         <NavLink href="/album" icon={<CollectionIcon className="w-4 h-4" />} className="mt-1">
           Album
+        </NavLink>
+
+        <NavLink href="/artist" icon={<UserGroupIcon className="w-4 h-4" />} className="mt-1">
+          Artist
         </NavLink>
 
         <NavLink href="/genre" icon={<ColorSwatchIcon className="w-4 h-4" />} className="mt-1">
