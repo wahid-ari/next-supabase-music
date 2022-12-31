@@ -124,14 +124,15 @@ export default function Album() {
       },
       {
         Header: 'Songs',
-        accessor: 'songs',
+        accessor: 'songs.length',
         width: 300,
-        Cell: (row) => {
-          const { values, original } = row.cell.row
-          return (
-            original.songs.length
-          )
-        }
+        // Cell: (row) => {
+        //   const { values, original } = row.cell.row
+        //   // console.log(original)
+        //   return (
+        //     original.songs.length
+        //   )
+        // }
       },
       {
         Header: 'Artist',
