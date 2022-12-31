@@ -8,24 +8,24 @@ export default async function handler(req, res) {
       const { data: songs } = await supabase.from('songs')
         .select(`*`)
         .order('id');
-      const { data: artists } = await supabase.from('artists')
+      const { data: albums } = await supabase.from('album')
         .select(`*`)
         .order('id');
       // Make an array of object structure
       let items = []
-      for (const artist of artists) {
+      for (const album of albums) {
         items.push({
-          id: artist.id,
-          label: artist.name,
+          id: album.id,
+          label: album.name,
           total: 0
         })
       }
-      // Count total song that have same artist
+      // Count total song that have same album
       let result = []
       for (const item of items) {
         for (const song of songs) {
-          if (song.artist_id == item.id) {
-            let filtered = items.filter(i => i.id == song.artist_id)[0]
+          if (song.album_id == item.id) {
+            let filtered = items.filter(i => i.id == song.album_id)[0]
             filtered.total += 1
             result.push(filtered)
           }
@@ -39,7 +39,8 @@ export default async function handler(req, res) {
         }
         return unique;
       }, []);
-      res.status(200).json(data);
+      let sortedData = data.sort((a, b) => b.total - a.total).slice(0, 10)
+      res.status(200).json(sortedData);
       break;
 
     default:

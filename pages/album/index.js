@@ -128,7 +128,7 @@ export default function Album() {
         width: 300,
         // Cell: (row) => {
         //   const { values, original } = row.cell.row
-        //   // console.log(original)
+        //   console.log(original)
         //   return (
         //     original.songs.length
         //   )
