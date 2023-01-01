@@ -5,54 +5,49 @@ function populateData(param, type) {
   let labels = [];
   let totals = [];
   let bgColor = []
-  let borderColor = []
   let labelName = ''
   switch (type) {
     // type genre = label & total
     case "genre":
-      param.map(item =>
+      param.forEach(item =>
         labels.push(item.label)
       );
-      param.map(item =>
+      param.forEach(item =>
         totals.push(item.total)
       );
       bgColor = colors.slice(0, 13)
-      borderColor = colors.slice(0, 13)
       labelName = "Total Artist"
       break;
     // type song = label & total
     case "song":
-      param.map(item =>
+      param.forEach(item =>
         labels.push(item.label)
       );
-      param.map(item =>
+      param.forEach(item =>
         totals.push(item.total)
       );
       bgColor = colors.slice(1, 13)
-      borderColor = colors.slice(1, 13)
       labelName = "Total Song"
       break;
     // type album = label & total
     case "album":
-      param.map(item =>
+      param.forEach(item =>
         labels.push(item.label)
       );
-      param.map(item =>
+      param.forEach(item =>
         totals.push(item.total)
       );
       bgColor = colors.slice(2, 13)
-      borderColor = colors.slice(2, 13)
       labelName = "Total Album"
       break;
     default:
-      param.map(item =>
+      param.forEach(item =>
         labels.push(item.label)
       );
-      param.map(item =>
+      param.forEach(item =>
         totals.push(item.total)
       );
       bgColor = colors.slice(2, 13)
-      borderColor = colors.slice(3, 13)
       labelName = "Total"
       break;
   }
@@ -65,8 +60,6 @@ function populateData(param, type) {
       backgroundColor: bgColor,
       categoryPercentage: 0.8,
       barPercentage: 0.8,
-      // borderColor: borderColor,
-      // borderWidth: 1,
     }],
   };
   return (data);
@@ -84,69 +77,65 @@ const options = {
   }
 };
 
-function optionsBarChart(theme) {
-  return ({
-    plugins: {
-      legend: {
-        display: false
+const optionsBarChart = {
+  plugins: {
+    legend: {
+      display: false
+    }
+  },
+  scales: {
+    x: {
+      ticks: {
+        color: "#888"
+      },
+      grid: {
+        color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
       }
     },
-    scales: {
-      x: {
-        ticks: {
-          color: "#888"
-        },
-        grid: {
-          color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
-        }
+    y: {
+      ticks: {
+        color: "#888",
+        stepSize: 1
       },
-      y: {
-        ticks: {
-          color: "#888",
-          stepSize: 1
-        },
-        grid: {
-          color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
-        }
+      grid: {
+        color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
       }
     }
-  })
+  }
 };
 
-function optionsHorizontalBarChart(theme, windowWidth) {
-  return ({
-    indexAxis: 'y',
-    plugins: {
-      legend: {
-        display: false
+const optionsHorizontalBarChart = {
+  indexAxis: 'y',
+  plugins: {
+    legend: {
+      display: false
+    }
+  },
+  responsive: true,
+  scales: {
+    x: {
+      ticks: {
+        color: "#888",
+        stepSize: 1
+      },
+      grid: {
+        color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
       }
     },
-    responsive: true,
-    scales: {
-      x: {
-        ticks: {
-          color: "#888",
-          stepSize: 1
-        },
-        grid: {
-          color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
+    y: {
+      ticks: {
+        color: "#888",
+        autoSkip: windowWidth > 500 ? false : true,
+        // autoSkip: false,
+        font: {
+          size: 11
         }
       },
-      y: {
-        ticks: {
-          color: "#888",
-          autoSkip: windowWidth > 500 ? false : true,
-          // autoSkip: false,
-          font: {
-            size: 11
-          }
-        },
-        grid: {
-          color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
-        }
+      grid: {
+        color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
       }
     }
-  })
+  }
 };
 
-export { populateData, options, optionsBarChart, optionsHorizontalBarChart }
+export { colors, populateData, options, optionsBarChart, optionsHorizontalBarChart }

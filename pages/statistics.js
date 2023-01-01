@@ -16,28 +16,29 @@ const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function Home() {
   const { theme } = useTheme()
-  const { data: genre, error: errorGenre } = useSWR(`${process.env.API_ROUTE}/api/statistics/genre`, fetcher)
-  const { data: song, error: errorSong } = useSWR(`${process.env.API_ROUTE}/api/statistics/song`, fetcher)
-  const { data: album, error: errorAlbum } = useSWR(`${process.env.API_ROUTE}/api/statistics/album`, fetcher)
+  const { data: artistByGenre, error: errorArtistByGenre } = useSWR(`${process.env.API_ROUTE}/api/statistics/artist-by-genre`, fetcher)
+  const { data: albumByArtist, error: errorAlbumByArtist } = useSWR(`${process.env.API_ROUTE}/api/statistics/album-by-artist`, fetcher)
   const { data: songByAlbum, error: errorSongByAlbum } = useSWR(`${process.env.API_ROUTE}/api/statistics/song-by-album`, fetcher)
-  const [dataGenre, setDataGenre] = useState()
-  const [dataSong, setDataSong] = useState()
-  const [dataAlbum, setDataAlbum] = useState()
-  const [dataSongByAlbum, setDataSongByAlbum] = useState()
-  const [windowWidth, setWindowWidth] = useState()
+  const { data: songByArtist, error: errorSongByArtist } = useSWR(`${process.env.API_ROUTE}/api/statistics/song-by-artist`, fetcher)
 
+  const [dataArtistByGenre, setDataArtistByGenre] = useState()
+  const [dataSongByArtist, setDataSongByArtist] = useState()
+  const [dataSongByAlbum, setDataSongByAlbum] = useState()
+  const [dataAlbumByArtist, setDataAlbumByArtist] = useState()
+
+  const [windowWidth, setWindowWidth] = useState()
   useEffect(() => {
     setWindowWidth(window.innerWidth)
   }, [windowWidth])
 
   useEffect(() => {
-    if (genre !== undefined) setDataGenre(populateData(genre, "genre"))
-    if (song !== undefined) setDataSong(populateData(song, "song"))
-    if (album !== undefined) setDataAlbum(populateData(album, "album"))
+    if (artistByGenre !== undefined) setDataArtistByGenre(populateData(artistByGenre, "genre"))
+    if (albumByArtist !== undefined) setDataAlbumByArtist(populateData(albumByArtist, "album"))
     if (songByAlbum !== undefined) setDataSongByAlbum(populateData(songByAlbum, "song"))
-  }, [genre, song, album, songByAlbum])
+    if (songByArtist !== undefined) setDataSongByArtist(populateData(songByArtist, "song"))
+  }, [artistByGenre, albumByArtist, songByAlbum, songByArtist])
 
-  if (errorGenre || errorSong || errorAlbum || errorSongByAlbum) {
+  if (errorArtistByGenre || errorAlbumByArtist || errorSongByAlbum || errorSongByArtist) {
     return (
       <Layout title="Statistics">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
@@ -50,7 +51,7 @@ export default function Home() {
       <Title>Statistics</Title>
 
       <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
-        {dataGenre ?
+        {dataArtistByGenre ?
           <div className="rounded-md border dark:border-neutral-800 bg-white dark:bg-[#1F1F1F]">
             <div className="p-3 bg-neutral-100/80 dark:bg-neutral-800">
               <Text.medium className="!text-sm">Total Artis by Genre</Text.medium>
@@ -58,7 +59,7 @@ export default function Home() {
             <div className="py-3 m-auto w-72">
               <Pie
                 options={options}
-                data={dataGenre}
+                data={dataArtistByGenre}
               />
             </div>
           </div>
@@ -66,7 +67,7 @@ export default function Home() {
           <Shimer className="w-full !h-60" />
         }
 
-        {dataSong ?
+        {dataAlbumByArtist ?
           <div className="rounded-md border dark:border-neutral-800 bg-white dark:bg-[#1F1F1F]">
             <div className="p-3 bg-neutral-100/80 dark:bg-neutral-800">
               <Text.medium className="!text-sm">Total Album by Artist</Text.medium>
@@ -74,7 +75,7 @@ export default function Home() {
             <div className="py-3 m-auto w-72">
               <Doughnut
                 options={options}
-                data={dataAlbum}
+                data={dataAlbumByArtist}
               />
             </div>
           </div>
@@ -103,7 +104,7 @@ export default function Home() {
       </div>
 
       <div className="mt-5">
-        {dataAlbum ?
+        {dataSongByArtist ?
           <div className="rounded-md border dark:border-neutral-800 bg-white dark:bg-[#1F1F1F]">
             <div className="p-3 bg-neutral-100/80 dark:bg-neutral-800">
               <Text.medium className="!text-sm">Total Song by Artist</Text.medium>
@@ -111,7 +112,7 @@ export default function Home() {
             <div className="p-3">
               <Bar
                 options={optionsHorizontalBarChart(theme, windowWidth)}
-                data={dataSong}
+                data={dataSongByArtist}
                 height={100}
               />
             </div>
