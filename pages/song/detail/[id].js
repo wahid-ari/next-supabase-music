@@ -1,12 +1,11 @@
 import { useState } from "react";
 import Image from "next/image";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import axios from "axios";
 import useToast from "@utils/useToast";
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
-import Dialog from "@components/systems/Dialog";
 
 const fetcher = url => axios.get(url).then(res => res.data)
 

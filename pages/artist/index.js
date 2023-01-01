@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from 'next/link';
 import useSWR, { mutate } from "swr";
 import axios from "axios";
 import useToast from "@utils/useToast";
@@ -217,7 +218,11 @@ export default function Artist() {
             return (
               <TableSimple.tr key={index}>
                 <TableSimple.td small>{index + 1}</TableSimple.td>
-                <TableSimple.td>{item.name}</TableSimple.td>
+                <TableSimple.td>
+                  <Link href={`artist/detail/${item.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+                    {item.name}
+                  </Link>
+                </TableSimple.td>
                 <TableSimple.td>{item.genre?.name}</TableSimple.td>
                 <TableSimple.td>{item.album?.length}</TableSimple.td>
                 <TableSimple.td>{item.songs?.length}</TableSimple.td>

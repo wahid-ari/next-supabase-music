@@ -1,14 +1,22 @@
 import { supabase } from '@libs/supabase';
 
 export default async function handler(req, res) {
-  const { method, body } = req
+  const { method, body, query } = req
 
   switch (method) {
     case "GET":
-      const { data } = await supabase.from('artists')
-        .select(`*, genre (*), songs (*), album (*)`)
-        .order('id');
-      res.status(200).json(data);
+      if (!query.id) {
+        const { data } = await supabase.from('artists')
+          .select(`*, genre (*), songs (*), album (*)`)
+          .order('id');
+        res.status(200).json(data);
+      } else {
+        const { data } = await supabase.from('artists')
+          .select(`*, genre (*), songs (*), album (*)`)
+          .eq('id', query.id)
+          .order('id');
+        res.status(200).json(data);
+      }
       break;
 
     case "POST":
@@ -37,10 +45,10 @@ export default async function handler(req, res) {
         res.status(422).json({ error: "Name required" })
       } else {
         const { error } = await supabase.from('artists')
-          .update({ 
-            name: body.name, 
+          .update({
+            name: body.name,
             cover_url: body.cover_url,
-            genre_id: body.genre_id, 
+            genre_id: body.genre_id,
           })
           .eq('id', body.id)
         if (error) {
