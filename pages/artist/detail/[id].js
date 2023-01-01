@@ -1,8 +1,9 @@
 import { useState, useMemo, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import axios from "axios";
+import useToast from "@utils/useToast";
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
@@ -10,6 +11,7 @@ import ReactTable from "@components/systems/ReactTable";
 import Button from "@components/systems/Button";
 import LabeledInput from "@components/systems/LabeledInput";
 import Heading from "@components/systems/Heading";
+import Dialog from "@components/systems/Dialog";
 
 const fetcher = url => axios.get(url).then(res => res.data)
 
@@ -25,6 +27,63 @@ export async function getServerSideProps(context) {
 export default function Album({ id }) {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/artist?id=${id}`, fetcher)
   const [isLoading, setLoading] = useState(true)
+  const { updateToast, pushToast, dismissToast } = useToast();
+  const [openDeleteDialogSong, setOpenDeleteDialogSong] = useState(false)
+  const [openDeleteDialogAlbum, setOpenDeleteDialogAlbum] = useState(false)
+  const [deleteItemSong, setDeleteItemSong] = useState({ id: null, name: "" })
+  const [deleteItemAlbum, setDeleteItemAlbum] = useState({ id: null, name: "" })
+
+  async function handleDeleteSong() {
+    const toastId = pushToast({
+      message: "Deleting Song...",
+      isLoading: true,
+    });
+    try {
+      const res = await axios.delete(`${process.env.API_ROUTE}/api/song`, { data: deleteItemSong.id })
+      if (res.status == 200) {
+        setOpenDeleteDialogSong(false)
+        setDeleteItemSong({ id: null, name: "" })
+        updateToast({ toastId, message: res.data.message, isError: false });
+      }
+    } catch (error) {
+      console.error(error)
+      updateToast({ toastId, message: error.response.data.error, isError: true });
+    } finally {
+      mutate(`${process.env.API_ROUTE}/api/song`)
+      mutate(`${process.env.API_ROUTE}/api/artist?id=${id}`)
+    }
+  }
+
+  async function handleDeleteAlbum() {
+    const toastId = pushToast({
+      message: "Deleting Album...",
+      isLoading: true,
+    });
+    try {
+      const res = await axios.delete(`${process.env.API_ROUTE}/api/album`, { data: deleteItemAlbum.id })
+      if (res.status == 200) {
+        setOpenDeleteDialogAlbum(false)
+        setDeleteItemAlbum({ id: null, name: "" })
+        updateToast({ toastId, message: res.data.message, isError: false });
+      }
+    } catch (error) {
+      console.error(error)
+      updateToast({ toastId, message: error.response.data.error, isError: true });
+    } finally {
+      mutate(`${process.env.API_ROUTE}/api/album`)
+      mutate(`${process.env.API_ROUTE}/api/artist?id=${id}`)
+    }
+  }
+
+  function handleShowDeleteModalSong(id, name) {
+    setDeleteItemSong({ id: id, name: name })
+    setOpenDeleteDialogSong(true)
+  }
+  
+  function handleShowDeleteModalAlbum(id, name) {
+    setDeleteItemAlbum({ id: id, name: name })
+    setOpenDeleteDialogAlbum(true)
+  }
 
   const songColumn = useMemo(
     () => [
@@ -59,12 +118,12 @@ export default function Album({ id }) {
           const { values, original } = row.cell.row
           return (
             <div>
-              <Button className="!py-[2px] !px-[6px] mr-2"
+              {/* <Button className="!py-[2px] !px-[6px] mr-2"
                 onClick={() => handleShowEditModal(values.id, values.name, original.cover, original.artists.id)}>
                 Edit
-              </Button>
+              </Button> */}
               <Button.danger className="!py-[2px] !px-[6px]"
-                onClick={() => handleShowDeleteModal(values.id, values.name)}>
+                onClick={() => handleShowDeleteModalSong(original.id, values.name)}>
                 Delete
               </Button.danger>
             </div>
@@ -109,12 +168,12 @@ export default function Album({ id }) {
           const { values, original } = row.cell.row
           return (
             <div>
-              <Button className="!py-[2px] !px-[6px] mr-2"
+              {/* <Button className="!py-[2px] !px-[6px] mr-2"
                 onClick={() => handleShowEditModal(values.id, values.name, original.cover, original.artists.id)}>
                 Edit
-              </Button>
+              </Button> */}
               <Button.danger className="!py-[2px] !px-[6px]"
-                onClick={() => handleShowDeleteModal(values.id, values.name)}>
+                onClick={() => handleShowDeleteModalAlbum(original.id, values.name)}>
                 Delete
               </Button.danger>
             </div>
@@ -208,6 +267,32 @@ export default function Album({ id }) {
         :
         <Shimer className="h-24" />
       }
+
+      <Dialog
+        title="Delete Song"
+        open={openDeleteDialogSong}
+        isDanger
+        setOpen={setOpenDeleteDialogSong}
+        onClose={() => setOpenDeleteDialogSong(false)}
+        onConfirm={handleDeleteSong}
+      >
+        <div className="mt-5">
+          Are you sure want to delete song <span className="font-semibold">{deleteItemSong.name}</span> ?
+        </div>
+      </Dialog>
+      
+      <Dialog
+        title="Delete Album"
+        open={openDeleteDialogAlbum}
+        isDanger
+        setOpen={setOpenDeleteDialogAlbum}
+        onClose={() => setOpenDeleteDialogAlbum(false)}
+        onConfirm={handleDeleteAlbum}
+      >
+        <div className="mt-5">
+          Are you sure want to delete album <span className="font-semibold">{deleteItemAlbum.name}</span> ?
+        </div>
+      </Dialog>
 
     </Layout>
   );
