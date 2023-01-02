@@ -2,7 +2,7 @@ import Sidebar from "./Sidebar";
 import Head from "next/head";
 import Breadcrumb from "@components/systems/Breadcrumb";
 import Navbar from "./Navbar";
-import Menu from './Menu'
+import Menu from './Menu';
 import clsx from 'clsx';
 
 export default function Layout({ children, title, description }) {

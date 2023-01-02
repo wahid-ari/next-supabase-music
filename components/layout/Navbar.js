@@ -1,8 +1,8 @@
-import { useContext } from 'react'
+import { useContext } from 'react';
 import Link from "next/link";
 import { MenuIcon } from "@heroicons/react/solid";
 import { GlobalContext } from "@utils/GlobalContext";
-import Menu from './Menu'
+import Menu from './Menu';
 import clsx from "clsx";
 import ThemeChanger from './ThemeChanger';
 

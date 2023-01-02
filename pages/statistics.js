@@ -20,11 +20,13 @@ export default function Home() {
   const { data: albumByArtist, error: errorAlbumByArtist } = useSWR(`${process.env.API_ROUTE}/api/statistics/album-by-artist`, fetcher)
   const { data: songByAlbum, error: errorSongByAlbum } = useSWR(`${process.env.API_ROUTE}/api/statistics/song-by-album`, fetcher)
   const { data: songByArtist, error: errorSongByArtist } = useSWR(`${process.env.API_ROUTE}/api/statistics/song-by-artist`, fetcher)
+  const { data: songByPlaylist, error: errorSongByPlaylist } = useSWR(`${process.env.API_ROUTE}/api/statistics/song-by-playlist`, fetcher)
 
   const [dataArtistByGenre, setDataArtistByGenre] = useState()
-  const [dataSongByArtist, setDataSongByArtist] = useState()
-  const [dataSongByAlbum, setDataSongByAlbum] = useState()
   const [dataAlbumByArtist, setDataAlbumByArtist] = useState()
+  const [dataSongByAlbum, setDataSongByAlbum] = useState()
+  const [dataSongByArtist, setDataSongByArtist] = useState()
+  const [dataSongByPlaylist, setDataSongByPlaylist] = useState()
 
   const [windowWidth, setWindowWidth] = useState()
   useEffect(() => {
@@ -36,9 +38,10 @@ export default function Home() {
     if (albumByArtist !== undefined) setDataAlbumByArtist(populateData(albumByArtist, "album"))
     if (songByAlbum !== undefined) setDataSongByAlbum(populateData(songByAlbum, "song"))
     if (songByArtist !== undefined) setDataSongByArtist(populateData(songByArtist, "song"))
-  }, [artistByGenre, albumByArtist, songByAlbum, songByArtist])
+    if (songByPlaylist !== undefined) setDataSongByPlaylist(populateData(songByPlaylist, "song"))
+  }, [artistByGenre, albumByArtist, songByAlbum, songByArtist, songByPlaylist])
 
-  if (errorArtistByGenre || errorAlbumByArtist || errorSongByAlbum || errorSongByArtist) {
+  if (errorArtistByGenre || errorAlbumByArtist || errorSongByAlbum || errorSongByArtist || errorSongByPlaylist) {
     return (
       <Layout title="Statistics">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
@@ -113,6 +116,25 @@ export default function Home() {
               <Bar
                 options={optionsHorizontalBarChart(theme, windowWidth)}
                 data={dataSongByArtist}
+                height={100}
+              />
+            </div>
+          </div>
+          :
+          <Shimer className="w-full !h-60" />
+        }
+      </div>
+      
+      <div className="mt-5">
+        {dataSongByPlaylist ?
+          <div className="rounded-md border dark:border-neutral-800 bg-white dark:bg-[#1F1F1F]">
+            <div className="p-3 bg-neutral-100/80 dark:bg-neutral-800">
+              <Text.medium className="!text-sm">Total Song by Playlist</Text.medium>
+            </div>
+            <div className="p-3">
+              <Bar
+                options={optionsHorizontalBarChart(theme, windowWidth)}
+                data={dataSongByPlaylist}
                 height={100}
               />
             </div>
