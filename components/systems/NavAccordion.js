@@ -25,10 +25,12 @@ export default function NavAccordion({ title, routeName, icon, children }) {
         <Disclosure defaultOpen={isOpen}>
           {({ open }) => (
             <>
-              <Disclosure.Button className="transition-all outline-none w-full pl-3.5 py-3 flex justify-start items-center gap-2 rounded-lg text-gray-700 dark:text-neutral-300 hover:text-emerald-600 dark:hover:text-emerald-500">
+              <Disclosure.Button className="transition-all outline-none w-full pl-3 py-3 flex justify-start items-center gap-2 rounded-lg text-gray-700 dark:text-neutral-300 hover:text-emerald-600 dark:hover:text-emerald-500">
                 <div className="flex-grow text-left text-sm">
-                  {icon}
-                  <span>{title}</span>
+                  <div className="flex items-center gap-2">
+                    {icon}
+                    <span>{title}</span>
+                  </div>
                 </div>
                 <ChevronRightIcon
                   className={`transition-all durat duration-300 w-5 h-5 ${open ? 'transform rotate-90 transition-transform' : 'transition-transform'}`}

@@ -241,7 +241,7 @@ export default function Artist() {
           })}
         </TableSimple>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
     </Layout>

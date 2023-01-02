@@ -70,7 +70,7 @@ export default function Album({ id }) {
           }
         </div>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
     </Layout>

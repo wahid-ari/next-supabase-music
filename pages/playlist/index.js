@@ -197,7 +197,7 @@ export default function Playlist() {
           })}
         </TableSimple>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
     </Layout>

@@ -211,7 +211,7 @@ export default function Album() {
           <ReactTable columns={column} data={data} ref={tableInstance} page_size={20} />
         </>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
       <Dialog

@@ -1,3 +1,7 @@
+## Database Design
+
+![Image External](https://raw.githubusercontent.com/wahid-ari/next-supabase-music/master/public/database.png)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

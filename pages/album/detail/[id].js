@@ -105,7 +105,7 @@ export default function Album({ id }) {
             <p className="text-red-500">No Song in Album {data[0]?.name} </p>
           </div>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
       <Dialog

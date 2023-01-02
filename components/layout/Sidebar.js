@@ -59,16 +59,7 @@ export default function Sidebar() {
           Dashboard
         </NavLink>
 
-        <NavAccordion title="Design" routeName="design">
-          <NavLink
-            href="/design"
-            icon={<TemplateIcon className="w-4 h-4" />}
-          >
-            Example
-          </NavLink>
-        </NavAccordion>
-
-        <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-2">
+        <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">
           Statistics
         </NavLink>
         
@@ -96,6 +87,14 @@ export default function Sidebar() {
           Settings
         </NavLink>
 
+        <NavAccordion title="Design" routeName="design" icon={<TemplateIcon className="w-4 h-4" />}>
+          <NavLink
+            href="/design"
+            icon={<TemplateIcon className="w-4 h-4" />}
+          >
+            Example
+          </NavLink>
+        </NavAccordion>
       </div>
 
       <hr className="dark:border-neutral-800" />

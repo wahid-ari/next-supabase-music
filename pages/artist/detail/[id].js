@@ -223,7 +223,7 @@ export default function Album({ id }) {
           }
         </div>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
       {data ?
@@ -243,7 +243,7 @@ export default function Album({ id }) {
           <ReactTable columns={songColumn} data={data[0].songs} ref={songTableInstance} page_size={10} />
         </div>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
       <hr className="mt-10 dark:border-neutral-700"/>
@@ -265,7 +265,7 @@ export default function Album({ id }) {
           <ReactTable columns={albumColumn} data={data[0].album} ref={albumTableInstance} page_size={10} />
         </div>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
       <Dialog

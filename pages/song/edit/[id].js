@@ -282,7 +282,7 @@ export default function Song({ id }) {
           <Button onClick={handleEdit} className="w-full">Update</Button>
         </div>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
     </Layout>

@@ -190,7 +190,7 @@ export default function Genre() {
           })}
         </TableSimple>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
     </Layout>

@@ -150,7 +150,7 @@ export default function Playlist({ id }) {
             <p className="text-red-500">No Song in Playlist {data[0]?.name} </p>
           </div>
         :
-        <Shimer className="h-24" />
+        <Shimer className="!h-60" />
       }
 
       <Dialog
