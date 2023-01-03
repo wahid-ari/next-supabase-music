@@ -5,12 +5,12 @@ import { useTheme } from 'next-themes';
 import Layout from "@components/layout/Layout";
 import Shimer from "@components/systems/Shimer";
 import Text from "@components/systems/Text";
-import Title from "@components/systems/Title";
-import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
-import { Bar, Doughnut, Pie } from 'react-chartjs-2';
-import { populateData, options, optionsBarChart, optionsHorizontalBarChart } from '@utils/chartSetup'
+import Titles from "@components/systems/Title";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, ArcElement, Tooltip, Filler, Legend } from 'chart.js';
+import { Line, Bar, Doughnut, Pie } from 'react-chartjs-2';
+import { populateData, options, optionsLineChart, optionsBarChart, optionsHorizontalBarChart } from '@utils/chartSetup'
 
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
+ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, ArcElement, Tooltip, Filler, Legend);
 
 const fetcher = url => axios.get(url).then(res => res.data)
 
@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <Layout title="Statistics">
-      <Title>Statistics</Title>
+      <Titles>Statistics</Titles>
 
       <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
         {dataArtistByGenre ?
@@ -124,7 +124,7 @@ export default function Home() {
           <Shimer className="w-full !h-60" />
         }
       </div>
-      
+
       <div className="mt-5">
         {dataSongByPlaylist ?
           <div className="rounded-md border dark:border-neutral-800 bg-white dark:bg-[#1F1F1F]">
@@ -132,8 +132,14 @@ export default function Home() {
               <Text.medium className="!text-sm">Total Song by Playlist</Text.medium>
             </div>
             <div className="p-3">
-              <Bar
+              {/* <Bar
                 options={optionsHorizontalBarChart(theme, windowWidth)}
+                data={dataSongByPlaylist}
+                height={100}
+              /> */}
+
+              <Line
+                options={optionsLineChart(theme)}
                 data={dataSongByPlaylist}
                 height={100}
               />

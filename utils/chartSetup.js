@@ -65,8 +65,8 @@ function populateData(param, type) {
       backgroundColor: bgColor,
       categoryPercentage: 0.8,
       barPercentage: 0.8,
-      // borderColor: borderColor,
-      // borderWidth: 1,
+      // borderColor: type == "song" ? "#888" : null,
+      // borderWidth: type == "song" ? 1 : null,
     }],
   };
   return (data);
@@ -82,6 +82,39 @@ const options = {
       }
     }
   }
+};
+
+function optionsLineChart(theme) {
+  return ({
+    borderColor: "rgba(4, 120, 200, 0.5)",
+    borderWidth: 2,
+    pointRadius: 7,
+    pointBorderColor: "rgba(4, 120, 200, 0)",
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#888"
+        },
+        grid: {
+          color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
+        }
+      },
+      y: {
+        ticks: {
+          color: "#888",
+          stepSize: 1
+        },
+        grid: {
+          color: theme == 'dark' ? "#3f3f46" : "#e2e8f0"
+        }
+      }
+    }
+  })
 };
 
 function optionsBarChart(theme) {
@@ -149,4 +182,4 @@ function optionsHorizontalBarChart(theme, windowWidth) {
   })
 };
 
-export { populateData, options, optionsBarChart, optionsHorizontalBarChart }
+export { populateData, options, optionsLineChart, optionsBarChart, optionsHorizontalBarChart }

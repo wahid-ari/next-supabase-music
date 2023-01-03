@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useMemo } from "react";
 import * as yup from "yup";
 import useToast from "@utils/useToast";
 import Layout from "@components/layout/Layout";
@@ -28,6 +28,8 @@ import { ArrowSmRightIcon } from "@heroicons/react/outline";
 import Tabs from "@components/systems/Tabs";
 import Dialog from "@components/systems/Dialog";
 import SearchBox from "@components/systems/SearchBox";
+import ReactTable from "@components/systems/ReactTable";
+import { tabledata } from "@utils/tableData";
 
 const searchBoxData = [
   {
@@ -172,6 +174,64 @@ export default function Example() {
           .includes(querySearchBox.toLowerCase().replace(/\s+/g, ''))
       )
 
+  const column = useMemo(
+    () => [
+      {
+        Header: 'No',
+        accessor: 'id',
+        width: 300,
+        Cell: (row) => {
+          return (
+            row.cell.row.index + 1
+          )
+        }
+      },
+      {
+        Header: 'Name',
+        accessor: 'name',
+        width: 300,
+        Cell: (row) => {
+          const { values, original } = row.cell.row;
+          return (
+            <Link href={`#`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+              {values.name}
+            </Link>
+          )
+        }
+      },
+      {
+        Header: 'Email',
+        accessor: 'email',
+        width: 300,
+      },
+      {
+        Header: 'Action',
+        disableSortBy: true,
+        width: 300,
+        Cell: (row) => {
+          const { values, original } = row.cell.row
+          // console.log(`${values.id} - ${values.name} - ${original.cover} - ${original.artists.id} - ${original.artists.name}`)
+          return (
+            <div>
+              <Link href={`#`} className="py-[3px] px-[6px] bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-400 text-sm font-medium mr-2 text-white rounded">
+                Edit
+              </Link>
+              <Button.danger className="!py-[2px] !px-[6px]"
+              // onClick={() => handleShowDeleteModal(values.id, values.name)}
+              >
+                Delete
+              </Button.danger>
+            </div>
+          )
+        },
+        width: 200,
+      },
+    ],
+    []
+  );
+
+  const tableInstance = useRef(null);
+
   return (
     <Layout title="Design System">
       <Title>Example</Title>
@@ -188,14 +248,13 @@ export default function Example() {
             <Link href="#validation">Validation (yup)</Link>
           </span>
           <span className="underline block mb-3">
-            <Link href="#dialog">
-              Dialog
-            </Link>
+            <Link href="#dialog">Dialog</Link>
           </span>
           <span className="underline block mb-3">
-            <Link href="#searchbox">
-              SearchBox
-            </Link>
+            <Link href="#searchbox">SearchBox</Link>
+          </span>
+          <span className="underline block mb-3">
+            <Link href="#reacttable">React Table</Link>
           </span>
           <span className="underline block mb-3">
             <Link href="#usetoast">useToast (hook)</Link>
@@ -372,6 +431,31 @@ export default function Example() {
           filtered={filteredSearchBox}
           query={querySearchBox}
         />
+      </Wrapper>
+
+      <Wrapper
+        id="reacttable"
+        name="React Table"
+        props={[
+          "columns",
+          "data",
+          "page_size",
+          "bordered"
+        ]}
+        noProps
+        noWrap
+      >
+        <LabeledInput
+          label="Search Data"
+          id="caridata"
+          name="caridata"
+          placeholder="Keyword"
+          className="max-w-xs !py-2"
+          onChange={(e) => {
+            tableInstance.current.setGlobalFilter(e.target.value);
+          }}
+        />
+        <ReactTable columns={column} data={tabledata} ref={tableInstance} page_size={5} />
       </Wrapper>
 
       <Wrapper
@@ -781,7 +865,7 @@ export default function Example() {
             </>
           }
         >
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((e, index) => {
+          {[0, 1, 2, 3, 4].map((e, index) => {
             return (
               <Table.tr key={index}>
                 <Table.td shrink>{index + 1}</Table.td>
