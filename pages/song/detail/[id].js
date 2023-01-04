@@ -44,7 +44,7 @@ export default function Album({ id }) {
       {data ?
         <div>
           <p className="text-lg">{data[0].artists.name}</p>
-          <p className="text-lg">{data[0].album.name}</p>
+          <p className="text-lg">{data[0].album?.name}</p>
           {data[0]?.cover_url &&
             <div className="overflow-hidden">
               <Image

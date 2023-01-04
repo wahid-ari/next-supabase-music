@@ -65,7 +65,7 @@ export default function Song({ id }) {
         album_id: data[0].album?.id
       })
       setSelectedArtist({ id: data[0].artists.id, name: data[0].artists.name })
-      setSelectedAlbum({ id: data[0].album.id, name: data[0].album.name })
+      setSelectedAlbum({ id: data[0].album?.id, name: data[0].album?.name })
     }
   }, [data])
 
