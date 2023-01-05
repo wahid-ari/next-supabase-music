@@ -8,7 +8,7 @@ export default function SongItem({ href = "#", imageSrc = "/genre/pop.webp", cla
 
   return (
     <Link {...props} href={href} className={`p-0 group border dark:border-neutral-800 rounded ${className}`}>
-      <div className="relative h-44 overflow-hidden">
+      <div className="relative h-52 sm:h-44 overflow-hidden">
         <Image
           alt={title}
           src={imageSrc}
@@ -19,7 +19,7 @@ export default function SongItem({ href = "#", imageSrc = "/genre/pop.webp", cla
         />
       </div>
       <div className="p-4">
-        <Text.medium className="mb-1 group-hover:text-emerald-500 group-hover:underline transition-all duration-500">{title}</Text.medium>
+        <Text.medium className="mb-1 group-hover:text-emerald-500 transition-all duration-500">{title}</Text.medium>
         <Text.light className="text-[13px]">{artist}</Text.light>
       </div>
     </Link>

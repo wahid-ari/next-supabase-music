@@ -10,12 +10,13 @@ export default async function handler(req, res) {
           .select(`*`)
           .order('id');
         res.status(200).json(data);
+      } else {
+        const { data } = await supabase.from('genre')
+          .select(`*, artists (*)`)
+          .eq('id', query.id)
+          .order('id');
+        res.status(200).json(data);
       }
-      const { data } = await supabase.from('genre')
-        .select(`*, artists (*)`)
-        .eq('id', query.id)
-        .order('id');
-      res.status(200).json(data);
       break;
 
     case "POST":
