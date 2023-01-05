@@ -1,12 +1,19 @@
 import { supabase } from '@libs/supabase';
 
 export default async function handler(req, res) {
-  const { method, body } = req
+  const { method, body, query } = req
 
   switch (method) {
     case "GET":
+      if (!query.id) {
+        const { data } = await supabase.from('genre')
+          .select(`*`)
+          .order('id');
+        res.status(200).json(data);
+      }
       const { data } = await supabase.from('genre')
-        .select(`*`)
+        .select(`*, artists (*)`)
+        .eq('id', query.id)
         .order('id');
       res.status(200).json(data);
       break;

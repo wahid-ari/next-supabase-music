@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import useSWR, { mutate } from "swr";
 import axios from "axios";
 import useToast from "@utils/useToast";
@@ -174,7 +175,11 @@ export default function Genre() {
             return (
               <TableSimple.tr key={index}>
                 <TableSimple.td small>{index + 1}</TableSimple.td>
-                <TableSimple.td>{item.name}</TableSimple.td>
+                <TableSimple.td>
+                  <Link href={`genre/detail/${item.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+                    {item.name}
+                  </Link>  
+                </TableSimple.td>
                 <TableSimple.td>
                   <Button className="!py-[2px] !px-[6px] mr-2"
                     onClick={() => handleShowEditModal(item.id, item.name)}>

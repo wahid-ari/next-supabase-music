@@ -12,7 +12,7 @@ export default function SongItem({ href = "#", imageSrc = "/genre/pop.webp", cla
         <Image
           alt={title}
           src={imageSrc}
-          className={`duration-500 ease-in-out transform rounded brightness-90 transition will-change-auto group-hover:brightness-110
+          className={`duration-500 ease-in-out transform rounded-t brightness-90 transition will-change-auto group-hover:brightness-110
             ${isLoading ? 'blur-2xl' : 'blur-0'}`}
           fill
           onLoadingComplete={() => setLoading(false)}
