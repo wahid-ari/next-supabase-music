@@ -38,9 +38,9 @@ export default function Home() {
       </div>
 
       <Heading className="mt-10">Songs</Heading>
-      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
         {songs ?
-          songs.slice(0, 4).map((item, index) =>
+          songs.slice(0, 5).map((item, index) =>
             <SongItem key={index} href={`song/detail/${item.id}`}
               imageSrc={item.cover_url}
               title={item.name}
@@ -53,14 +53,15 @@ export default function Home() {
             <Shimer className="w-full !h-60" />
             <Shimer className="w-full !h-60" />
             <Shimer className="w-full !h-60" />
+            <Shimer className="w-full !h-60" />
           </>
         }
       </div>
 
       <Heading className="mt-10">Albums</Heading>
-      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
         {albums ?
-          albums.slice(0, 4).map((item, index) =>
+          albums.slice(0, 5).map((item, index) =>
             <AlbumItem key={index} href={`album/detail/${item.id}`}
               imageSrc={item.cover}
               title={item.name}
@@ -69,6 +70,7 @@ export default function Home() {
           )
           :
           <>
+            <Shimer className="w-full !h-60" />
             <Shimer className="w-full !h-60" />
             <Shimer className="w-full !h-60" />
             <Shimer className="w-full !h-60" />

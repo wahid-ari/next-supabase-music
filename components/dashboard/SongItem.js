@@ -8,7 +8,7 @@ export default function SongItem({ href = "#", imageSrc = "/genre/pop.webp", cla
 
   return (
     <Link {...props} href={href} className={`p-0 group border dark:border-neutral-800 rounded ${className}`}>
-      <div className="relative h-52 overflow-hidden">
+      <div className="relative h-44 overflow-hidden">
         <Image
           alt={title}
           src={imageSrc}
