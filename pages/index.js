@@ -141,7 +141,7 @@ export default function Home() {
       <div className="mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
         {albums ?
           albums.slice(0, 5).map((item, index) =>
-            <AlbumItem key={index} href={`album/detail/${item.id}`}
+            <AlbumItem key={index} href={`dashboard/album/detail/${item.id}`}
               imageSrc={item.cover}
               title={item.name}
               artist={item.artists.name}
@@ -158,13 +158,18 @@ export default function Home() {
         }
       </div>
 
-      <Heading className="mt-10">Artists</Heading>
+      <div className="mt-10 flex items-center justify-between">
+        <Heading className="">Artists</Heading>
+        <Link href={`dashboard/artist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium">
+          View All
+        </Link>
+      </div>
       <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {artists ?
           artists.slice(0, 4).map((item, index) =>
             <ArtistItem
               key={index}
-              href={`artist/detail/${item.id}`}
+              href={`dashboard/artist/detail/${item.id}`}
               imageSrc={item.cover_url}
               title={item.name}
             />

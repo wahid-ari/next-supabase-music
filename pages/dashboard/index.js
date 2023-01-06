@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 
-export default function Settings() {
+export default function Loading() {
   const router = useRouter()
 
   useEffect(() => {
@@ -11,8 +11,8 @@ export default function Settings() {
   }, [])
 
   return (
-    <Layout title="Dashboard">
-      <Title></Title>
+    <Layout title="Loading...">
+      <Title>Loading...</Title>
     </Layout>
   );
 }

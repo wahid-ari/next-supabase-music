@@ -3,13 +3,14 @@ import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
 import AlbumItem from "@components/dashboard/AlbumItem";
+import ArtistItem from "@components/dashboard/ArtistItem";
 
 const fetcher = url => fetch(url).then(result => result.json())
 
-export default function Albums() {
-  const { data: albums, error: errorAlbums } = useSWR(`${process.env.API_ROUTE}/api/album`, fetcher)
+export default function Artist() {
+  const { data: artists, error: errorArtists } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher)
 
-  if (errorAlbums) {
+  if (errorArtists) {
     return (
       <Layout title="Dashboard">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
@@ -18,21 +19,21 @@ export default function Albums() {
   }
 
   return (
-    <Layout title="Albums">
-      <Title>Albums</Title>
+    <Layout title="Artists">
+      <Title>Artists</Title>
 
-      <div className="mt-6 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
-        {albums ?
-          albums.map((item, index) =>
-            <AlbumItem key={index} href={`/dashboard/album/detail/${item.id}`}
-              imageSrc={item.cover}
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        {artists ?
+          artists.map((item, index) =>
+            <ArtistItem
+              key={index}
+              href={`/dashboard/artist/detail/${item.id}`}
+              imageSrc={item.cover_url}
               title={item.name}
-              artist={item.artists.name}
             />
           )
           :
           <>
-            <Shimer className="w-full !h-60" />
             <Shimer className="w-full !h-60" />
             <Shimer className="w-full !h-60" />
             <Shimer className="w-full !h-60" />

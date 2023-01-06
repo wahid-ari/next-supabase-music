@@ -6,7 +6,7 @@ import SongItem from "@components/dashboard/SongItem";
 
 const fetcher = url => fetch(url).then(result => result.json())
 
-export default function Settings() {
+export default function Songs() {
   const { data: songs, error: errorSongs } = useSWR(`${process.env.API_ROUTE}/api/song`, fetcher)
   
   if (errorSongs) {
