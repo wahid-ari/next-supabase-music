@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import useSWR from "swr";
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
@@ -105,7 +106,12 @@ export default function Home() {
         }
       </div>
 
-      <Heading className="mt-10">Songs</Heading>
+      <div className="mt-10 flex items-center justify-between">
+        <Heading className="">Songs</Heading>
+        <Link href={`dashboard/song`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium">
+          View All
+        </Link>
+      </div>
       <div className="mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
         {songs ?
           songs.slice(0, 5).map((item, index) =>
@@ -126,7 +132,12 @@ export default function Home() {
         }
       </div>
 
-      <Heading className="mt-10">Albums</Heading>
+      <div className="mt-10 flex items-center justify-between">
+        <Heading className="">Albums</Heading>
+        <Link href={`dashboard/album`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium">
+          View All
+        </Link>
+      </div>
       <div className="mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
         {albums ?
           albums.slice(0, 5).map((item, index) =>
