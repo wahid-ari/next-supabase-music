@@ -223,7 +223,11 @@ export default function Artist() {
                     {item.name}
                   </Link>
                 </TableSimple.td>
-                <TableSimple.td>{item.genre?.name}</TableSimple.td>
+                <TableSimple.td>
+                  <Link href={`genre/detail/${item.genre?.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+                    {item.genre?.name}
+                  </Link>
+                </TableSimple.td>
                 <TableSimple.td>{item.album?.length}</TableSimple.td>
                 <TableSimple.td>{item.songs?.length}</TableSimple.td>
                 <TableSimple.td>

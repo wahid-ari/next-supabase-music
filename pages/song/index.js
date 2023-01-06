@@ -89,6 +89,14 @@ export default function Album() {
         Header: 'Artist',
         accessor: 'artists.name',
         width: 300,
+        Cell: (row) => {
+          const { values, original } = row.cell.row;
+          return (
+            <Link href={`artist/detail/${original?.artists?.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+              {original?.artists?.name}
+            </Link>
+          )
+        }
       },
       {
         Header: 'Action',
