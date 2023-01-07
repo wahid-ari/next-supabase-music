@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Layout from "@components/layout/Layout";
@@ -103,7 +104,7 @@ export default function Search() {
           {data?.artists.length > 0 ?
             <>
               <Heading h3 className="mt-6">Artists</Heading>
-              <div className="mt-2 pb-4 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+              <div className="mt-2 pb-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
                 {data?.artists?.map((item, index) =>
                   <ArtistItem
                     key={index}
@@ -139,6 +140,38 @@ export default function Search() {
         :
         null
       }
+
+      <Heading h3 className="mt-6">Browse Categories</Heading>
+      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        <Link href="/dashboard/song" className="h-24 p-0.5 rounded-lg group bg-gradient-to-br from-cyan-500 to-purple-500">
+          <div className="flex items-center px-4 py-2 transition-all ease-in duration-300 bg-white dark:bg-neutral-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
+            <h2 className="text-xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-purple-500 group-hover:text-white transition-all ease-in duration-300">
+              Songs
+            </h2>
+          </div>
+        </Link>
+        <Link href="/dashboard/album" className="h-24 p-0.5 rounded-lg group bg-gradient-to-br from-red-500 to-yellow-500">
+          <div className="flex items-center px-4 py-2 transition-all ease-in duration-300 bg-white dark:bg-neutral-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
+            <h2 className="text-xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-yellow-500 group-hover:text-white transition-all ease-in duration-300">
+              Albums
+            </h2>
+          </div>
+        </Link>
+        <Link href="/dashboard/artist" className="h-24 p-0.5 rounded-lg group bg-gradient-to-br from-emerald-500 to-blue-500">
+          <div className="flex items-center px-4 py-2 transition-all ease-in duration-300 bg-white dark:bg-neutral-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
+            <h2 className="text-xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-blue-500 group-hover:text-white transition-all ease-in duration-300">
+              Artists
+            </h2>
+          </div>
+        </Link>
+        <Link href="#" className="h-24 p-0.5 rounded-lg group bg-gradient-to-br from-violet-500 to-pink-500">
+          <div className="flex items-center px-4 py-2 transition-all ease-in duration-300 bg-white dark:bg-neutral-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
+            <h2 className="text-xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-pink-500 group-hover:text-white transition-all ease-in duration-300">
+              Playlists
+            </h2>
+          </div>
+        </Link>
+      </div>
     </Layout>
   )
 }
