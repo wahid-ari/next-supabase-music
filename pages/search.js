@@ -60,7 +60,7 @@ export default function Search() {
 
           {data?.songs.length < 1 && data?.albums.length < 1 && data?.artists.length < 1 && data?.playlists.length < 1 ?
             <div className="rounded border border-red-500 p-3">
-              <p className="text-red-500">{`No results for "${query.current}"`}</p>
+              <p className="text-red-500">{`No results for "${query.current || search}"`}</p>
             </div>
             :
             null
