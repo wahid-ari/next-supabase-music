@@ -13,6 +13,7 @@ import {
   ColorSwatchIcon,
   BookmarkIcon,
   ChartPieIcon,
+  SearchIcon,
 } from "@heroicons/react/outline";
 import NavLink from "@components/systems/NavLink";
 import NavAccordion from "@components/systems/NavAccordion";
@@ -55,6 +56,10 @@ export default function Sidebar() {
 
         <NavLink isHome href="/" icon={<ViewGridIcon className="w-4 h-4" />}>
           Dashboard
+        </NavLink>
+
+        <NavLink href="/search" icon={<SearchIcon className="w-4 h-4" />} className="mt-1">
+          Search
         </NavLink>
 
         <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">

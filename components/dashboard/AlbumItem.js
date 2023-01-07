@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Text from "@components/systems/Text";
 
-export default function AlbumItem({ href = "#", imageSrc = "/genre/pop.webp", className, title = "Song Title", artist = "Artist Name", ...props }) {
+export default function AlbumItem({ href = "#", imageSrc = "/genre/pop.webp", className, title = "Song Title", artist = "Artist Name", hideArtist, ...props }) {
   const [isLoading, setLoading] = useState(true)
 
   return (
@@ -20,7 +20,7 @@ export default function AlbumItem({ href = "#", imageSrc = "/genre/pop.webp", cl
       </div>
       <div className="p-4">
         <Text.medium className="mb-1 group-hover:text-emerald-500 transition-all duration-500">{title}</Text.medium>
-        <Text.light className="text-[13px]">{artist}</Text.light>
+        {!hideArtist && <Text.light className="text-[13px]">{artist}</Text.light>}
       </div>
     </Link>
   )

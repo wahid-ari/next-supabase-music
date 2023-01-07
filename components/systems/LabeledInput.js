@@ -1,5 +1,6 @@
 export default function LabeledInput({
   id,
+  wrapperClassName,
   className,
   label,
   type,
@@ -10,7 +11,7 @@ export default function LabeledInput({
   ...rest
 }) {
   return (
-    <div className="mb-4">
+    <div className={`mb-4 ${wrapperClassName}`}>
       <label
         className="text-sm block text-gray-800 dark:text-neutral-300"
         htmlFor={name}
