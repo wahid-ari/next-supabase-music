@@ -18,7 +18,7 @@ export default function AddSong() {
   const { data: artist, error: errorArtist } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher)
   const { data: album, error: errorAlbum } = useSWR(`${process.env.API_ROUTE}/api/album`, fetcher)
   const { updateToast, pushToast, dismissToast } = useToast();
-  const [createItem, setCreateItem] = useState({ name: "", cover_url: "", youtube_url: "", artist_id: null, album_id: null })
+  const [createItem, setCreateItem] = useState({ name: "", cover_url: "", preview_url: "", youtube_url: "", artist_id: null, album_id: null })
   const [selectedArtist, setSelectedArtist] = useState()
   const [selectedAlbum, setSelectedAlbum] = useState()
   const [queryArtist, setQueryArtist] = useState('')
@@ -53,7 +53,7 @@ export default function AddSong() {
     try {
       const res = await axios.post(`${process.env.API_ROUTE}/api/song`, createItem)
       if (res.status == 200) {
-        setCreateItem({ name: "", cover_url: "", youtube_url: "", artist_id: null, album_id: null })
+        setCreateItem({ name: "", cover_url: "", preview_url: "", youtube_url: "", artist_id: null, album_id: null })
         updateToast({ toastId, message: res.data.message, isError: false });
         router.push("/song")
       }
@@ -87,7 +87,7 @@ export default function AddSong() {
         <Title>Add Song</Title>
       </div>
 
-      <div className="max-w-lg border dark:border-neutral-800 p-8 shadow rounded">
+      <div className="max-w-lg shadow rounded">
         <LabeledInput label="Name" type="text" name="name"
           value={createItem.name}
           onChange={(e) =>
@@ -102,7 +102,7 @@ export default function AddSong() {
               <Label>Artist</Label>
               <div className="relative my-2 w-full cursor-default overflow-hidden rounded-md text-left border border-neutral-300 dark:border-neutral-600 text-sm">
                 <Combobox.Input
-                  className="w-full py-2 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
+                  className="w-full py-2 pl-3 pr-10 text-sm font-medium text-neutral-900 dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
                   displayValue={(artist) => artist?.name}
                   placeholder="Search Artist"
                   onChange={(e) => setQueryArtist(e.target.value)}
@@ -171,7 +171,7 @@ export default function AddSong() {
               <Label>Album (Optional)</Label>
               <div className="relative my-2 w-full cursor-default overflow-hidden rounded-md text-left border border-neutral-300 dark:border-neutral-600 text-sm">
                 <Combobox.Input
-                  className="w-full py-2 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
+                  className="w-full py-2 pl-3 pr-10 text-sm font-medium text-neutral-900 dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
                   displayValue={(album) => album?.name}
                   placeholder="Search Album"
                   onChange={(e) => setQueryAlbum(e.target.value)}
@@ -240,6 +240,14 @@ export default function AddSong() {
             setCreateItem({ ...createItem, cover_url: e.target.value }
             )}
           placeholder="https://i.scdn.co/image/ab67616d00001e02b151437d4adc97ce6c828d4a"
+        />
+
+        <LabeledInput label="Preview URL (Optional)" type="text" name="preview"
+          value={createItem.preview_url}
+          onChange={(e) =>
+            setCreateItem({ ...createItem, preview_url: e.target.value }
+            )}
+          placeholder="https://p.scdn.co/mp3-preview/09474fc657c15038cb699afa4a52b4fac9383d62"
         />
 
         <LabeledInput label="Youtube URL (Optional)" type="text" name="youtube"

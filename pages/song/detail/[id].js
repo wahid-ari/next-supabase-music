@@ -2,7 +2,6 @@ import { useState } from "react";
 import Image from "next/image";
 import useSWR from "swr";
 import axios from "axios";
-import useToast from "@utils/useToast";
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
@@ -20,7 +19,6 @@ export async function getServerSideProps(context) {
 
 export default function Album({ id }) {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song?id=${id}`, fetcher)
-  const { updateToast, pushToast, dismissToast } = useToast();
   const [isLoading, setLoading] = useState(true)
 
   if (error) {
@@ -44,7 +42,13 @@ export default function Album({ id }) {
       {data ?
         <div>
           <p className="text-lg">{data[0].artists.name}</p>
-          <p className="text-lg">{data[0].album?.name}</p>
+          <p className="text-base mt-2">{data[0].album?.name}</p>
+          {data[0]?.preview_url &&
+            <audio controls className="mt-4 mb-2">
+              <source src={data[0]?.preview_url} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          }
           {data[0]?.cover_url &&
             <div className="overflow-hidden">
               <Image

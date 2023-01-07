@@ -28,7 +28,7 @@ export default function Song({ id }) {
   const { data: artist, error: errorArtist } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher)
   const { data: album, error: errorAlbum } = useSWR(`${process.env.API_ROUTE}/api/album`, fetcher)
   const { updateToast, pushToast, dismissToast } = useToast();
-  const [editItem, setEditItem] = useState({ name: "", cover_url: "", youtube_url: "", artist_id: null, album_id: null })
+  const [editItem, setEditItem] = useState({ name: "", cover_url: "", preview_url: "",  youtube_url: "", artist_id: null, album_id: null })
   const [selectedArtist, setSelectedArtist] = useState()
   const [selectedAlbum, setSelectedAlbum] = useState()
   const [queryArtist, setQueryArtist] = useState('')
@@ -60,6 +60,7 @@ export default function Song({ id }) {
       setEditItem({
         name: data[0].name,
         cover_url: data[0].cover_url,
+        preview_url: data[0].preview_url,
         youtube_url: data[0].youtube_url,
         artist_id: data[0].artists?.id,
         album_id: data[0].album?.id
@@ -85,7 +86,7 @@ export default function Song({ id }) {
     try {
       const res = await axios.put(`${process.env.API_ROUTE}/api/song?id=${id}`, editItem)
       if (res.status == 201) {
-        setEditItem({ name: "", cover_url: "", youtube_url: "", artist_id: null, album_id: null })
+        setEditItem({ name: "", cover_url: "", preview_url: "",  youtube_url: "", artist_id: null, album_id: null })
         updateToast({ toastId, message: res.data.message, isError: false });
         router.push("/song")
       }
@@ -116,7 +117,7 @@ export default function Song({ id }) {
       </div>
 
       {data ?
-        <div className="max-w-lg border dark:border-neutral-800 p-8 shadow rounded">
+        <div className="max-w-lg rounded">
           <LabeledInput label="Name" type="text" name="name"
             value={editItem.name}
             onChange={(e) =>
@@ -131,7 +132,7 @@ export default function Song({ id }) {
                 <Label>Artist</Label>
                 <div className="relative my-2 w-full cursor-default overflow-hidden rounded-md text-left border border-neutral-300 dark:border-neutral-600 text-sm">
                   <Combobox.Input
-                    className="w-full py-2 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
+                    className="w-full py-2 pl-3 pr-10 text-sm font-medium text-neutral-900 dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
                     displayValue={(artist) => artist?.name}
                     placeholder="Search Artist"
                     onChange={(e) => setQueryArtist(e.target.value)}
@@ -200,7 +201,7 @@ export default function Song({ id }) {
                 <Label>Album (Optional)</Label>
                 <div className="relative my-2 w-full cursor-default overflow-hidden rounded-md text-left border border-neutral-300 dark:border-neutral-600 text-sm">
                   <Combobox.Input
-                    className="w-full py-2 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
+                    className="w-full py-2 pl-3 pr-10 text-sm text-neutral-900 font-medium dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
                     displayValue={(album) => album?.name}
                     placeholder="Search Album"
                     onChange={(e) => setQueryAlbum(e.target.value)}
@@ -269,6 +270,14 @@ export default function Song({ id }) {
               setEditItem({ ...editItem, cover_url: e.target.value }
               )}
             placeholder="https://i.scdn.co/image/ab67616d00001e02b151437d4adc97ce6c828d4a"
+          />
+
+          <LabeledInput label="Preview URL (Optional)" type="text" name="preview"
+            value={editItem.preview_url}
+            onChange={(e) =>
+              setEditItem({ ...editItem, preview_url: e.target.value }
+              )}
+            placeholder="https://p.scdn.co/mp3-preview/09474fc657c15038cb699afa4a52b4fac9383d62"
           />
 
           <LabeledInput label="Youtube URL (Optional)" type="text" name="youtube"

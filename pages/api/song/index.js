@@ -31,6 +31,7 @@ export default async function handler(req, res) {
               name: body.name,
               album_id: body.album_id,
               youtube_url: body.youtube_url,
+              preview_url: body.preview_url,
               cover_url: body.cover_url,
               artist_id: body.artist_id
             }
@@ -51,6 +52,7 @@ export default async function handler(req, res) {
             name: body.name,
             album_id: body.album_id,
             youtube_url: body.youtube_url,
+            preview_url: body.preview_url,
             cover_url: body.cover_url,
             artist_id: body.artist_id
           })

@@ -10,7 +10,7 @@ export default function SearchBox({ label, value, placeholder, onChange, query, 
         {label && <Combobox.Label className="text-gray-800 dark:text-neutral-300">{label}</Combobox.Label>}
         <div className="relative my-2 w-full cursor-default overflow-hidden rounded-md text-left border border-neutral-300 dark:border-neutral-600 text-sm">
           <Combobox.Input
-            className="w-full py-2 pl-3 pr-10 text-sm text-neutral-900 dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
+            className="w-full py-2 pl-3 pr-10 text-sm font-medium text-neutral-900 dark:text-white dark:bg-neutral-900 rounded-md border border-transparent focus:border-emerald-500"
             displayValue={(data) => data?.name}
             placeholder={placeholder}
             onChange={onChangeQuery}

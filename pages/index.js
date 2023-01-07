@@ -41,7 +41,7 @@ export default function Home() {
             artistByGenre[0]?.artists?.map((item, index) =>
               <ArtistItem
                 key={index}
-                href={`artist/detail/${item.id}`}
+                href={`/dashboard/artist/detail/${item.id}`}
                 imageSrc={item.cover_url}
                 title={item.name}
               />
