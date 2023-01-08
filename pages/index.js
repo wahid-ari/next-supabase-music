@@ -164,7 +164,7 @@ export default function Home() {
           View All
         </Link>
       </div>
-      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="mt-2 grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {artists ?
           artists.slice(0, 4).map((item, index) =>
             <ArtistItem
@@ -184,8 +184,12 @@ export default function Home() {
         }
       </div>
 
-      {/* TODO Add playlist page */}
-      <Heading className="mt-10">Playlists</Heading>
+      <div className="mt-10 flex items-center justify-between">
+        <Heading className="">Playlists</Heading>
+        <Link href={`dashboard/playlist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium">
+          View All
+        </Link>
+      </div>
       <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {playlists ?
           playlists.slice(0, 4).map((item, index) =>
@@ -198,10 +202,10 @@ export default function Home() {
           )
           :
           <>
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
+            <Shimer className="w-full !h-36" />
+            <Shimer className="w-full !h-36" />
+            <Shimer className="w-full !h-36" />
+            <Shimer className="w-full !h-36" />
           </>
         }
       </div>

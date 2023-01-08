@@ -10,7 +10,7 @@ export default function PlaylistItem({ href = "#", title = "Genre", index, ...pr
       {/* <div style={{ backgroundColor: colors[index] }} className={`brightness-90 group-hover:brightness-110 shadow-lg transition-all duration-500 h-32 rounded flex items-center justify-center mb-2`}> */}
       <div
         style={{ background: `linear-gradient(${colors[index]}, #${color})` }}
-        className={`brightness-90 group-hover:brightness-110 shadow-lg transition-all duration-500 h-32 rounded flex items-center justify-center`}>
+        className={`brightness-90 group-hover:brightness-110 shadow-lg transition-all duration-500 h-32 rounded flex items-center justify-center p-4 text-center`}>
         <p className="text-xl font-medium text-white">{title}</p>
       </div>
     </Link>

@@ -2,7 +2,6 @@ import useSWR from "swr";
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
-import AlbumItem from "@components/dashboard/AlbumItem";
 import ArtistItem from "@components/dashboard/ArtistItem";
 
 const fetcher = url => fetch(url).then(result => result.json())
@@ -12,7 +11,7 @@ export default function Artist() {
 
   if (errorArtists) {
     return (
-      <Layout title="Dashboard">
+      <Layout title="Artists">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
@@ -22,7 +21,7 @@ export default function Artist() {
     <Layout title="Artists">
       <Title>Artists</Title>
 
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="mt-6 grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {artists ?
           artists.map((item, index) =>
             <ArtistItem

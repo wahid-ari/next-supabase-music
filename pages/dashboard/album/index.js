@@ -11,7 +11,7 @@ export default function Albums() {
 
   if (errorAlbums) {
     return (
-      <Layout title="Dashboard">
+      <Layout title="Albums">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )

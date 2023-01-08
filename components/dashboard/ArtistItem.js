@@ -7,12 +7,12 @@ export default function ArtistItem({ href = "#", imageSrc = "/genre/pop.webp", t
   const [isLoading, setLoading] = useState(true)
 
   return (
-    <Link href={href} className="group" {...props}>
-      <div className="relative h-52 mb-2 overflow-hidden">
+    <Link href={href} className="group text-center p-2" {...props}>
+      <div className="relative h-44 w-44 mb-2 overflow-hidden mx-auto">
         <Image
           alt={title}
           src={imageSrc}
-          className={`duration-500 ease-in-out transform rounded brightness-90 transition will-change-auto group-hover:brightness-110
+          className={`duration-500 ease-in-out transform rounded-full brightness-90 transition will-change-auto group-hover:brightness-110
             ${isLoading ? 'blur-2xl' : 'blur-0'}`}
           fill
           onLoadingComplete={() => setLoading(false)}

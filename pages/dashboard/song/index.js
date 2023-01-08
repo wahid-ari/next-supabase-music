@@ -11,7 +11,7 @@ export default function Songs() {
   
   if (errorSongs) {
     return (
-      <Layout title="Dashboard">
+      <Layout title="Songs">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )

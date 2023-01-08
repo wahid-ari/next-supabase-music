@@ -105,7 +105,7 @@ export default function Search() {
           {data?.artists.length > 0 ?
             <>
               <Heading h3 className="mt-6">Artists</Heading>
-              <div className="mt-2 pb-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+              <div className="mt-2 pb-4 grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {data?.artists?.map((item, index) =>
                   <ArtistItem
                     key={index}
@@ -168,8 +168,7 @@ export default function Search() {
             </h2>
           </div>
         </Link>
-        {/* TODO Link to playlist page */}
-        <Link href="#" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-violet-500 to-pink-500">
+        <Link href="/dashboard/playlist" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-violet-500 to-pink-500">
           <div className="flex items-center gap-2 px-4 py-2 transition-all ease-in duration-300 bg-white dark:bg-neutral-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
             <BookmarkIcon className="w-8 h-8 text-violet-500 group-hover:text-white transition-all ease-in duration-300" />
             <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-pink-500 group-hover:text-white transition-all ease-in duration-300">
