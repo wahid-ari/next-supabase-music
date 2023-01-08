@@ -184,6 +184,7 @@ export default function Home() {
         }
       </div>
 
+      {/* TODO Add playlist page */}
       <Heading className="mt-10">Playlists</Heading>
       <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         {playlists ?
