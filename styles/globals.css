@@ -41,3 +41,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	filter: invert(0.6);
 	font-size: 16px !important;
 }
+
+.splide__arrow {
+	background: rgb(0, 0, 0) !important;
+	height: 2.5em !important;
+	width: 2.5em !important;
+	opacity: 1 !important;
+	color:rgb(226, 225, 225);
+}
+
+.splide__arrow svg {
+	width: 1.3em !important;
+	height: 1.3em !important;
+}
+
+.splide__arrow:hover {
+	color:rgb(11, 173, 79) !important;
+}
+
+.splide__arrow:disabled {
+	display: none;
+	opacity: 0 !important;
+}
+
+.splide__arrow:hover:not(:disabled) {
+	opacity: 1 !important;
+}
