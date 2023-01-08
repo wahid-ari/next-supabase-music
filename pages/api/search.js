@@ -17,14 +17,36 @@ export default async function handler(req, res) {
       const { data: artists, error: errorArtists } = await supabase.from('artists')
         .select(`*`)
         .textSearch('name', `'${query.q}'`)
+      const { data: allArtists, error: errorAllArtists } = await supabase.from('artists')
+        .select(`*`)
+        .order('id');
       const { data: playlists, error: errorPlaylists } = await supabase.from('playlist')
         .select(`*, playlist_song (*)`)
         .textSearch('name', `'${query.q}'`)
-      // const {playlist_song} = playlists[0]
-      // console.log(playlists)
-      // console.log(playlist_song)
-      // res.status(200).json({ songs, albums, artists, playlists });
-      res.status(200).json({ songs, albums, artists, playlists });
+
+      let songArtist = []
+      for (const song of songs) {
+        for (const allArtist of allArtists) {
+          if (song.artist_id == allArtist.id) {
+            songArtist.push({
+              ...song,
+              artist_name: allArtist.name
+            })
+          }
+        }
+      }
+      let albumArtist = []
+      for (const album of albums) {
+        for (const allArtist of allArtists) {
+          if (album.artists_id == allArtist.id) {
+            albumArtist.push({
+              ...album,
+              artist_name: allArtist.name
+            })
+          }
+        }
+      }
+      res.status(200).json({ songs: songArtist, albums: albumArtist, artists, playlists });
       break;
 
     default:

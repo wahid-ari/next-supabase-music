@@ -44,7 +44,7 @@ export default function Album({ id }) {
       <div className="mt-6 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
         {data ?
           data?.data[0]?.songs?.map((item, index) =>
-            <SongListItem key={index} href={`/song/detail/${item.id}`}
+            <SongListItem key={index} href={`/dashboard/song/detail/${item.id}`}
               imageSrc={item.cover_url}
               title={item.name}
               artist={data?.artist[0]?.name}

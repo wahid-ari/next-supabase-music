@@ -76,7 +76,7 @@ export default function Search() {
                   <SongItem key={index} href={`song/detail/${item.id}`}
                     imageSrc={item.cover_url}
                     title={item.name}
-                    hideArtist
+                    artist={item.artist_name}
                   />
                 )}
               </div>
@@ -93,7 +93,7 @@ export default function Search() {
                   <AlbumItem key={index} href={`dashboard/album/detail/${item.id}`}
                     imageSrc={item.cover}
                     title={item.name}
-                    hideArtist
+                    artist={item.artist_name}
                   />
                 )}
               </div>

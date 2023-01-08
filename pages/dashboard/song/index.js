@@ -45,7 +45,7 @@ export default function Songs() {
       <div className="mt-6 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
         {filteredSongs ?
           filteredSongs.map((item, index) =>
-            <SongListItem key={index} href={`/song/detail/${item.id}`}
+            <SongListItem key={index} href={`/dashboard/song/detail/${item.id}`}
               imageSrc={item.cover_url}
               title={item.name}
               artist={item.artists.name}
