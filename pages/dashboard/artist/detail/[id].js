@@ -8,6 +8,7 @@ import Shimer from "@components/systems/Shimer";
 import SongItem from "@components/dashboard/SongItem";
 import Heading from "@components/systems/Heading";
 import AlbumItem from "@components/dashboard/AlbumItem";
+import SongListItem from "@components/dashboard/SongListItem";
 
 const fetcher = url => axios.get(url).then(res => res.data)
 
@@ -38,14 +39,14 @@ export default function Artist({ id }) {
         {data ?
           <>
             <Title>{data[0]?.name}</Title>
-            <p className="text-lg">{data[0]?.genre?.name}</p>
+            <p className="text-lg mb-4">{data[0]?.genre?.name}</p>
             {data[0]?.cover_url &&
-              <div className="m-auto sm:m-0 overflow-hidden h-72 w-72 relative rounded">
+              <div className="m-auto sm:m-0 overflow-hidden h-72 w-72 relative">
                 <Image
                   alt={data[0]?.name}
                   src={data[0]?.cover_url}
                   fill
-                  className={`rounded my-4 ${isLoading ? 'blur-2xl' : 'blur-0'}`}
+                  className={`rounded-full ${isLoading ? 'blur-2xl' : 'blur-0'}`}
                   onLoadingComplete={() => setLoading(false)}
                 />
               </div>
@@ -81,10 +82,10 @@ export default function Artist({ id }) {
       </div>
 
       <Heading className="mt-10">{data && data[0]?.name} Songs</Heading>
-      <div className="mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div className="mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
         {data ?
           data[0]?.songs?.map((item, index) =>
-            <SongItem key={index} href={`/song/detail/${item.id}`}
+            <SongListItem key={index} href={`/song/detail/${item.id}`}
               imageSrc={item.cover_url}
               title={item.name}
               artist={data[0]?.name}

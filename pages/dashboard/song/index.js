@@ -2,7 +2,7 @@ import useSWR from "swr";
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
-import SongItem from "@components/dashboard/SongItem";
+import SongListItem from "@components/dashboard/SongListItem";
 
 const fetcher = url => fetch(url).then(result => result.json())
 
@@ -21,10 +21,10 @@ export default function Songs() {
     <Layout title="Songs">
       <Title>Songs</Title>
 
-      <div className="mt-6 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div className="mt-6 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
         {songs ?
           songs.map((item, index) =>
-            <SongItem key={index} href={`/song/detail/${item.id}`}
+            <SongListItem key={index} href={`/song/detail/${item.id}`}
               imageSrc={item.cover_url}
               title={item.name}
               artist={item.artists.name}
