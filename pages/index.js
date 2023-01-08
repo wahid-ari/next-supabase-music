@@ -196,7 +196,61 @@ export default function Home() {
           View All
         </Link>
       </div>
-      <div className="mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+      {albums ?
+        <Splide aria-label="Albums" className="hidden xl:block"
+          options={{
+            perPage: 1,
+            gap: '1rem',
+            pagination: false,
+            speed: 1500
+          }}
+          hasTrack={false}
+        >
+          <div>
+            <SplideTrack>
+              <SplideSlide>
+                <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+                  {albums?.slice(0, 5).map((item, index) =>
+                    <SongItem key={index} href={`dashboard/album/detail/${item.id}`}
+                      imageSrc={item.cover}
+                      title={item.name}
+                      artist={item.artists.name}
+                    />
+                  )}
+                </div>
+              </SplideSlide>
+              <SplideSlide>
+                <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+                  {albums?.slice(5, 10).map((item, index) =>
+                    <SongItem key={index} href={`dashboard/album/detail/${item.id}`}
+                      imageSrc={item.cover}
+                      title={item.name}
+                      artist={item.artists.name}
+                    />
+                  )}
+                </div>
+              </SplideSlide>
+            </SplideTrack>
+            <div className="splide__arrows">
+              <button title="Prev" className="splide__arrow splide__arrow--prev !-mt-8">
+                <ArrowRightIcon />
+              </button>
+              <button title="Next" className="splide__arrow splide__arrow--next !-mt-8">
+                <ArrowRightIcon />
+              </button>
+            </div>
+          </div>
+        </Splide>
+        :
+        <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+          <Shimer className="w-full !h-60" />
+          <Shimer className="w-full !h-60" />
+          <Shimer className="w-full !h-60" />
+          <Shimer className="w-full !h-60" />
+          <Shimer className="w-full !h-60" />
+        </div>
+      }
+      <div className="xl:hidden mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
         {albums ?
           albums.slice(0, 5).map((item, index) =>
             <AlbumItem key={index} href={`dashboard/album/detail/${item.id}`}
