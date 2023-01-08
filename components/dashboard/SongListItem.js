@@ -7,7 +7,7 @@ export default function SongListItem({ href = "#", imageSrc = "/genre/pop.webp",
   const [isLoading, setLoading] = useState(true)
 
   return (
-    <Link {...props} href={href} className={`p-4 flex items-center gap-4 group border dark:border-neutral-800 rounded ${className}`}>
+    <Link {...props} href={href} className={`p-2 flex items-center gap-2 group border dark:border-neutral-800 rounded ${className}`}>
       <div className="relative h-12 w-12 overflow-hidden rounded">
         <Image
           alt={title}

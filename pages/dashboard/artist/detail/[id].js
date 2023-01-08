@@ -93,11 +93,9 @@ export default function Artist({ id }) {
           )
           :
           <>
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
+            <Shimer className="w-full !h-16" />
+            <Shimer className="w-full !h-16" />
+            <Shimer className="w-full !h-16" />
           </>
         }
       </div>

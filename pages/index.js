@@ -288,10 +288,18 @@ export default function Home() {
           )
           :
           <>
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
+            <div className="flex items-center justify-center">
+              <Shimer className="!mx-8 !w-44 !h-44 !rounded-full" />
+            </div>
+            <div className="flex items-center justify-center">
+              <Shimer className="!mx-8 !w-44 !h-44 !rounded-full" />
+            </div>
+            <div className="flex items-center justify-center">
+              <Shimer className="!mx-8 !w-44 !h-44 !rounded-full" />
+            </div>
+            <div className="flex items-center justify-center">
+              <Shimer className="!mx-8 !w-44 !h-44 !rounded-full" />
+            </div>
           </>
         }
       </div>
