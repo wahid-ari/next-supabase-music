@@ -1,3 +1,5 @@
+import { useState } from "react";
+import Image from "next/image";
 import useSWR from "swr";
 import axios from "axios";
 import Layout from "@components/layout/Layout";
@@ -20,6 +22,7 @@ export async function getServerSideProps(context) {
 
 export default function Artist({ id }) {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/artist?id=${id}`, fetcher)
+  const [isLoading, setLoading] = useState(true)
 
   if (error) {
     return (
@@ -31,13 +34,28 @@ export default function Artist({ id }) {
 
   return (
     <Layout title={`${data ? data[0]?.name : 'Artist Detail'}`}>
-      <div className="mb-6">
+      <div className="mb-10">
         {data ?
           <>
             <Title>{data[0]?.name}</Title>
+            <p className="text-lg">{data[0]?.genre?.name}</p>
+            {data[0]?.cover_url &&
+              <div className="m-auto sm:m-0 overflow-hidden h-72 w-72 relative rounded">
+                <Image
+                  alt={data[0]?.name}
+                  src={data[0]?.cover_url}
+                  fill
+                  className={`rounded my-4 ${isLoading ? 'blur-2xl' : 'blur-0'}`}
+                  onLoadingComplete={() => setLoading(false)}
+                />
+              </div>
+            }
           </>
           :
-          <Title>Artist Detail</Title>
+          <>
+            <Title>Artist Detail</Title>
+            <Shimer className="mt-8 !h-72 !w-72" />
+          </>
         }
       </div>
 
