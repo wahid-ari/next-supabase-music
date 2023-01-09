@@ -13,6 +13,7 @@ import AlbumItem from "@components/dashboard/AlbumItem";
 import ArtistItem from "@components/dashboard/ArtistItem";
 import PlaylistItem from "@components/dashboard/PlaylistItem";
 import { BookmarkIcon, CollectionIcon, MusicNoteIcon, UserGroupIcon } from "@heroicons/react/outline";
+import SongListItem from "@components/dashboard/SongListItem";
 
 const fetcher = url => fetch(url).then(result => result.json())
 
@@ -71,12 +72,13 @@ export default function Search() {
           {data?.songs.length > 0 ?
             <>
               <Heading h3 className="mt-6">Songs</Heading>
-              <div className="mt-2 pb-4 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+              <div className="mt-2 pb-4 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
                 {data?.songs?.map((item, index) =>
-                  <SongItem key={index} href={`song/detail/${item.id}`}
+                  <SongListItem key={index} href={`dashboard/song/detail/${item.id}`}
                     imageSrc={item.cover_url}
                     title={item.name}
                     artist={item.artist_name}
+                    noPlayer
                   />
                 )}
               </div>
