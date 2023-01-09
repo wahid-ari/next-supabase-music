@@ -2,13 +2,15 @@ import { useState } from "react";
 import Image from "next/image";
 import useSWR from "swr";
 import axios from "axios";
+import { Transition } from '@headlessui/react';
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
-import SongItem from "@components/dashboard/SongItem";
 import Heading from "@components/systems/Heading";
 import AlbumItem from "@components/dashboard/AlbumItem";
 import SongListItem from "@components/dashboard/SongListItem";
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 const fetcher = url => axios.get(url).then(res => res.data)
 
@@ -24,6 +26,20 @@ export async function getServerSideProps(context) {
 export default function Artist({ id }) {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/artist?id=${id}`, fetcher)
   const [isLoading, setLoading] = useState(true)
+  const [name, setName] = useState("")
+  const [url, setUrl] = useState("")
+  const [showPlayer, setShowPlayer] = useState(false)
+
+  function handlePlay(song, url) {
+    if (url !== "") {
+      setName(song)
+      setUrl(url)
+    } else {
+      setName(name)
+      setUrl(null)
+    }
+    setShowPlayer(true)
+  }
 
   if (error) {
     return (
@@ -86,6 +102,7 @@ export default function Artist({ id }) {
         {data ?
           data[0]?.songs?.map((item, index) =>
             <SongListItem key={index} href={`/dashboard/song/detail/${item.id}`}
+              onPlay={() => handlePlay(item.name, item.preview_url)}
               imageSrc={item.cover_url}
               title={item.name}
               artist={data[0]?.name}
@@ -99,6 +116,30 @@ export default function Artist({ id }) {
           </>
         }
       </div>
+
+      <Transition
+        show={showPlayer}
+        enter="transition-opacity duration-700"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+      >
+        {url ?
+          <div className="fixed bottom-4 left-4 right-6 lg:left-64">
+            <AudioPlayer
+              autoPlay={true}
+              src={url}
+              header={name}
+              layout="horizontal"
+              customAdditionalControls={[]}
+              className="rounded dark:bg-neutral-800 text-emerald-500 dark:text-emerald-500 font-medium"
+            />
+          </div>
+          :
+          <div className="fixed bottom-4 left-4 right-6 lg:left-64 dark:bg-neutral-800 p-4 rounded bg-neutral-100 shadow-lg text-red-500 font-medium">
+            Audio Not Available
+          </div>
+        }
+      </Transition>
 
     </Layout>
   );

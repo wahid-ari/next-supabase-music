@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html[class="light"] {
+	--primary-text-color: rgb(51, 50, 50);
+}
+
+html[class="dark"] {
+	--primary-text-color: rgb(238, 230, 230);
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -47,7 +55,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	height: 2.5em !important;
 	width: 2.5em !important;
 	opacity: 1 !important;
-	color:rgb(226, 225, 225);
+	color: rgb(226, 225, 225);
 }
 
 .splide__arrow svg {
@@ -58,7 +66,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .splide__arrow:hover {
 	transition: all;
 	transition-duration: 300ms;
-	color:rgb(11, 173, 79) !important;
+	color: rgb(11, 173, 79) !important;
 }
 
 .splide__arrow:disabled {
@@ -68,4 +76,44 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .splide__arrow:hover:not(:disabled) {
 	opacity: 1 !important;
+}
+
+.rhap_main-controls {
+	margin-left: 64px;
+}
+
+@media (max-width: 575.98px) {
+	.rhap_main-controls {
+		margin-left: 0px;
+	}
+
+	#rhap_current-time {
+		display: none;
+	}
+
+	.rhap_time.rhap_total-time {
+		display: none;
+	}
+
+	.rhap_progress-container {
+		margin: 0 !important;
+	}
+}
+
+#rhap_current-time {
+	color: var(--primary-text-color);
+	font-size: 14px !important;
+}
+
+.rhap_time.rhap_total-time {
+	color: var(--primary-text-color);
+	font-size: 14px !important;
+}
+
+.rhap_additional-controls {
+	display: none !important;
+}
+
+.rhap_header {
+	font-size: 15px !important;
 }

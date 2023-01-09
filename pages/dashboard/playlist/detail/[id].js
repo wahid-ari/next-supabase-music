@@ -5,7 +5,6 @@ import { Transition } from '@headlessui/react';
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
-import Heading from "@components/systems/Heading";
 import SongListItem from "@components/dashboard/SongListItem";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
@@ -21,8 +20,8 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function Album({ id }) {
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/dashboard/album/detail?id=${id}`, fetcher)
+export default function Playlist({ id }) {
+  const { data: detailPlaylist, error: errorDetailPlaylist } = useSWR(`${process.env.API_ROUTE}/api/dashboard/playlist/detail?id=${id}`, fetcher)
   const [name, setName] = useState("")
   const [url, setUrl] = useState("")
   const [showPlayer, setShowPlayer] = useState(false)
@@ -38,36 +37,25 @@ export default function Album({ id }) {
     setShowPlayer(true)
   }
 
-  if (error) {
+  if (errorDetailPlaylist) {
     return (
-      <Layout title="Album Detail">
+      <Layout title="Playlist Detail">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
-  
+
   return (
-    <Layout title={`${data ? data?.data[0]?.name : 'Album Detail'}`}>
-
-      <div className="mb-6">
-        {data ?
-          <>
-            <Title>{data?.data[0]?.name}</Title>
-            <Heading className="mt-2">{data?.artist[0]?.name}</Heading>
-          </>
-          :
-          <Title>Album Detail</Title>
-        }
-      </div>
-
-      <div className="mt-6 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
-        {data ?
-          data?.data[0]?.songs?.map((item, index) =>
-            <SongListItem key={index} href={`/dashboard/song/detail/${item.id}`}
-              onPlay={() => handlePlay(item.name, item.preview_url)}
-              imageSrc={item.cover_url}
-              title={item.name}
-              artist={data?.artist[0]?.name}
+    <Layout title={detailPlaylist ? detailPlaylist?.playlist[0]?.name : "Playlist"}>
+      <Title>{detailPlaylist ? detailPlaylist?.playlist[0]?.name : "Playlist"}</Title>
+      <div className="mt-8 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
+        {detailPlaylist ?
+          detailPlaylist?.song_artist?.map((item, index) =>
+            <SongListItem key={index} href={`/dashboard/song/detail/${item.song_id}`}
+              onPlay={() => handlePlay(item.song_name, item.song_preview_url)}
+              imageSrc={item.song_cover_url}
+              title={item.song_name}
+              artist={item.artist_name}
             />
           )
           :
@@ -78,7 +66,6 @@ export default function Album({ id }) {
           </>
         }
       </div>
-
       <Transition
         show={showPlayer}
         enter="transition-opacity duration-700"
@@ -102,7 +89,6 @@ export default function Album({ id }) {
           </div>
         }
       </Transition>
-
     </Layout>
   );
 }

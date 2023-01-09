@@ -41,10 +41,10 @@ export default function Album({ id }) {
 
       {data ?
         <div>
-          <p className="text-lg">{data[0].artists.name}</p>
-          <p className="text-base mt-2">{data[0].album?.name}</p>
+          <p className="text-xl font-semibold">{data[0].artists.name}</p>
+          <p className="text-base font-medium mt-2">{data[0].album?.name}</p>
           {data[0]?.preview_url &&
-            <audio controls className="mt-4 mb-2">
+            <audio controls className="mt-6">
               <source src={data[0]?.preview_url} type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
@@ -56,13 +56,13 @@ export default function Album({ id }) {
                 src={data[0]?.cover_url}
                 width={300}
                 height={300}
-                className={`rounded my-4 ${isLoading ? 'blur-2xl' : 'blur-0'}`}
+                className={`rounded mt-6 ${isLoading ? 'blur-2xl' : 'blur-0'}`}
                 onLoadingComplete={() => setLoading(false)}
               />
             </div>
           }
           {data[0].youtube_url &&
-            <iframe className="rounded my-2"
+            <iframe className="rounded my-6"
               width="560"
               height="315"
               src={`https://www.youtube.com/embed/${data[0].youtube_url}`}

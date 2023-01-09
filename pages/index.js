@@ -13,7 +13,6 @@ import PlaylistItem from "@components/dashboard/PlaylistItem";
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import { ArrowRightIcon } from "@heroicons/react/outline";
-import SongListItem from "@components/dashboard/SongListItem";
 
 const fetcher = url => fetch(url).then(result => result.json())
 
@@ -26,9 +25,8 @@ export default function Home() {
   const { data: artists, error: errorArtists } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher)
   const { data: playlists, error: errorPlaylists } = useSWR(`${process.env.API_ROUTE}/api/playlist`, fetcher)
   const { data: artistByGenre, error: errorArtistByGenre } = useSWR(`${process.env.API_ROUTE}/api/genre?id=${query.genre}`, fetcher)
-  const { data: detailPlaylist, error: errorDetailPlaylist } = useSWR(`${process.env.API_ROUTE}/api/dashboard/playlist/detail?id=${query.playlist}`, fetcher)
 
-  if (errorGenre || errorSongs || errorAlbums || errorArtists || errorPlaylists || errorArtistByGenre || errorDetailPlaylist) {
+  if (errorGenre || errorSongs || errorAlbums || errorArtists || errorPlaylists || errorArtistByGenre) {
     return (
       <Layout title="Dashboard">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
@@ -56,31 +54,6 @@ export default function Home() {
               <Shimer className="w-full !h-60" />
               <Shimer className="w-full !h-60" />
               <Shimer className="w-full !h-60" />
-            </>
-          }
-        </div>
-      </Layout>
-    )
-  }
-
-  if (query.playlist) {
-    return (
-      <Layout title={detailPlaylist ? detailPlaylist?.playlist[0]?.name : "Playlist"}>
-        <Title>{detailPlaylist ? detailPlaylist?.playlist[0]?.name : "Playlist"}</Title>
-        <div className="mt-8 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
-          {detailPlaylist ?
-            detailPlaylist?.song_artist?.map((item, index) =>
-              <SongListItem key={index} href={`/dashboard/song/detail/${item.song_id}`}
-                imageSrc={item.song_cover_url}
-                title={item.song_name}
-                artist={item.artist_name}
-              />
-            )
-            :
-            <>
-              <Shimer className="w-full !h-16" />
-              <Shimer className="w-full !h-16" />
-              <Shimer className="w-full !h-16" />
             </>
           }
         </div>
@@ -319,7 +292,7 @@ export default function Home() {
             <PlaylistItem
               key={index}
               index={index}
-              href={`?playlist=${item.id}`}
+              href={`/dashboard/playlist/detail/${item.id}`}
               title={item.name}
             />
           )

@@ -27,7 +27,7 @@ export default function Playlist() {
             <PlaylistItem
               key={index}
               index={index}
-              href={`/?playlist=${item.id}`}
+              href={`/dashboard/playlist/detail/${item.id}`}
               title={item.name}
             />
           )

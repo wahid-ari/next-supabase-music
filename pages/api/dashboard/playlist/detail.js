@@ -31,6 +31,7 @@ export default async function handler(req, res) {
                 song_id: song.songs.id,
                 song_name: song.songs.name,
                 song_cover_url: song.songs.cover_url,
+                song_preview_url: song.songs.preview_url,
                 artist_id: artist.id,
                 artist_name: artist.name,
               })
