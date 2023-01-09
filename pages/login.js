@@ -1,15 +1,26 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Router from "next/router";
+import axios from "axios";
 import useToast from "@utils/useToast";
 import Button from "@components/systems/Button";
 import Heading from "@components/systems/Heading";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
+// import { hash, compare } from "bcryptjs";
 
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { updateToast, pushToast, dismissToast } = useToast();
+
+  // async function pass() {
+  //   let hashed = await hash('password', 8);
+  //   console.log(hashed)
+  //   let isMatch = await compare(form.password, hashed);
+  //   console.log(isMatch)
+  // }
+  // pass()
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,6 +33,7 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
+    setLoading(true)
     let isError = false
     if (!form.username) {
       isError = true
@@ -39,26 +51,20 @@ export default function Login() {
         isLoading: true,
       });
       try {
+        const res = await axios.post(`${process.env.API_ROUTE}/api/login`, form)
+        console.log(res.data)
         updateToast({
           toastId,
           message: "Success Login",
           isError: false,
         });
-        Router.replace("/");
+        // Router.replace("/");
       } catch (error) {
-        updateToast({
-          toastId,
-          message: "Failed login, check Username and Password !",
-          isError: true,
-        });
-        updateToast({
-          toastId,
-          message: error.response.data.message,
-          isError: true,
-        });
+        updateToast({ toastId, message: error.response.data.error, isError: true });
         console.error(error);
       }
     }
+    setLoading(false)
   }
 
   return (
@@ -80,7 +86,7 @@ export default function Login() {
           </p>
           <p className="text-white font-bold">2022</p>
         </div>
-        
+
         <div className="hidden sm:flex banner px-8 py-12 flex-col justify-between gap-2">
           <div>
             <h1 className="text-white font-bold sm:text-4xl md:text-5xl">
@@ -140,11 +146,11 @@ export default function Login() {
                 </button>
               </div>
             </div>
-            <Button.success onClick={handleLogin} className="w-full">Login Admin</Button.success>
+            <Button.success onClick={handleLogin} className="w-full">{loading ? "Logging in..." : "Login"}</Button.success>
           </div>
         </div>
       </div>
-      
+
     </div>
   );
 }

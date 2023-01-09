@@ -12,7 +12,10 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   return (
     router.pathname == "/login" ?
-      <Component {...pageProps} />
+      <>
+        <Toaster />
+        <Component {...pageProps} />
+      </>
       :
       <ThemeProvider attribute="class" storageKey='theme'>
         <GlobalProvider>
