@@ -6,6 +6,7 @@ import useToast from "@utils/useToast";
 import Button from "@components/systems/Button";
 import Heading from "@components/systems/Heading";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
+import nookies from "nookies";
 // import { hash, compare } from "bcryptjs";
 
 export default function Login() {
@@ -52,13 +53,16 @@ export default function Login() {
       });
       try {
         const res = await axios.post(`${process.env.API_ROUTE}/api/login`, form)
-        console.log(res.data)
-        updateToast({
-          toastId,
-          message: "Success Login",
-          isError: false,
-        });
-        // Router.replace("/");
+        if (res.status == 200) {
+          nookies.set(null, 'username', res.data.username, { path: '/' })
+          nookies.set(null, 'name', res.data.name, { path: '/' })
+          updateToast({
+            toastId,
+            message: "Success Login",
+            isError: false,
+          });
+          Router.replace("/");
+        }
       } catch (error) {
         updateToast({ toastId, message: error.response.data.error, isError: true });
         console.error(error);
@@ -68,7 +72,7 @@ export default function Login() {
   }
 
   return (
-    <div className="text-sm font-medium">
+    <div className="text-sm font-medium dark:bg-white">
 
       <Head>
         <title>Login | Music</title>
@@ -114,7 +118,7 @@ export default function Login() {
                 placeholder="Username"
                 value={form.username}
                 onChange={handleChange}
-                className="text-sm transition-all font-medium bg-white w-full px-4 py-[0.6rem] rounded-md mt-2 border focus:ring-1 ring-gray-300 focus:ring-emerald-600 border-gray-300 focus:border-emerald-600 outline-none"
+                className="text-sm transition-all font-medium bg-white dark:bg-white dark:text-neutral-800 w-full px-4 py-[0.6rem] rounded-md mt-2 border focus:ring-1 ring-gray-300 focus:ring-emerald-600 border-gray-300 focus:border-emerald-600 outline-none"
                 autoComplete="off"
                 required
               />
@@ -130,7 +134,7 @@ export default function Login() {
                   placeholder="Password"
                   value={form.password}
                   onChange={handleChange}
-                  className="text-sm transition-all font-medium bg-white w-full px-4 py-[0.6rem] rounded-md mt-2 border focus:ring-1 ring-gray-300 focus:ring-emerald-600 border-gray-300 focus:border-emerald-600 outline-none"
+                  className="text-sm transition-all font-medium bg-white dark:bg-white dark:text-neutral-800 w-full px-4 py-[0.6rem] rounded-md mt-2 border focus:ring-1 ring-gray-300 focus:ring-emerald-600 border-gray-300 focus:border-emerald-600 outline-none"
                   autoComplete="off"
                   required
                 />

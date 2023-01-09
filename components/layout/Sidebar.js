@@ -19,6 +19,7 @@ import NavLink from "@components/systems/NavLink";
 import NavAccordion from "@components/systems/NavAccordion";
 import clsx from "clsx";
 import ThemeChanger from "./ThemeChanger";
+import nookies from "nookies";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -31,6 +32,19 @@ export default function Sidebar() {
   useEffect(() => {
     setShowNav(false);
   }, [router.pathname, setShowNav]);
+
+  async function handleLogout() {
+    // sometimes, this not work,
+    // the token has been deleted in backend, 
+    // but the cookies in browser still exist
+    nookies.destroy(null, "username");
+    nookies.destroy(null, "name");
+    // so try this, seems work
+    document.cookie = 'username=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+    document.cookie = 'name=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+
+    router.push("/login");
+  }
 
   return (
     <div
@@ -65,11 +79,11 @@ export default function Sidebar() {
         <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">
           Statistics
         </NavLink>
-        
+
         <NavLink href="/song" icon={<MusicNoteIcon className="w-4 h-4" />} className="mt-1">
           Song
         </NavLink>
-        
+
         <NavLink href="/album" icon={<CollectionIcon className="w-4 h-4" />} className="mt-1">
           Album
         </NavLink>
@@ -103,7 +117,7 @@ export default function Sidebar() {
       <hr className="dark:border-neutral-800" />
       <div className="px-4 py-2">
         <button
-          onClick={() => router.push('/login')}
+          onClick={handleLogout}
           className={clsx("transition-all w-full px-4 py-2 flex justify-start items-center gap-2 text-sm font-semibold",
             "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-red-600")}
         >
