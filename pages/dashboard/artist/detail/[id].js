@@ -62,6 +62,8 @@ export default function Artist({ id }) {
                   alt={data[0]?.name}
                   src={data[0]?.cover_url}
                   fill
+                  priority
+                  sizes={`(max-width: 480px) 100vw, (max-width: 360px) 50vw, 33vw`}
                   className={`rounded-full ${isLoading ? 'blur-2xl' : 'blur-0'}`}
                   onLoadingComplete={() => setLoading(false)}
                 />

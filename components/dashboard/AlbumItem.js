@@ -5,6 +5,7 @@ import Text from "@components/systems/Text";
 
 export default function AlbumItem({ href = "#", imageSrc = "/genre/pop.webp", className, title = "Song Title", artist = "Artist Name", hideArtist, ...props }) {
   const [isLoading, setLoading] = useState(true)
+  const sizes = `(max-width: 360px) 100vw, (max-width: 480px) 50vw, 33vw`;
 
   return (
     <Link {...props} href={href} className={`p-0 group border dark:border-neutral-800 rounded ${className}`}>
@@ -15,6 +16,7 @@ export default function AlbumItem({ href = "#", imageSrc = "/genre/pop.webp", cl
           className={`duration-500 ease-in-out transform rounded-t brightness-90 transition will-change-auto group-hover:brightness-110
             ${isLoading ? 'blur-2xl' : 'blur-0'}`}
           fill
+          sizes={sizes}
           onLoadingComplete={() => setLoading(false)}
         />
       </div>

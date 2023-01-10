@@ -5,6 +5,7 @@ import Text from "@components/systems/Text";
 
 export default function ArtistItem({ href = "#", imageSrc = "/genre/pop.webp", title = "Genre", ...props }) {
   const [isLoading, setLoading] = useState(true)
+  const sizes = `(max-width: 360px) 100vw, (max-width: 480px) 50vw, 33vw`;
 
   return (
     <Link href={href} className="group text-center p-2" {...props}>
@@ -15,6 +16,7 @@ export default function ArtistItem({ href = "#", imageSrc = "/genre/pop.webp", t
           className={`duration-500 ease-in-out transform rounded-full brightness-90 transition will-change-auto group-hover:brightness-110
             ${isLoading ? 'blur-2xl' : 'blur-0'}`}
           fill
+          sizes={sizes}
           onLoadingComplete={() => setLoading(false)}
         />
       </div>

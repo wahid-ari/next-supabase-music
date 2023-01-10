@@ -6,6 +6,7 @@ import { PlayIcon } from "@heroicons/react/solid";
 
 export default function SongListItem({ noPlayer, onPlay, href = "#", imageSrc = "/genre/pop.webp", className, title = "Song Title", artist = "Artist Name", hideArtist, ...props }) {
   const [isLoading, setLoading] = useState(true)
+  const sizes = `(max-width: 120px) 100vw, (max-width: 120px) 50vw, (max-width: 120px) 33vw`;
 
   if(noPlayer) {
     return (
@@ -18,6 +19,7 @@ export default function SongListItem({ noPlayer, onPlay, href = "#", imageSrc = 
               className={`duration-500 ease-in-out transform rounded-t brightness-90 transition will-change-auto group-hover:brightness-110
               ${isLoading ? 'blur-2xl' : 'blur-0'}`}
               fill
+              sizes={sizes}
               onLoadingComplete={() => setLoading(false)}
             />
           </div>
@@ -41,6 +43,7 @@ export default function SongListItem({ noPlayer, onPlay, href = "#", imageSrc = 
               className={`duration-500 ease-in-out transform rounded-t brightness-90 transition will-change-auto group-hover:brightness-110
               ${isLoading ? 'blur-2xl' : 'blur-0'}`}
               fill
+              sizes={sizes}
               onLoadingComplete={() => setLoading(false)}
             />
           </div>
