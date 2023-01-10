@@ -135,14 +135,14 @@ export default function Album() {
 
   if (error) {
     return (
-      <Layout title="Song">
+      <Layout title="Song - Music">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title="Song">
+    <Layout title="Song - Music">
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         <Title>Song</Title>
         <LinkButton href="song/add" className="flex gap-2 items-center">

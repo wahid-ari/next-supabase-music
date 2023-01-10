@@ -23,14 +23,14 @@ export default function Playlist() {
 
   if (errorPlaylist) {
     return (
-      <Layout title="Playlist">
+      <Layout title="Playlist - Music">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title="Playlist">
+    <Layout title="Playlist - Music">
       <Title>Playlist</Title>
 
       <LabeledInput

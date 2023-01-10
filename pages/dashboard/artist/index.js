@@ -23,14 +23,14 @@ export default function Artist() {
 
   if (errorArtists) {
     return (
-      <Layout title="Artists">
+      <Layout title="Artists - Music">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title="Artists">
+    <Layout title="Artists - Music">
       <Title>Artists</Title>
 
       <LabeledInput

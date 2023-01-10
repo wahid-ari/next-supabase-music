@@ -43,14 +43,14 @@ export default function Artist({ id }) {
 
   if (error) {
     return (
-      <Layout title="Artist Detail">
+      <Layout title="Artist Detail - Music">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title={`${data ? data[0]?.name : 'Artist Detail'}`}>
+    <Layout title={`${data ? data[0]?.name + " - Music" : 'Artist Detail - Music'}`}>
       <div className="mb-10">
         {data ?
           <>

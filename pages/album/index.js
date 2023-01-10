@@ -188,14 +188,14 @@ export default function Album() {
 
   if (error || errorArtist) {
     return (
-      <Layout title="Album">
+      <Layout title="Album - Music">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title="Album">
+    <Layout title="Album - Music">
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         <Title>Album</Title>
         <Button.success onClick={() => setOpenCreateDialog(true)} className="flex gap-2 items-center">

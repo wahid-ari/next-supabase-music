@@ -233,7 +233,7 @@ export default function Example() {
   const tableInstance = useRef(null);
 
   return (
-    <Layout title="Design System">
+    <Layout title="Design System - Music">
       <Title>Example</Title>
 
       <Wrapper

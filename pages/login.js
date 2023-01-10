@@ -67,7 +67,7 @@ export default function Login() {
     <div className="text-sm font-medium dark:bg-white">
 
       <Head>
-        <title>Login | Music</title>
+        <title>Login - Music</title>
       </Head>
 
       <div className="min-h-screen w-screen sm:grid sm:grid-cols-2">

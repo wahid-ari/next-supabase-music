@@ -23,14 +23,14 @@ export default function Album({ id }) {
 
   if (error) {
     return (
-      <Layout title="Song Detail">
+      <Layout title="Song Detail - Music">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title={`${data ? data[0]?.name : 'Song Detail'}`}>
+    <Layout title={`${data ? data[0]?.name + " - Music" : 'Song Detail - Music'}`}>
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         {data ?
           <Title>{data[0]?.name}</Title>

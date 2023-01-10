@@ -40,14 +40,14 @@ export default function Songs() {
 
   if (errorSongs) {
     return (
-      <Layout title="Songs">
+      <Layout title="Songs - Music">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title="Songs">
+    <Layout title="Songs - Music">
       <Title>Songs</Title>
 
       <LabeledInput

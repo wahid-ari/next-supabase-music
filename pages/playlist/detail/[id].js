@@ -96,14 +96,14 @@ export default function Playlist({ id }) {
 
   if (error || errorSong) {
     return (
-      <Layout title="Playlist Detail">
+      <Layout title="Playlist Detail - Music">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title={`${data ? `${data?.playlist[0]?.name} Playlist` : 'Playlist Detail'}`}>
+    <Layout title={`${data ? `${data?.playlist[0]?.name} Playlist - Music` : 'Playlist Detail - Music'}`}>
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         {data ?
           <Title>{data?.playlist[0]?.name} Playlist</Title>

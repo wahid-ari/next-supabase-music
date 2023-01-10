@@ -13,7 +13,7 @@ export default function Settings() {
   };
 
   return (
-    <Layout title="Settings">
+    <Layout title="Settings - Music">
       <Title>Settings</Title>
       <Text className="mt-5 mb-2">Dark Mode</Text>
       <div onClick={handleDarkMode} className="transition-all cursor-pointer w-11 h-6 dark:bg-emerald-500 bg-neutral-300 rounded-full relative">
