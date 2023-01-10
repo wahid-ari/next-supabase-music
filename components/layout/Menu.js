@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/outline";
@@ -6,6 +7,11 @@ import nookies from "nookies";
 
 export default function Akun({ className }) {
   const admin = nookies.get(null, "name")
+  const [mounted, setMounted] = useState(false)
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <Menu as="div" className={`relative ${className && className}`}>
@@ -13,7 +19,9 @@ export default function Akun({ className }) {
         <>
           <Menu.Button className={clsx("inline-flex items-center w-full justify-center rounded-md pr-1.5 sm:pr-3",
             "text-gray-600 hover:text-gray-700 dark:text-neutral-300 dark:hover:text-neutral-200 focus:outline-none")}>
-            {admin?.name}
+              
+            {mounted && admin?.name}
+
             <ChevronDownIcon className={`${open ? 'rotate-180' : 'rotate-0'} ml-1 h-5 w-4 pb-0.5 transition-all duration-200`} aria-hidden="true" />
           </Menu.Button>
           <Transition

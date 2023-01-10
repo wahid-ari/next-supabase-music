@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { GlobalContext } from "@utils/GlobalContext";
@@ -25,8 +25,13 @@ import nookies from "nookies";
 
 export default function Sidebar() {
   const router = useRouter();
+  const [mounted, setMounted] = useState(false)
   const { showNav, setShowNav } = useContext(GlobalContext);
   const admin = nookies.get(null, "name")
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const hideMenu = () => {
     setShowNav(false);
@@ -72,7 +77,9 @@ export default function Sidebar() {
         "scrollbar scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-800"
       )}>
 
-        {admin.name ?
+
+        {mounted &&
+          admin.name ?
           <>
             <NavLink isHome href="/" icon={<ViewGridIcon className="w-4 h-4" />}>
               Dashboard
@@ -142,7 +149,8 @@ export default function Sidebar() {
 
       <hr className="dark:border-neutral-800" />
       <div className="px-4 py-2">
-        {admin.name ?
+        {mounted &&
+          admin.name ?
           <button
             onClick={handleLogout}
             className={clsx("transition-all w-full px-4 py-2 flex justify-start items-center gap-2 text-sm font-semibold",

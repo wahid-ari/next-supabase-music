@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import Link from "next/link";
 import { MenuIcon } from "@heroicons/react/solid";
 import { GlobalContext } from "@utils/GlobalContext";
@@ -10,6 +10,11 @@ import nookies from "nookies";
 export default function Navbar() {
   const { setShowNav } = useContext(GlobalContext);
   const admin = nookies.get(null, "name")
+  const [mounted, setMounted] = useState(false)
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const showMenu = () => {
     setShowNav(true);
@@ -34,7 +39,8 @@ export default function Navbar() {
           <ThemeChanger />
         </div>
 
-        {admin.name ?
+        {mounted &&
+          admin.name ?
           <Menu className="lg:hidden" />
           :
           null

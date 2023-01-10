@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Head from "next/head";
 import Breadcrumb from "@components/systems/Breadcrumb";
@@ -13,6 +14,11 @@ export default function Layout({ children, title, description }) {
   let headTitle = `${title}`
   let headDescription = `${description ? description : title}`
   const admin = nookies.get(null, "name")
+  const [mounted, setMounted] = useState(false)
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <>
@@ -42,7 +48,8 @@ export default function Layout({ children, title, description }) {
             "z-40 sticky top-0 bg-white/95 dark:bg-neutral-900/90 supports-[backdrop-filter]:backdrop-blur-sm")}>
             <Breadcrumb />
 
-            {admin.name ?
+            {mounted &&
+              admin.name ?
               <Menu />
               :
               null

@@ -69,9 +69,7 @@ export default function Login() {
         <title>Login | Music</title>
       </Head>
 
-      <div
-        className="min-h-screen w-screen sm:grid sm:grid-cols-2"
-      >
+      <div className="min-h-screen w-screen sm:grid sm:grid-cols-2">
         <div className="sm:hidden banner p-8 flex flex-col justify-between gap-2">
           <div>
             <h1 className="text-white font-bold text-4xl">Music</h1>
@@ -94,11 +92,14 @@ export default function Login() {
           </div>
           <p className="text-white font-bold">2022</p>
         </div>
+
         <div className="w-full px-8 md:px-16 py-16 md:py-0 flex items-center justify-center">
+          
           <div className="w-full sm:max-w-md">
             <Heading h1 className="font-semibold !text-neutral-800 mb-6">
               Login
             </Heading>
+
             <div className="mb-5">
               <label className="text-sm block text-gray-800" htmlFor="username">
                 Username
@@ -114,6 +115,7 @@ export default function Login() {
                 required
               />
             </div>
+
             <div className="mb-5">
               <label className="text-sm block text-gray-800" htmlFor="password">
                 Password
@@ -141,9 +143,12 @@ export default function Login() {
                 </button>
               </div>
             </div>
+
             <Button.success onClick={handleLogin} className="w-full">{loading ? "Logging in..." : "Login"}</Button.success>
           </div>
+          
         </div>
+
       </div>
 
     </div>
