@@ -53,7 +53,7 @@ export default function Search() {
             type="text"
             onChange={(e) => query.current = e.target.value}
           />
-          <Button.success className="mb-4 !py-2.5 px-5">Search</Button.success>
+          <Button.success type="submit" value="Submit" className="mb-4 !py-2.5 px-5">Search</Button.success>
         </div>
       </form>
 
