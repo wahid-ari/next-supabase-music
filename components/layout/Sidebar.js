@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { GlobalContext } from "@utils/GlobalContext";
 import {
   XIcon,
@@ -14,6 +15,7 @@ import {
   BookmarkIcon,
   ChartPieIcon,
   SearchIcon,
+  LoginIcon,
 } from "@heroicons/react/outline";
 import NavLink from "@components/systems/NavLink";
 import NavAccordion from "@components/systems/NavAccordion";
@@ -24,6 +26,7 @@ import nookies from "nookies";
 export default function Sidebar() {
   const router = useRouter();
   const { showNav, setShowNav } = useContext(GlobalContext);
+  const admin = nookies.get(null, "name")
 
   const hideMenu = () => {
     setShowNav(false);
@@ -39,10 +42,11 @@ export default function Sidebar() {
     // but the cookies in browser still exist
     nookies.destroy(null, "username");
     nookies.destroy(null, "name");
+    nookies.destroy(null, "token");
     // so try this, seems work
     document.cookie = 'username=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
     document.cookie = 'name=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
-
+    document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
     router.push("/login");
   }
 
@@ -68,62 +72,95 @@ export default function Sidebar() {
         "scrollbar scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-800"
       )}>
 
-        <NavLink isHome href="/" icon={<ViewGridIcon className="w-4 h-4" />}>
-          Dashboard
-        </NavLink>
+        {admin.name ?
+          <>
+            <NavLink isHome href="/" icon={<ViewGridIcon className="w-4 h-4" />}>
+              Dashboard
+            </NavLink>
 
-        <NavLink href="/search" icon={<SearchIcon className="w-4 h-4" />} className="mt-1">
-          Search
-        </NavLink>
+            <NavLink href="/search" icon={<SearchIcon className="w-4 h-4" />} className="mt-1">
+              Search
+            </NavLink>
 
-        <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">
-          Statistics
-        </NavLink>
+            <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">
+              Statistics
+            </NavLink>
 
-        <NavLink href="/song" icon={<MusicNoteIcon className="w-4 h-4" />} className="mt-1">
-          Song
-        </NavLink>
+            <NavLink href="/song" icon={<MusicNoteIcon className="w-4 h-4" />} className="mt-1">
+              Song
+            </NavLink>
 
-        <NavLink href="/album" icon={<CollectionIcon className="w-4 h-4" />} className="mt-1">
-          Album
-        </NavLink>
+            <NavLink href="/album" icon={<CollectionIcon className="w-4 h-4" />} className="mt-1">
+              Album
+            </NavLink>
 
-        <NavLink href="/artist" icon={<UserGroupIcon className="w-4 h-4" />} className="mt-1">
-          Artist
-        </NavLink>
+            <NavLink href="/artist" icon={<UserGroupIcon className="w-4 h-4" />} className="mt-1">
+              Artist
+            </NavLink>
 
-        <NavLink href="/genre" icon={<ColorSwatchIcon className="w-4 h-4" />} className="mt-1">
-          Genre
-        </NavLink>
+            <NavLink href="/genre" icon={<ColorSwatchIcon className="w-4 h-4" />} className="mt-1">
+              Genre
+            </NavLink>
 
-        <NavLink href="/playlist" icon={<BookmarkIcon className="w-4 h-4" />} className="mt-1">
-          Playlist
-        </NavLink>
+            <NavLink href="/playlist" icon={<BookmarkIcon className="w-4 h-4" />} className="mt-1">
+              Playlist
+            </NavLink>
 
-        <NavLink href="/settings" icon={<CogIcon className="w-4 h-4" />} className="mt-1">
-          Settings
-        </NavLink>
+            <NavLink href="/settings" icon={<CogIcon className="w-4 h-4" />} className="mt-1">
+              Settings
+            </NavLink>
 
-        <NavAccordion title="Design" routeName="design" icon={<TemplateIcon className="w-4 h-4" />}>
-          <NavLink
-            href="/design"
-            icon={<TemplateIcon className="w-4 h-4" />}
-          >
-            Example
-          </NavLink>
-        </NavAccordion>
+            <NavAccordion title="Design" routeName="design" icon={<TemplateIcon className="w-4 h-4" />}>
+              <NavLink
+                href="/design"
+                icon={<TemplateIcon className="w-4 h-4" />}
+              >
+                Example
+              </NavLink>
+            </NavAccordion>
+          </>
+          :
+          <>
+            <NavLink isHome href="/" icon={<ViewGridIcon className="w-4 h-4" />}>
+              Dashboard
+            </NavLink>
+
+            <NavLink href="/search" icon={<SearchIcon className="w-4 h-4" />} className="mt-1">
+              Search
+            </NavLink>
+
+            <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">
+              Statistics
+            </NavLink>
+
+            <NavLink href="/settings" icon={<CogIcon className="w-4 h-4" />} className="mt-1">
+              Settings
+            </NavLink>
+          </>
+        }
       </div>
 
       <hr className="dark:border-neutral-800" />
       <div className="px-4 py-2">
-        <button
-          onClick={handleLogout}
-          className={clsx("transition-all w-full px-4 py-2 flex justify-start items-center gap-2 text-sm font-semibold",
-            "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-red-600")}
-        >
-          <LogoutIcon className="w-4 h-4" />
-          Log out
-        </button>
+        {admin.name ?
+          <button
+            onClick={handleLogout}
+            className={clsx("transition-all w-full px-4 py-2 flex justify-start items-center gap-2 text-sm font-semibold",
+              "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-red-600")}
+          >
+            <LogoutIcon className="w-4 h-4" />
+            Logout
+          </button>
+          :
+          <Link
+            href="/login"
+            className={clsx("transition-all w-full px-4 py-2 flex justify-start items-center gap-2 text-sm font-semibold",
+              "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-emerald-600")}
+          >
+            <LoginIcon className="w-4 h-4" />
+            Login
+          </Link>
+        }
       </div>
 
     </div>

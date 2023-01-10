@@ -4,6 +4,7 @@ import Breadcrumb from "@components/systems/Breadcrumb";
 import Navbar from "./Navbar";
 import Menu from './Menu';
 import clsx from 'clsx';
+import nookies from "nookies";
 
 export default function Layout({ children, title, description }) {
   // Fix Warning: A title element received an array with more than 1 element as children.In browsers title Elements can only have Text Nodes as ldren.If the children being rendered output more than a single text node in aggregate the browser will display markup and comments as text in
@@ -11,6 +12,7 @@ export default function Layout({ children, title, description }) {
   // https://github.com/vercel/next.js/discussions/38256#discussioncomment-3070196
   let headTitle = `${title}`
   let headDescription = `${description ? description : title}`
+  const admin = nookies.get(null, "name")
 
   return (
     <>
@@ -39,7 +41,12 @@ export default function Layout({ children, title, description }) {
           <div className={clsx("hidden lg:flex gap-x-4 items-center justify-between border-b dark:border-neutral-800 pl-1 pr-3 sm:px-2 py-3",
             "z-40 sticky top-0 bg-white/95 dark:bg-neutral-900/90 supports-[backdrop-filter]:backdrop-blur-sm")}>
             <Breadcrumb />
-            <Menu />
+
+            {admin.name ?
+              <Menu />
+              :
+              null
+            }
           </div>
 
           <div className="pl-2 pr-4 sm:pl-4 sm:pr-6 py-4">

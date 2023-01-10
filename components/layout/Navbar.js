@@ -5,9 +5,11 @@ import { GlobalContext } from "@utils/GlobalContext";
 import Menu from './Menu';
 import clsx from "clsx";
 import ThemeChanger from './ThemeChanger';
+import nookies from "nookies";
 
 export default function Navbar() {
   const { setShowNav } = useContext(GlobalContext);
+  const admin = nookies.get(null, "name")
 
   const showMenu = () => {
     setShowNav(true);
@@ -32,8 +34,11 @@ export default function Navbar() {
           <ThemeChanger />
         </div>
 
-        <Menu className="lg:hidden" />
-
+        {admin.name ?
+          <Menu className="lg:hidden" />
+          :
+          null
+        }
       </div>
     </div>
   );

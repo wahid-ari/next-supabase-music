@@ -7,7 +7,6 @@ import Button from "@components/systems/Button";
 import Heading from "@components/systems/Heading";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import nookies from "nookies";
-// import { hash, compare } from "bcryptjs";
 
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -15,20 +14,11 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { updateToast, pushToast, dismissToast } = useToast();
 
-  // async function pass() {
-  //   let hashed = await hash('password', 8);
-  //   console.log(hashed)
-  //   let isMatch = await compare(form.password, hashed);
-  //   console.log(isMatch)
-  // }
-  // pass()
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
-    // Prefetch the dashboard page
     Router.prefetch('/')
   }, [])
 
@@ -56,6 +46,7 @@ export default function Login() {
         if (res.status == 200) {
           nookies.set(null, 'username', res.data.username, { path: '/' })
           nookies.set(null, 'name', res.data.name, { path: '/' })
+          nookies.set(null, 'token', res.data.token, { path: '/' })
           updateToast({
             toastId,
             message: "Success Login",
@@ -140,7 +131,7 @@ export default function Login() {
                 />
                 <button
                   onClick={() => setShowPassword(!showPassword)}
-                  className="z-10 mr-0.5 p-1.5 mt-2 rounded-md absolute right-0 backdrop-blur-lg"
+                  className="z-10 mr-0.5 p-1.5 mt-2 rounded-md absolute right-0 backdrop-blur-lg focus:ring-1 ring-gray-300 focus:ring-emerald-600 border-gray-300 focus:border-emerald-600 outline-none"
                 >
                   {showPassword ?
                     <EyeIcon className="w-5 h-5 text-gray-600" />
