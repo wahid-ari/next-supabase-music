@@ -144,7 +144,7 @@ export default function Login() {
               </div>
             </div>
 
-            <Button.success onClick={handleLogin} className="w-full">{loading ? "Logging in..." : "Login"}</Button.success>
+            <Button.success onClick={handleLogin} className="w-full !text-base">{loading ? "Logging in..." : "Login"}</Button.success>
           </div>
           
         </div>
