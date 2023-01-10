@@ -56,6 +56,17 @@ export default function Akun({ className }) {
                     </Link>
                   )}
                 </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link href="/logout"
+                      className={`${active ? 'bg-gray-100 text-red-600 dark:text-red-500 dark:bg-neutral-900 transition-all'
+                        : 'text-red-500 dark:text-red-500'
+                        } flex w-full rounded px-2 py-1.5 text-sm`}
+                    >
+                      Logout
+                    </Link>
+                  )}
+                </Menu.Item>
               </div>
             </Menu.Items>
           </Transition>
