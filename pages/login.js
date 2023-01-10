@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Head from "next/head";
 import Router from "next/router";
 import axios from "axios";
@@ -96,6 +97,8 @@ export default function Login() {
         <div className="w-full px-8 md:px-16 py-16 md:py-0 flex items-center justify-center">
           
           <div className="w-full sm:max-w-md">
+            <Image alt="Logo" src="/icon.jpg" width={100} height={100} className="mb-16 mx-auto hidden sm:block"/>
+
             <Heading h1 className="font-semibold !text-neutral-800 mb-6">
               Login
             </Heading>
