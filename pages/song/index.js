@@ -12,8 +12,24 @@ import Button from "@components/systems/Button";
 import LabeledInput from "@components/systems/LabeledInput";
 import ReactTable from "@components/systems/ReactTable";
 import LinkButton from "@components/systems/LinkButton";
+import nookies from "nookies";
 
 const fetcher = url => axios.get(url).then(res => res.data)
+
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  if (!cookies.token) {
+    return {
+      redirect: {
+        destination: "/login"
+      }
+    }
+  }
+  return {
+    props: {
+    }
+  }
+}
 
 export default function Album() {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song`, fetcher)

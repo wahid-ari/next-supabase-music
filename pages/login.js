@@ -9,6 +9,21 @@ import Heading from "@components/systems/Heading";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import nookies from "nookies";
 
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  if (cookies.token) {
+    return {
+      redirect: {
+        destination: "/"
+      }
+    }
+  }
+  return {
+    props: {
+    }
+  }
+}
+
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
