@@ -11,6 +11,21 @@ import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
 import Shimer from "@components/systems/Shimer";
 import Label from "@components/systems/Label";
+import nookies from "nookies";
+
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  if (!cookies.token) {
+    return {
+      redirect: {
+        destination: "/login"
+      }
+    }
+  }
+  return {
+    props: {}
+  }
+}
 
 const fetcher = url => axios.get(url).then(res => res.data)
 

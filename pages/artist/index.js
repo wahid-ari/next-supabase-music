@@ -12,6 +12,21 @@ import Dialog from "@components/systems/Dialog";
 import Button from "@components/systems/Button";
 import LabeledInput from "@components/systems/LabeledInput";
 import Select from "@components/systems/Select";
+import nookies from "nookies";
+
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  if (!cookies.token) {
+    return {
+      redirect: {
+        destination: "/login"
+      }
+    }
+  }
+  return {
+    props: {}
+  }
+}
 
 const fetcher = url => axios.get(url).then(res => res.data)
 

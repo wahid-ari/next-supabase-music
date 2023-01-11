@@ -14,8 +14,6 @@ import ReactTable from "@components/systems/ReactTable";
 import LinkButton from "@components/systems/LinkButton";
 import nookies from "nookies";
 
-const fetcher = url => axios.get(url).then(res => res.data)
-
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
   if (!cookies.token) {
@@ -26,10 +24,11 @@ export async function getServerSideProps(context) {
     }
   }
   return {
-    props: {
-    }
+    props: {}
   }
 }
+
+const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function Album() {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song`, fetcher)
@@ -124,8 +123,8 @@ export default function Album() {
           return (
             <div>
               <Link href={`song/edit/${values.id}`} className="py-[3px] px-[6px] bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-400 text-sm font-medium mr-2 text-white rounded">
-								Edit
-							</Link>
+                Edit
+              </Link>
               <Button.danger className="!py-[2px] !px-[6px]"
                 onClick={() => handleShowDeleteModal(values.id, values.name)}>
                 Delete

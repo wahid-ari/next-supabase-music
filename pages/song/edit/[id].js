@@ -11,17 +11,26 @@ import { Combobox, Transition } from "@headlessui/react";
 import Label from "@components/systems/Label";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
 import Button from "@components/systems/Button";
-
-const fetcher = url => axios.get(url).then(res => res.data)
+import nookies from "nookies";
 
 export async function getServerSideProps(context) {
   const { id } = context.params
+  const cookies = nookies.get(context)
+  if (!cookies.token) {
+    return {
+      redirect: {
+        destination: "/login"
+      }
+    }
+  }
   return {
     props: {
       id: id
     }, // will be passed to the page component as props
   }
 }
+
+const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function Song({ id }) {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song?id=${id}`, fetcher)

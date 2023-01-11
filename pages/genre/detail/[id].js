@@ -5,17 +5,26 @@ import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
 import TableSimple from "@components/systems/TableSimple";
-
-const fetcher = url => axios.get(url).then(res => res.data)
+import nookies from "nookies";
 
 export async function getServerSideProps(context) {
   const { id } = context.params
+  const cookies = nookies.get(context)
+  if (!cookies.token) {
+    return {
+      redirect: {
+        destination: "/login"
+      }
+    }
+  }
   return {
     props: {
       id: id
     }, // will be passed to the page component as props
   }
 }
+
+const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function Genre({ id }) {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/genre?id=${id}`, fetcher)
