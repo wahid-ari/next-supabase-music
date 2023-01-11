@@ -34,14 +34,14 @@ export default function Search() {
 
   if (error) {
     return (
-      <Layout title="Search - Music">
+      <Layout title="Search - MyMusic">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title="Search - Music">
+    <Layout title="Search - MyMusic">
       <Title>Search</Title>
 
       <form className="mt-2" onSubmit={handleSubmit}>

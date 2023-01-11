@@ -39,14 +39,14 @@ export default function Playlist({ id }) {
 
   if (errorDetailPlaylist) {
     return (
-      <Layout title="Playlist Detail - Music">
+      <Layout title="Playlist Detail - MyMusic">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title={detailPlaylist ? detailPlaylist?.playlist[0]?.name + " - Music" : "Playlist - Music"}>
+    <Layout title={detailPlaylist ? detailPlaylist?.playlist[0]?.name + " - MyMusic" : "Playlist - MyMusic"}>
       <Title>{detailPlaylist ? detailPlaylist?.playlist[0]?.name : "Playlist"}</Title>
       <div className="mt-8 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
         {detailPlaylist ?

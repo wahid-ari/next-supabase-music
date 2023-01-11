@@ -23,14 +23,14 @@ export default function Albums() {
 
   if (errorAlbums) {
     return (
-      <Layout title="Albums - Music">
+      <Layout title="Albums - MyMusic">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title="Albums - Music">
+    <Layout title="Albums - MyMusic">
       <Title>Albums</Title>
 
       <LabeledInput

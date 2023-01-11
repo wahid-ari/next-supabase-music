@@ -113,14 +113,14 @@ export default function Artist() {
 
   if (error || errorGenre) {
     return (
-      <Layout title="Artist - Music">
+      <Layout title="Artist - MyMusic">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title="Artist - Music">
+    <Layout title="Artist - MyMusic">
 
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         <Title>Artist</Title>

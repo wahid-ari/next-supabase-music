@@ -109,14 +109,14 @@ export default function Song({ id }) {
 
   if (error) {
     return (
-      <Layout title="Edit Song - Music">
+      <Layout title="Edit Song - MyMusic">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title={`Edit ${data ? data[0]?.name + " - Music": 'Edit Song - Music'}`}>
+    <Layout title={`Edit ${data ? data[0]?.name + " - MyMusic": 'Edit Song - MyMusic'}`}>
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         {data ?
           <Title>Edit {data[0]?.name}</Title>

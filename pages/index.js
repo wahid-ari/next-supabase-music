@@ -28,7 +28,7 @@ export default function Home() {
 
   if (errorGenre || errorSongs || errorAlbums || errorArtists || errorPlaylists || errorArtistByGenre) {
     return (
-      <Layout title="Dashboard - Music">
+      <Layout title="Dashboard - MyMusic">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
@@ -36,8 +36,8 @@ export default function Home() {
 
   if (query.genre) {
     return (
-      <Layout title={artistByGenre ? artistByGenre[0]?.name + " - Music" : "Genre - Music"}>
-        <Title>{artistByGenre ? artistByGenre[0]?.name : "Genre - Music"}</Title>
+      <Layout title={artistByGenre ? artistByGenre[0]?.name + " - MyMusic" : "Genre - MyMusic"}>
+        <Title>{artistByGenre ? artistByGenre[0]?.name : "Genre - MyMusic"}</Title>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
           {artistByGenre ?
             artistByGenre[0]?.artists?.map((item, index) =>
@@ -62,7 +62,7 @@ export default function Home() {
   }
 
   return (
-    <Layout title="Dashboard - Music">
+    <Layout title="Dashboard - MyMusic">
       <Title>Dashboard</Title>
 
       <Heading className="mt-8">Genre</Heading>

@@ -82,31 +82,31 @@ export default function Login() {
     <div className="text-sm font-medium dark:bg-white">
 
       <Head>
-        <title>Login - Music</title>
+        <title>Login - MyMusic</title>
       </Head>
 
       <div className="min-h-screen w-screen sm:grid sm:grid-cols-2">
         <div className="sm:hidden banner p-8 flex flex-col justify-between gap-2">
           <div>
-            <h1 className="text-white font-bold text-4xl">Music</h1>
+            <h1 className="text-white font-bold text-4xl">MyMusic</h1>
           </div>
           <p className="text-white text-base font-normal">
-            With Music, it’s easy to find the right music for every moment – on your phone, your computer, your tablet and more.
+            With MyMusic, it’s easy to find the right music for every moment – on your phone, your computer, your tablet and more.
           </p>
-          <p className="text-white font-bold">© Music - 2023</p>
+          <p className="text-white font-bold">© MyMusic - 2023</p>
         </div>
 
         <div className="hidden sm:flex banner px-8 py-12 flex-col justify-between gap-2">
           <div>
             <h1 className="text-white font-bold sm:text-4xl md:text-5xl">
-              Music
+              MyMusic
             </h1>
             <br />
             <p className="text-white text-base font-normal">
-              With Music, it’s easy to find the right music for every moment – on your phone, your computer, your tablet and more.
+              With MyMusic, it’s easy to find the right music for every moment – on your phone, your computer, your tablet and more.
             </p>
           </div>
-          <p className="text-white font-bold">© Music - 2023</p>
+          <p className="text-white font-bold">© MyMusic - 2023</p>
         </div>
 
         <div className="w-full px-8 md:px-16 py-16 md:py-0 flex items-center justify-center">

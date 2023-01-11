@@ -29,7 +29,7 @@ export default function Navbar() {
           <MenuIcon className="h-5 w-5" onClick={showMenu} />
         </button>
         <Link href="/" className="text-base tracking-wide text-center font-semibold lg:text-2xl text-neutral-800 dark:text-neutral-100 no-underline">
-          Music
+          MyMusic
         </Link>
       </div>
 

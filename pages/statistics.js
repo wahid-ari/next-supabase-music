@@ -50,7 +50,7 @@ export default function Home() {
   }
 
   return (
-    <Layout title="Statistics - Music">
+    <Layout title="Statistics - MyMusic">
       <Titles>Statistics</Titles>
 
       <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">

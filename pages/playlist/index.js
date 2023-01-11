@@ -111,14 +111,14 @@ export default function Playlist() {
 
   if (error) {
     return (
-      <Layout title="Playlist - Music">
+      <Layout title="Playlist - MyMusic">
         <div className="flex h-[36rem] text-base items-center justify-center">Failed to load</div>
       </Layout>
     )
   }
 
   return (
-    <Layout title="Playlist - Music">
+    <Layout title="Playlist - MyMusic">
 
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         <Title>Playlist</Title>
