@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
@@ -7,13 +7,13 @@ import LabeledInput from "@components/systems/LabeledInput";
 import Title from "@components/systems/Title";
 import Text from "@components/systems/Text";
 import Button from "@components/systems/Button";
-import SongItem from "@components/dashboard/SongItem";
 import Heading from "@components/systems/Heading";
 import AlbumItem from "@components/dashboard/AlbumItem";
+import SongListItem from "@components/dashboard/SongListItem";
 import ArtistItem from "@components/dashboard/ArtistItem";
 import PlaylistItem from "@components/dashboard/PlaylistItem";
 import { BookmarkIcon, CollectionIcon, MusicNoteIcon, UserGroupIcon } from "@heroicons/react/outline";
-import SongListItem from "@components/dashboard/SongListItem";
+import { useSearchHistoryStore } from '@store/useStore';
 
 const fetcher = url => fetch(url).then(result => result.json())
 
@@ -22,6 +22,27 @@ export default function Search() {
   const search = router.query.q
   const query = useRef(search)
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/search?q=${search}`, fetcher)
+
+  const songsHistory = useSearchHistoryStore(state => state.songsHistory)
+  const setSongsHistory = useSearchHistoryStore(state => state.setSongsHistory)
+  const resetSongsHistory = useSearchHistoryStore(state => state.resetSongsHistory)
+  const albumsHistory = useSearchHistoryStore(state => state.albumsHistory)
+  const setAlbumsHistory = useSearchHistoryStore(state => state.setAlbumsHistory)
+  const resetAlbumsHistory = useSearchHistoryStore(state => state.resetAlbumsHistory)
+  const artistsHistory = useSearchHistoryStore(state => state.artistsHistory)
+  const setArtistsHistory = useSearchHistoryStore(state => state.setArtistsHistory)
+  const resetArtistsHistory = useSearchHistoryStore(state => state.resetArtistsHistory)
+  const playlistsHistory = useSearchHistoryStore(state => state.playlistsHistory)
+  const setPlaylistsHistory = useSearchHistoryStore(state => state.setPlaylistsHistory)
+  const resetPlaylistsHistory = useSearchHistoryStore(state => state.resetPlaylistsHistory)
+  const resetAllSearchHistory = useSearchHistoryStore(state => state.resetAllSearchHistory)
+
+  useEffect(() => {
+    if (data?.songs?.length > 0) setSongsHistory(data?.songs)
+    if (data?.albums?.length > 0) setAlbumsHistory(data?.albums)
+    if (data?.artists?.length > 0) setArtistsHistory(data?.artists)
+    if (data?.playlists?.length > 0) setPlaylistsHistory(data?.playlists)
+  }, [data])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -130,7 +151,7 @@ export default function Search() {
                   <PlaylistItem
                     key={index}
                     index={index}
-                    href={`/?playlist=${item.id}`}
+                    href={`/dashboard/playlist/detail/${item.id}`}
                     title={item.name}
                   />
                 )}
@@ -141,7 +162,107 @@ export default function Search() {
           }
         </>
         :
-        null
+        <>
+          {songsHistory?.length > 0 || albumsHistory?.length > 0 || artistsHistory?.length > 0 || playlistsHistory?.length > 0 ?
+            <>
+              <div className="mt-6 flex items-center justify-between">
+                <Heading h3 >Recent Search</Heading>
+                <button onClick={resetAllSearchHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                  Clear All
+                </button>
+              </div>
+
+              {songsHistory?.length > 0 ?
+                <>
+                  <div className="mt-6 flex items-center justify-between">
+                    <Heading>Songs</Heading>
+                    <button onClick={resetSongsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                      Clear
+                    </button>
+                  </div>
+                  <div className="mt-2 pb-4 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
+                    {songsHistory?.map((item, index) =>
+                      <SongListItem key={index} href={`dashboard/song/detail/${item.id}`}
+                        imageSrc={item.cover_url}
+                        title={item.name}
+                        artist={item.artist_name}
+                        noPlayer
+                      />
+                    )}
+                  </div>
+                </>
+                : null
+              }
+
+              {albumsHistory?.length > 0 ?
+                <>
+                  <div className="mt-6 flex items-center justify-between">
+                    <Heading>Albums</Heading>
+                    <button onClick={resetAlbumsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                      Clear
+                    </button>
+                  </div>
+                  <div className="mt-2 pb-4 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+                    {albumsHistory?.map((item, index) =>
+                      <AlbumItem key={index} href={`dashboard/album/detail/${item.id}`}
+                        imageSrc={item.cover}
+                        title={item.name}
+                        artist={item.artist_name}
+                      />
+                    )}
+                  </div>
+                </>
+                : null
+              }
+
+              {artistsHistory?.length > 0 ?
+                <>
+                  <div className="mt-6 flex items-center justify-between">
+                    <Heading>Artists</Heading>
+                    <button onClick={resetArtistsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                      Clear
+                    </button>
+                  </div>
+                  <div className="mt-2 pb-4 grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {artistsHistory?.map((item, index) =>
+                      <ArtistItem
+                        key={index}
+                        href={`dashboard/artist/detail/${item.id}`}
+                        imageSrc={item.cover_url}
+                        title={item.name}
+                      />
+                    )}
+                  </div>
+                </>
+                : null
+              }
+
+              {playlistsHistory?.length > 0 ?
+                <>
+                  <div className="mt-6 flex items-center justify-between">
+                    <Heading>Playlists</Heading>
+                    <button onClick={resetPlaylistsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                      Clear
+                    </button>
+                  </div>
+                  <div className="mt-2 pb-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+                    {playlistsHistory?.map((item, index) =>
+                      <PlaylistItem
+                        key={index}
+                        index={index}
+                        href={`/dashboard/playlist/detail/${item.id}`}
+                        title={item.name}
+                      />
+                    )}
+                  </div>
+                </>
+                : null
+              }
+            </>
+            :
+            null
+          }
+        </>
       }
 
       <Heading className="mt-6">Browse Categories</Heading>
