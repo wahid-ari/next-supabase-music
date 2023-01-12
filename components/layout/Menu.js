@@ -33,8 +33,8 @@ export default function Akun({ className }) {
             leaveTo="transform opacity-0 scale-95"
           >
             <Menu.Items className="w-32 absolute z-50 right-4 mt-2 origin-top-right bg-white dark:bg-neutral-800 shadow-md rounded-md focus:outline-none">
-              <div className="px-2 py-2">
-                <Menu.Item>
+              <div className="px-2 py-2 space-y-1">
+                {/* <Menu.Item>
                   {({ active }) => (
                     <button
                       className={`${active ? 'bg-gray-100 text-emerald-600 dark:text-emerald-500 dark:bg-neutral-900 transition-all'
@@ -44,7 +44,7 @@ export default function Akun({ className }) {
                       Edit
                     </button>
                   )}
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item>
                   {({ active }) => (
                     <Link href="/settings"

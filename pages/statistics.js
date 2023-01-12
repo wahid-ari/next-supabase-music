@@ -67,7 +67,7 @@ export default function Home() {
             </div>
           </div>
           :
-          <Shimer className="w-full !h-60" />
+          <Shimer className="w-full !h-[350px]" />
         }
 
         {dataAlbumByArtist ?
@@ -83,7 +83,7 @@ export default function Home() {
             </div>
           </div>
           :
-          <Shimer className="w-full !h-60" />
+          <Shimer className="w-full !h-[350px]" />
         }
       </div>
 
@@ -102,7 +102,7 @@ export default function Home() {
             </div>
           </div>
           :
-          <Shimer className="w-full !h-60" />
+          <Shimer className="w-full !h-96" />
         }
       </div>
 
@@ -121,7 +121,7 @@ export default function Home() {
             </div>
           </div>
           :
-          <Shimer className="w-full !h-60" />
+          <Shimer className="w-full !h-96" />
         }
       </div>
 
@@ -146,7 +146,7 @@ export default function Home() {
             </div>
           </div>
           :
-          <Shimer className="w-full !h-60" />
+          <Shimer className="w-full !h-96" />
         }
       </div>
     </Layout>

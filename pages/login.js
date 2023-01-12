@@ -91,9 +91,9 @@ export default function Login() {
             <h1 className="text-white font-bold text-4xl">MyMusic</h1>
           </div>
           <p className="text-white text-base font-normal">
-            With MyMusic, it’s easy to find the right music for every moment – on your phone, your computer, your tablet and more.
+            With MyMusic, it&apos;s easy to find the right music for every moment - on your phone, your computer, your tablet and more.
           </p>
-          <p className="text-white font-bold">© MyMusic - 2023</p>
+          <p className="text-white font-semibold">© MyMusic - 2023</p>
         </div>
 
         <div className="hidden sm:flex banner px-8 py-12 flex-col justify-between gap-2">
@@ -103,10 +103,10 @@ export default function Login() {
             </h1>
             <br />
             <p className="text-white text-base font-normal">
-              With MyMusic, it’s easy to find the right music for every moment – on your phone, your computer, your tablet and more.
+              With MyMusic, it&apos;s easy to find the right music for every moment - on your phone, your computer, your tablet and more.
             </p>
           </div>
-          <p className="text-white font-bold">© MyMusic - 2023</p>
+          <p className="text-white font-semibold">© MyMusic - 2023</p>
         </div>
 
         <div className="w-full px-8 md:px-16 py-16 md:py-0 flex items-center justify-center">
