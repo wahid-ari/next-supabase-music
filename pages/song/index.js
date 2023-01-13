@@ -42,7 +42,7 @@ export default function Album() {
       isLoading: true,
     });
     try {
-      const res = await axios.delete(`${process.env.API_ROUTE}/api/song`, { data: deleteItem.id })
+      const res = await axios.delete(`${process.env.API_ROUTE}/api/song?id=${deleteItem.id}`)
       if (res.status == 200) {
         setOpenDeleteDialog(false)
         setDeleteItem({ id: null, name: "" })

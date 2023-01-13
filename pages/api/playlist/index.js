@@ -1,7 +1,7 @@
 import { supabase } from '@libs/supabase';
 
 export default async function handler(req, res) {
-  const { method, body } = req
+  const { method, body, query } = req
 
   switch (method) {
     case "GET":
@@ -39,13 +39,17 @@ export default async function handler(req, res) {
       break;
 
     case "DELETE":
-      const { error } = await supabase.from('playlist')
-        .delete()
-        .eq('id', body)
-      if (error) {
-        res.status(422).json({ error: error.message })
+      if (!query.id) {
+        res.status(422).json({ error: "Id required" })
+      } else {
+        const { error } = await supabase.from('playlist')
+          .delete()
+          .eq('id', query.id)
+        if (error) {
+          res.status(422).json({ error: error.message })
+        }
+        res.status(200).json({ message: "Success delete playlist" });
       }
-      res.status(200).json({ message: "Success delete playlist" });
       break;
 
     default:

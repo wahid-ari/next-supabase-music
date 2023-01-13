@@ -85,7 +85,7 @@ export default function Playlist() {
       isLoading: true,
     });
     try {
-      const res = await axios.delete(`${process.env.API_ROUTE}/api/playlist`, { data: deleteItem.id })
+      const res = await axios.delete(`${process.env.API_ROUTE}/api/playlist?id=${deleteItem.id}`)
       if (res.status == 200) {
         setOpenDeleteDialog(false)
         setDeleteItem({ id: null, name: "" })

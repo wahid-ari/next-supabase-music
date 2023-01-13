@@ -51,13 +51,17 @@ export default async function handler(req, res) {
       break;
 
     case "DELETE":
-      const { error } = await supabase.from('album')
-        .delete()
-        .eq('id', body)
-      if (error) {
-        res.status(422).json({ error: error.message })
+      if (!query.id) {
+        res.status(422).json({ error: "Id required" })
+      } else {
+        const { error } = await supabase.from('album')
+          .delete()
+          .eq('id', query.id)
+        if (error) {
+          res.status(422).json({ error: error.message })
+        }
+        res.status(200).json({ message: "Success delete album" });
       }
-      res.status(200).json({ message: "Success delete album" });
       break;
 
     default:

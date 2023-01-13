@@ -85,7 +85,7 @@ export default function Genre() {
       isLoading: true,
     });
     try {
-      const res = await axios.delete(`${process.env.API_ROUTE}/api/genre`, { data: deleteItem.id })
+      const res = await axios.delete(`${process.env.API_ROUTE}/api/genre?id=${deleteItem.id}`)
       if (res.status == 200) {
         setOpenDeleteDialog(false)
         setDeleteItem({ id: null, name: "" })
