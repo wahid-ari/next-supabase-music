@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       if (!query.id) {
-        res.status(200).json({ message: "Id Album Required" });
+        res.status(200).json({ message: "Id Playlist Required" });
       }
       const { data: playlist_song } = await supabase.from('playlist_song')
         .select(`*, songs (*)`)
@@ -39,13 +39,17 @@ export default async function handler(req, res) {
       break;
 
     case "DELETE":
-      const { error } = await supabase.from('playlist_song')
-        .delete()
-        .eq('id', body)
-      if (error) {
-        res.status(422).json({ error: error.message })
+      if (!query.id) {
+        res.status(422).json({ error: "Id required" })
+      } else {
+        const { error } = await supabase.from('playlist_song')
+          .delete()
+          .eq('id', query.id)
+        if (error) {
+          res.status(422).json({ error: error.message })
+        }
+        res.status(200).json({ message: "Success delete song" });
       }
-      res.status(200).json({ message: "Success delete song" });
       break;
 
     default:

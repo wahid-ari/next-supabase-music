@@ -1,12 +1,12 @@
 import { supabase } from '@libs/supabase';
 
 export default async function handler(req, res) {
-  const { method, body, query } = req
+  const { method, query } = req
 
   switch (method) {
     case "GET":
-      if(!query.id) {
-        res.status(200).json({message: "Id Album Required"});
+      if (!query.id) {
+        res.status(200).json({ message: "Id Album Required" });
       }
       const { data } = await supabase.from('album')
         .select(`*, songs (*)`)
@@ -20,8 +20,7 @@ export default async function handler(req, res) {
         res.status(422).json({ error: "Id Album required" })
       } else if (!query.song_id) {
         res.status(422).json({ error: "Id Song required" })
-      }
-      else {
+      } else {
         const { error } = await supabase.from('songs')
           .update({
             album_id: null
