@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         if (error) {
           res.status(422).json({ error: error.message })
         }
-        res.status(200).json({ message: "Success add playlist" });
+        res.status(200).json({ message: "Success add song to playlist" });
       }
       break;
 
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         if (error) {
           res.status(422).json({ error: error.message })
         }
-        res.status(200).json({ message: "Success delete song" });
+        res.status(200).json({ message: "Success delete song from playlist" });
       }
       break;
 
