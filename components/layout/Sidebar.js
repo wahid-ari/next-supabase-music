@@ -117,14 +117,14 @@ export default function Sidebar() {
               Settings
             </NavLink>
 
-            <NavAccordion title="Design" routeName="design" icon={<TemplateIcon className="w-4 h-4" />}>
+            {/* <NavAccordion title="Design" routeName="design" icon={<TemplateIcon className="w-4 h-4" />}>
               <NavLink
                 href="/design"
                 icon={<TemplateIcon className="w-4 h-4" />}
               >
                 Example
               </NavLink>
-            </NavAccordion>
+            </NavAccordion> */}
           </>
           :
           <>
