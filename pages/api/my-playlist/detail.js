@@ -8,11 +8,11 @@ export default async function handler(req, res) {
       if (!query.id) {
         res.status(200).json({ message: "Id Playlist Required" });
       }
-      const { data: playlist_song } = await supabase.from('playlist_song')
+      const { data: playlist_song } = await supabase.from('playlist_user_song')
         .select(`*, songs (*)`)
-        .eq('playlist_id', query.id)
+        .eq('playlist_user_id', query.id)
         .order('id');
-      const { data: playlist } = await supabase.from('playlist')
+      const { data: playlist } = await supabase.from('playlist_user')
         .select(`*`)
         .eq('id', query.id)
         .order('id');
@@ -24,11 +24,11 @@ export default async function handler(req, res) {
       if (!body.id_song) {
         res.status(422).json({ error: "Song required" })
       } else {
-        const { error } = await supabase.from('playlist_song')
+        const { error } = await supabase.from('playlist_user_song')
           .insert([
             {
               song_id: body.id_song,
-              playlist_id: body.id_playlist,
+              playlist_user_id: body.id_playlist,
             }
           ])
         if (error) {
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
       if (!query.id) {
         res.status(422).json({ error: "Id required" })
       } else {
-        const { error } = await supabase.from('playlist_song')
+        const { error } = await supabase.from('playlist_user_song')
           .delete()
           .eq('id', query.id)
         if (error) {

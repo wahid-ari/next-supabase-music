@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
 const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function Playlist({ id }) {
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/playlist/detail?id=${id}`, fetcher)
+  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/my-playlist/detail?id=${id}`, fetcher)
   const { data: song, error: errorSong } = useSWR(`${process.env.API_ROUTE}/api/song`, fetcher)
   const { updateToast, pushToast, dismissToast } = useToast();
   const [openCreateDialog, setOpenCreateDialog] = useState(false)
@@ -63,7 +63,7 @@ export default function Playlist({ id }) {
       isLoading: true,
     });
     try {
-      const res = await axios.post(`${process.env.API_ROUTE}/api/playlist/detail`, createItem)
+      const res = await axios.post(`${process.env.API_ROUTE}/api/my-playlist/detail`, createItem)
       if (res.status == 200) {
         setOpenCreateDialog(false)
         setSelectedSong()
@@ -74,7 +74,7 @@ export default function Playlist({ id }) {
       console.error(error)
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/playlist/detail?id=${id}`)
+      mutate(`${process.env.API_ROUTE}/api/my-playlist/detail?id=${id}`)
     }
   }
 
@@ -84,7 +84,7 @@ export default function Playlist({ id }) {
       isLoading: true,
     });
     try {
-      const res = await axios.delete(`${process.env.API_ROUTE}/api/playlist/detail?id=${deleteItem.id}`)
+      const res = await axios.delete(`${process.env.API_ROUTE}/api/my-playlist/detail?id=${deleteItem.id}`)
       if (res.status == 200) {
         setOpenDeleteDialog(false)
         setDeleteItem({ id: null, name: "" })
@@ -94,7 +94,7 @@ export default function Playlist({ id }) {
       console.error(error)
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/playlist/detail?id=${id}`)
+      mutate(`${process.env.API_ROUTE}/api/my-playlist/detail?id=${id}`)
     }
   }
 
