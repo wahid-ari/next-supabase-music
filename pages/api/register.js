@@ -65,9 +65,9 @@ export default async function handler(req, res) {
               },
               process.env.JWT_SECRET
             );
-            const { id } = user
+            const { id, type } = user
             const { username, name } = body
-            res.status(200).json({ id, username, name, token });
+            res.status(200).json({ id, type, username, name, token });
           }
         } else {
           res.status(422).json({ error: "Username already exist" });
