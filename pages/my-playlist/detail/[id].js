@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import useSWR, { mutate } from "swr";
 import axios from "axios";
 import useToast from "@utils/useToast";
+import { Transition } from '@headlessui/react';
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
 import Dialog from "@components/systems/Dialog";
 import Button from "@components/systems/Button";
-import TableSimple from "@components/systems/TableSimple";
-import { PlusSmIcon } from "@heroicons/react/outline";
+import { PlusSmIcon, TrashIcon } from "@heroicons/react/outline";
+import { PlayIcon } from "@heroicons/react/solid";
 import SearchBox from "@components/systems/SearchBox";
 import nookies from "nookies";
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+import Text from "@components/systems/Text";
 
 export async function getServerSideProps(context) {
   const { id } = context.params
@@ -42,6 +47,9 @@ export default function Playlist({ id }) {
   const [deleteItem, setDeleteItem] = useState({ id: null, name: "" })
   const [selectedSong, setSelectedSong] = useState()
   const [querySong, setQuerySong] = useState('')
+  const [name, setName] = useState("")
+  const [url, setUrl] = useState("")
+  const [showPlayer, setShowPlayer] = useState(false)
 
   const filteredSong =
     querySong === ''
@@ -103,6 +111,17 @@ export default function Playlist({ id }) {
     setOpenDeleteDialog(true)
   }
 
+  function handlePlay(song, url) {
+    if (url !== "") {
+      setName(song)
+      setUrl(url)
+    } else {
+      setName(name)
+      setUrl(null)
+    }
+    setShowPlayer(true)
+  }
+
   if (error || errorSong) {
     return (
       <Layout title="Playlist Detail - MyMusic">
@@ -126,41 +145,55 @@ export default function Playlist({ id }) {
 
       {data ?
         data?.playlist_song?.length > 0 ?
-          <TableSimple
-            head={
-              <>
-                <TableSimple.td small>No</TableSimple.td>
-                <TableSimple.td>Name</TableSimple.td>
-                <TableSimple.td small>Action</TableSimple.td>
-              </>
-            }
-          >
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {data?.playlist_song?.map((item, index) => {
               return (
-                <TableSimple.tr key={index}>
-                  <TableSimple.td small>{index + 1}</TableSimple.td>
-                  <TableSimple.td>
-                    <Link href={`/song/detail/${item.songs.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
-                      {item.songs.name}
-                    </Link>
-                  </TableSimple.td>
-                  <TableSimple.td>
-                    <Button.danger className="!py-[2px] !px-[6px]"
-                      onClick={() => handleShowDeleteModal(item.id, item.songs.name)}>
-                      Delete
-                    </Button.danger>
-                  </TableSimple.td>
-                </TableSimple.tr>
-              );
-            })}
-          </TableSimple>
+                <div key={index} className={`p-2 flex items-center justify-between gap-2 border dark:border-neutral-800 rounded`}>
+                  <Link href={`/dashboard/song/detail/${item.song_id}`} className="group">
+                    <div className="flex items-center gap-2">
+                      <div className="relative h-12 w-12 overflow-hidden rounded">
+                        <Image
+                          alt={item?.song_name}
+                          src={item?.song_cover_url}
+                          className={`duration-500 ease-in-out transform rounded-t brightness-90 transition will-change-auto group-hover:brightness-110`}
+                          fill
+                          sizes={`(max-width: 120px) 100vw, (max-width: 120px) 50vw, (max-width: 120px) 33vw`}
+                        />
+                      </div>
+                      <div>
+                        <Text.medium className="mb-1 group-hover:text-emerald-500 transition-all duration-500">
+                          {item?.song_name}
+                        </Text.medium>
+                        <Text.light className="text-[13px]">{item?.artist_name}</Text.light>
+                      </div>
+                    </div>
+                  </Link>
+                  <div className="flex gap-2">
+                    <button title="Play Preview" onClick={() => handlePlay(item?.song_name, item?.song_preview_url)} className="text-neutral-600 hover:text-emerald-500 dark:text-neutral-200 dark:hover:text-emerald-500 transition-all duration-300">
+                      <PlayIcon className="h-7 w-7 " />
+                    </button>
+                    <div className="border-l dark:border-neutral-700"></div>
+                    <button title="Delete From Playlist" onClick={() => handleShowDeleteModal(item?.playlist_user_song_id, item?.song_name)} className="text-red-600 hover:text-red-500 transition-all duration-300">
+                      <TrashIcon className="h-5 w-5 " />
+                    </button>
+                  </div>
+                </div>
+              )
+            })
+            }
+          </div>
           :
           <div className="rounded border border-red-500 p-3">
             <p className="text-red-500">No Song in Playlist {data[0]?.name} </p>
           </div>
         :
-        <Shimer className="!h-60" />
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <Shimer className="w-full !h-16" />
+          <Shimer className="w-full !h-16" />
+          <Shimer className="w-full !h-16" />
+        </div>
       }
+
 
       <Dialog
         title={`Add Song to ${data?.playlist[0]?.name} Playlist`}
@@ -196,6 +229,30 @@ export default function Playlist({ id }) {
           Are you sure want to delete song <span className="font-semibold">{deleteItem.name}</span> ?
         </div>
       </Dialog>
+
+      <Transition
+        show={showPlayer}
+        enter="transition-opacity duration-700"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+      >
+        {url ?
+          <div className="fixed bottom-4 left-4 right-6 lg:left-64">
+            <AudioPlayer
+              autoPlay={true}
+              src={url}
+              header={name}
+              layout="horizontal"
+              customAdditionalControls={[]}
+              className="rounded dark:bg-neutral-800 text-emerald-500 dark:text-emerald-500 font-medium"
+            />
+          </div>
+          :
+          <div className="fixed bottom-4 left-4 right-6 lg:left-64 dark:bg-neutral-800 p-4 rounded bg-neutral-100 shadow-lg text-red-500 font-medium">
+            Audio Not Available
+          </div>
+        }
+      </Transition>
 
     </Layout>
   );
