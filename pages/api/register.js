@@ -47,6 +47,7 @@ export default async function handler(req, res) {
               {
                 username: body.username,
                 name: body.name,
+                type: "user",
                 password: passwordHashed
               },
             ])

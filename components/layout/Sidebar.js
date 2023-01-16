@@ -27,11 +27,11 @@ export default function Sidebar() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false)
   const { showNav, setShowNav } = useContext(GlobalContext);
-  const admin = nookies.get(null, "name")
+  const admin = nookies.get(null, "type")
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true)
-  }, [])
+  }, [admin])
 
   const hideMenu = () => {
     setShowNav(false);
@@ -48,11 +48,13 @@ export default function Sidebar() {
     nookies.destroy(null, "id");
     nookies.destroy(null, "username");
     nookies.destroy(null, "name");
+    nookies.destroy(null, "type");
     nookies.destroy(null, "token");
     // so try this, seems work
     document.cookie = 'id=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
     document.cookie = 'username=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
     document.cookie = 'name=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+    document.cookie = 'type=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
     document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
     router.push("/login");
   }
@@ -80,46 +82,46 @@ export default function Sidebar() {
       )}>
 
 
-        {mounted &&
-          admin.name ?
-          <>
-            <NavLink isHome href="/" icon={<ViewGridIcon className="w-4 h-4" />}>
-              Dashboard
-            </NavLink>
+        {mounted ?
+          admin.type == "admin" ?
+            <>
+              <NavLink isHome href="/" icon={<ViewGridIcon className="w-4 h-4" />}>
+                Dashboard
+              </NavLink>
 
-            <NavLink href="/search" icon={<SearchIcon className="w-4 h-4" />} className="mt-1">
-              Search
-            </NavLink>
+              <NavLink href="/search" icon={<SearchIcon className="w-4 h-4" />} className="mt-1">
+                Search
+              </NavLink>
 
-            <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">
-              Statistics
-            </NavLink>
+              <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">
+                Statistics
+              </NavLink>
 
-            <NavLink href="/song" icon={<MusicNoteIcon className="w-4 h-4" />} className="mt-1">
-              Song
-            </NavLink>
+              <NavLink href="/song" icon={<MusicNoteIcon className="w-4 h-4" />} className="mt-1">
+                Song
+              </NavLink>
 
-            <NavLink href="/album" icon={<CollectionIcon className="w-4 h-4" />} className="mt-1">
-              Album
-            </NavLink>
+              <NavLink href="/album" icon={<CollectionIcon className="w-4 h-4" />} className="mt-1">
+                Album
+              </NavLink>
 
-            <NavLink href="/artist" icon={<UserGroupIcon className="w-4 h-4" />} className="mt-1">
-              Artist
-            </NavLink>
+              <NavLink href="/artist" icon={<UserGroupIcon className="w-4 h-4" />} className="mt-1">
+                Artist
+              </NavLink>
 
-            <NavLink href="/genre" icon={<ColorSwatchIcon className="w-4 h-4" />} className="mt-1">
-              Genre
-            </NavLink>
+              <NavLink href="/genre" icon={<ColorSwatchIcon className="w-4 h-4" />} className="mt-1">
+                Genre
+              </NavLink>
 
-            <NavLink href="/playlist" icon={<BookmarkIcon className="w-4 h-4" />} className="mt-1">
-              Playlist
-            </NavLink>
+              <NavLink href="/playlist" icon={<BookmarkIcon className="w-4 h-4" />} className="mt-1">
+                Playlist
+              </NavLink>
 
-            <NavLink href="/settings" icon={<CogIcon className="w-4 h-4" />} className="mt-1">
-              Settings
-            </NavLink>
+              <NavLink href="/settings" icon={<CogIcon className="w-4 h-4" />} className="mt-1">
+                Settings
+              </NavLink>
 
-            {/* <NavAccordion title="Design" routeName="design" icon={<TemplateIcon className="w-4 h-4" />}>
+              {/* <NavAccordion title="Design" routeName="design" icon={<TemplateIcon className="w-4 h-4" />}>
               <NavLink
                 href="/design"
                 icon={<TemplateIcon className="w-4 h-4" />}
@@ -127,25 +129,33 @@ export default function Sidebar() {
                 Example
               </NavLink>
             </NavAccordion> */}
-          </>
+            </>
+            :
+            <>
+              <NavLink isHome href="/" icon={<ViewGridIcon className="w-4 h-4" />}>
+                Dashboard
+              </NavLink>
+
+              <NavLink href="/search" icon={<SearchIcon className="w-4 h-4" />} className="mt-1">
+                Search
+              </NavLink>
+
+              <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">
+                Statistics
+              </NavLink>
+
+              {admin.type == "user" &&
+                <NavLink href="/my-playlist" icon={<BookmarkIcon className="w-4 h-4" />} className="mt-1">
+                  My Playlist
+                </NavLink>
+              }
+
+              <NavLink href="/settings" icon={<CogIcon className="w-4 h-4" />} className="mt-1">
+                Settings
+              </NavLink>
+            </>
           :
-          <>
-            <NavLink isHome href="/" icon={<ViewGridIcon className="w-4 h-4" />}>
-              Dashboard
-            </NavLink>
-
-            <NavLink href="/search" icon={<SearchIcon className="w-4 h-4" />} className="mt-1">
-              Search
-            </NavLink>
-
-            <NavLink href="/statistics" icon={<ChartPieIcon className="w-4 h-4" />} className="mt-1">
-              Statistics
-            </NavLink>
-
-            <NavLink href="/settings" icon={<CogIcon className="w-4 h-4" />} className="mt-1">
-              Settings
-            </NavLink>
-          </>
+          null
         }
       </div>
 

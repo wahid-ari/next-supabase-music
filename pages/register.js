@@ -56,6 +56,7 @@ export default function Register() {
           nookies.set(null, 'id', res.data.id, { path: '/' })
           nookies.set(null, 'username', res.data.username, { path: '/' })
           nookies.set(null, 'name', res.data.name, { path: '/' })
+          nookies.set(null, 'type', res.data.type, { path: '/' })
           nookies.set(null, 'token', res.data.token, { path: '/' })
           updateToast({
             toastId,
