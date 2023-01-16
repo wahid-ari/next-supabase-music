@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import Router from "next/router";
@@ -9,6 +9,7 @@ import Heading from "@components/systems/Heading";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import nookies from "nookies";
 import Link from "next/link";
+import { validateRegister } from "@validations/register";
 
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
@@ -25,8 +26,8 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function Login() {
-  const [form, setForm] = useState({ username: "", password: "" });
+export default function Register() {
+  const [form, setForm] = useState({ name: "", username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const { updateToast, pushToast, dismissToast } = useToast();
@@ -35,31 +36,22 @@ export default function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    Router.prefetch('/')
-  }, [])
-
-  async function handleLogin(e) {
+  async function handleRegister(e) {
     e.preventDefault();
     setLoading(true)
-    let isError = false
-    if (!form.username) {
-      isError = true
-      pushToast({ message: "Username can't be empty", isError: true });
-    }
-    if (!form.password) {
-      isError = true
-      pushToast({ message: "Password can't be empty", isError: true });
-    }
-
-    // jika tidak ada error save data
-    if (!isError) {
-      const toastId = pushToast({
-        message: "Login Admin...",
-        isLoading: true,
-      });
-      try {
-        const res = await axios.post(`${process.env.API_ROUTE}/api/login`, form)
+    try {
+      const { valid, errors } = await validateRegister(form);
+      if (!valid && errors) {
+        dismissToast();
+        errors.forEach((el) => {
+          pushToast({ message: el, isError: true });
+        });
+      } else {
+        const toastId = pushToast({
+          message: "Registering...",
+          isLoading: true,
+        });
+        const res = await axios.post(`${process.env.API_ROUTE}/api/register`, form)
         if (res.status == 200) {
           nookies.set(null, 'id', res.data.id, { path: '/' })
           nookies.set(null, 'username', res.data.username, { path: '/' })
@@ -67,15 +59,16 @@ export default function Login() {
           nookies.set(null, 'token', res.data.token, { path: '/' })
           updateToast({
             toastId,
-            message: "Success Login",
+            message: "Success Register",
             isError: false,
           });
           Router.replace("/");
         }
-      } catch (error) {
-        updateToast({ toastId, message: error.response.data.error, isError: true });
-        console.error(error);
       }
+    } catch (error) {
+      dismissToast();
+      pushToast({ message: error.response.data.error, isError: true });
+      console.error(error);
     }
     setLoading(false)
   }
@@ -84,7 +77,7 @@ export default function Login() {
     <div className="text-sm font-medium dark:bg-white">
 
       <Head>
-        <title>Login - MyMusic</title>
+        <title>Register - MyMusic</title>
       </Head>
 
       <div className="min-h-screen w-screen sm:grid sm:grid-cols-2">
@@ -117,8 +110,24 @@ export default function Login() {
             <Image alt="Logo" src="/icon.jpg" width={100} height={100} className="mb-16 mx-auto hidden sm:block" />
 
             <Heading h1 className="font-semibold !text-neutral-800 mb-6">
-              Login
+              Register
             </Heading>
+
+            <div className="mb-5">
+              <label className="text-sm block text-gray-800" htmlFor="name">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Username"
+                value={form.name}
+                onChange={handleChange}
+                className="text-sm transition-all font-medium bg-white dark:bg-white dark:text-neutral-800 w-full px-4 py-[0.6rem] rounded-md mt-2 border focus:ring-1 ring-gray-300 focus:ring-emerald-600 border-gray-300 focus:border-emerald-600 outline-none"
+                autoComplete="off"
+                required
+              />
+            </div>
 
             <div className="mb-5">
               <label className="text-sm block text-gray-800" htmlFor="username">
@@ -164,11 +173,11 @@ export default function Login() {
               </div>
             </div>
 
-            <Button.success onClick={handleLogin} className="w-full !text-base">{loading ? "Logging in..." : "Login"}</Button.success>
+            <Button.success onClick={handleRegister} className="w-full !text-base">{loading ? "Registering..." : "Register"}</Button.success>
 
-            <p className="dark:text-neutral-800 font-normal mt-4 text-center">Dont have an account? {" "}
-              <Link href="/register" className="hover:underline text-emerald-600 hover:text-emerald-500 transition-all duration-300 font-medium">
-                Register Now
+            <p className="dark:text-neutral-800 font-normal mt-4 text-center">Already have an account? {" "}
+              <Link href="/login" className="hover:underline text-emerald-600 hover:text-emerald-500 transition-all duration-300 font-medium">
+                Login Now
               </Link>
             </p>
           </div>

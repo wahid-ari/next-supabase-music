@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] })
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   return (
-    router.pathname == "/login" ?
+    router.pathname == "/login" || router.pathname == "/register" ?
       <>
         <Toaster />
         <Component {...pageProps} />
