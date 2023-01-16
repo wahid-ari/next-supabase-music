@@ -16,7 +16,26 @@ export default async function handler(req, res) {
         .select(`*`)
         .eq('id', query.id)
         .order('id');
-      const data = { playlist, playlist_song }
+      const { data: artists } = await supabase.from('artists')
+        .select(`*`)
+        .order('id');
+      let song_artist = []
+      for (const song of playlist_song) {
+        for (const artist of artists) {
+          if (song.songs.artist_id == artist.id) {
+            song_artist.push({
+              song_id: song.songs.id,
+              song_name: song.songs.name,
+              song_cover_url: song.songs.cover_url,
+              song_preview_url: song.songs.preview_url,
+              artist_id: artist.id,
+              artist_name: artist.name,
+              playlist_user_song_id: song.id
+            })
+          }
+        }
+      }
+      const data = { playlist, playlist_song: song_artist}
       res.status(200).json(data);
       break;
 
