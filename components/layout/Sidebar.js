@@ -16,6 +16,7 @@ import {
   ChartPieIcon,
   SearchIcon,
   LoginIcon,
+  ExternalLinkIcon,
 } from "@heroicons/react/outline";
 import NavLink from "@components/systems/NavLink";
 import NavAccordion from "@components/systems/NavAccordion";
@@ -153,6 +154,12 @@ export default function Sidebar() {
               <NavLink href="/settings" icon={<CogIcon className="w-4 h-4" />} className="mt-1">
                 Settings
               </NavLink>
+
+              <a href="https://my-music-docs.vercel.app/blog/mymusic"
+                className="mt-1 transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2 rounded text-sm font-medium text-gray-600 dark:text-neutral-300 hover:text-emerald-600 dark:hover:text-emerald-500 hover:bg-gray-100 dark:hover:bg-neutral-800" target="_blank" rel="noopener noreferrer">
+                <ExternalLinkIcon className="w-4 h-4" />
+                Docs
+              </a>
             </>
           :
           null
