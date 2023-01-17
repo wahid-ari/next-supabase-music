@@ -125,7 +125,7 @@ export default function Album({ id }) {
         onClose={() => setOpenDeleteDialog(false)}
         onConfirm={handleDelete}
       >
-        <div className="mt-5">
+        <div className="mt-5 text-center sm:text-left">
           Are you sure want to delete song <span className="font-semibold">{deleteItem.name}</span> ?
         </div>
       </Dialog>

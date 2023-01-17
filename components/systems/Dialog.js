@@ -60,8 +60,8 @@ export default function Dialog({ open, setOpen, title, children, isDanger, isEdi
                 )
                 : null
               }
-              <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                <DialogRadix.Title className="text-lg font-medium text-neutral-800 dark:text-neutral-100">
+              <div className="mt-3 sm:mt-0">
+                <DialogRadix.Title className="text-lg text-center sm:text-left font-medium text-neutral-800 dark:text-neutral-100">
                   {title}
                 </DialogRadix.Title>
                 <div className="mt-2 font-normal tracking-wide text-sm text-neutral-600 dark:text-neutral-300">

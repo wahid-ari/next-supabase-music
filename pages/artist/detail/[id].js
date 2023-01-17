@@ -285,7 +285,7 @@ export default function Album({ id }) {
         onClose={() => setOpenDeleteDialogSong(false)}
         onConfirm={handleDeleteSong}
       >
-        <div className="mt-5">
+        <div className="mt-5 text-center sm:text-left">
           Are you sure want to delete song <span className="font-semibold">{deleteItemSong.name}</span> ?
         </div>
       </Dialog>
@@ -298,7 +298,7 @@ export default function Album({ id }) {
         onClose={() => setOpenDeleteDialogAlbum(false)}
         onConfirm={handleDeleteAlbum}
       >
-        <div className="mt-5">
+        <div className="mt-5 text-center sm:text-left">
           Are you sure want to delete album <span className="font-semibold">{deleteItemAlbum.name}</span> ?
         </div>
       </Dialog>
