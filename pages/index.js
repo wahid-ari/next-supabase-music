@@ -74,7 +74,7 @@ export default function Home() {
       <Title>Dashboard</Title>
 
       <Heading className="mt-8">Genre</Heading>
-      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-4 gap-4">
         {genre ?
           genre.slice(0, 4).map((item, index) => (
             <GenreItem key={index} href={`?genre=${item.id}`} title={item.name} />
