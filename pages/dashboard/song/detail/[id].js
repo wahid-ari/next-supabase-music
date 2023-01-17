@@ -62,15 +62,15 @@ export default function Album({ id }) {
             </div>
           }
           {data[0].youtube_url &&
-            <iframe className="rounded my-6"
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${data[0].youtube_url}`}
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
+            <div className="w-full sm:w-1/2 aspect-video">
+              <iframe className="rounded my-6 object-cover object-center h-full w-full"
+                src={`https://www.youtube.com/embed/${data[0].youtube_url}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
           }
         </div>
         :
