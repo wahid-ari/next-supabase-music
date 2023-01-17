@@ -123,7 +123,11 @@ export default function Sidebar() {
               </NavLink>
 
               <a href="https://my-music-docs.vercel.app"
-                className="mt-1 transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2 rounded text-sm font-medium text-gray-600 dark:text-neutral-300 hover:text-emerald-600 dark:hover:text-emerald-500 hover:bg-gray-100 dark:hover:bg-neutral-800" target="_blank" rel="noopener noreferrer">
+                className={clsx("mt-1 transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2",
+                  "rounded text-sm font-medium text-gray-600 dark:text-neutral-300 hover:text-emerald-600",
+                  "dark:hover:text-emerald-500 hover:bg-gray-100 dark:hover:bg-neutral-800",
+                  "focus:outline-none focus:ring focus:ring-emerald-500")}
+                target="_blank" rel="noopener noreferrer">
                 <ExternalLinkIcon className="w-4 h-4" />
                 Docs
               </a>
@@ -162,7 +166,11 @@ export default function Sidebar() {
               </NavLink>
 
               <a href="https://my-music-docs.vercel.app"
-                className="mt-1 transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2 rounded text-sm font-medium text-gray-600 dark:text-neutral-300 hover:text-emerald-600 dark:hover:text-emerald-500 hover:bg-gray-100 dark:hover:bg-neutral-800" target="_blank" rel="noopener noreferrer">
+                className={clsx("mt-1 transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2",
+                  "rounded text-sm font-medium text-gray-600 dark:text-neutral-300 hover:text-emerald-600",
+                  "dark:hover:text-emerald-500 hover:bg-gray-100 dark:hover:bg-neutral-800",
+                  "focus:outline-none focus:ring focus:ring-emerald-500")}
+                target="_blank" rel="noopener noreferrer">
                 <ExternalLinkIcon className="w-4 h-4" />
                 Docs
               </a>
@@ -179,7 +187,8 @@ export default function Sidebar() {
           <button
             onClick={handleLogout}
             className={clsx("transition-all w-full px-4 py-2 flex justify-start items-center gap-2 text-sm font-semibold",
-              "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-red-600")}
+              "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-red-600",
+              "focus:outline-none focus:ring focus:ring-red-500")}
           >
             <LogoutIcon className="w-4 h-4" />
             Logout
@@ -188,7 +197,8 @@ export default function Sidebar() {
           <Link
             href="/login"
             className={clsx("transition-all w-full px-4 py-2 flex justify-start items-center gap-2 text-sm font-semibold",
-              "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-emerald-600")}
+              "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-emerald-600",
+              "focus:outline-none focus:ring focus:ring-emerald-500")}
           >
             <LoginIcon className="w-4 h-4" />
             Login

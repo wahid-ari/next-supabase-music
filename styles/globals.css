@@ -38,8 +38,7 @@ body {
 		linear-gradient(
 			40deg,
 			rgb(4, 120, 87) 0%,
-			/* rgb(4, 120, 87) 62%, */
-			rgb(16, 185, 129) 62%,
+			/* rgb(4, 120, 87) 62%, */ rgb(16, 185, 129) 62%,
 			rgb(16, 185, 129) 100%
 		);
 }
@@ -76,6 +75,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .splide__arrow:hover:not(:disabled) {
 	opacity: 1 !important;
+}
+
+.splide.is-focus-in .splide__arrow:focus {
+	outline: 3px solid rgba(0, 187, 255, 0) !important;
+	outline-offset: 3px;
 }
 
 .rhap_main-controls {

@@ -17,11 +17,11 @@ export default function ThemeChanger() {
 
   return (
     theme == 'dark' ?
-      <button onClick={() => setTheme('light')} aria-label="Light">
+      <button onClick={() => setTheme('light')} aria-label="Light" className="focus:outline-none focus:ring focus:ring-emerald-500 rounded">
         <SunIcon className="h-5 w-5 text-neutral-400 hover:text-neutral-200 transition-all" />
       </button>
       :
-      <button onClick={() => setTheme('dark')} aria-label="Dark">
+      <button onClick={() => setTheme('dark')} aria-label="Dark" className="focus:outline-none focus:ring focus:ring-emerald-500 rounded">
         <MoonIcon className="h-5 w-5 text-gray-500 hover:text-gray-700 transition-all" />
       </button>
   )

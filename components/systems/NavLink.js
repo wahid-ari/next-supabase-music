@@ -9,7 +9,7 @@ export default function NavLink({ className, href, icon, isHome, children }) {
     return (
       <Link passHref href={href}
         className={clsx(className,
-          "transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2 rounded text-sm",
+          "transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2 rounded text-sm focus:outline-none focus:ring focus:ring-emerald-500",
           isHome && "bg-gray-100 dark:bg-neutral-800 font-medium text-emerald-600 dark:text-emerald-500",
           !isHome && "text-gray-700 dark:text-neutral-300 hover:text-emerald-600 dark:hover:text-emerald-500 hover:bg-gray-100 dark:hover:bg-neutral-800")}
       >
@@ -21,7 +21,7 @@ export default function NavLink({ className, href, icon, isHome, children }) {
 
   return (
     <Link passHref href={href}
-      className={`${className} transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2 rounded text-sm 
+      className={`${className} transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2 rounded text-sm focus:outline-none focus:ring focus:ring-emerald-500
        ${router.pathname.includes(href) && !isHome ?
           // current route that not home
           "bg-gray-100 dark:bg-neutral-800 font-medium text-emerald-600 dark:text-emerald-500"

@@ -18,7 +18,8 @@ export default function Akun({ className }) {
       {({ open }) => (
         <>
           <Menu.Button className={clsx("inline-flex items-center w-full justify-center rounded-md pr-1.5 sm:pr-3",
-            "text-gray-600 hover:text-gray-700 dark:text-neutral-300 dark:hover:text-neutral-200 focus:outline-none")}>
+            "text-gray-600 hover:text-gray-700 dark:text-neutral-300 dark:hover:text-neutral-200 focus:outline-none",
+            "focus:outline-none focus:ring focus:ring-emerald-500")}>
               
             {mounted && admin?.name}
 

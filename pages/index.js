@@ -91,7 +91,7 @@ export default function Home() {
 
       <div className="mt-10 flex items-center justify-between">
         <Heading className="">Songs</Heading>
-        <Link href={`dashboard/song`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium">
+        <Link href={`dashboard/song`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus:outline-none focus:ring focus:ring-emerald-500 rounded">
           View All
         </Link>
       </div>
@@ -109,7 +109,7 @@ export default function Home() {
             <div>
               <SplideTrack>
                 <SplideSlide>
-                  <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 p-1">
                     {songs?.slice(0, 5).map((item, index) =>
                       <SongItem key={index} href={`/dashboard/song/detail/${item.id}`}
                         imageSrc={item.cover_url}
@@ -132,10 +132,10 @@ export default function Home() {
                 </SplideSlide>
               </SplideTrack>
               <div className="splide__arrows">
-                <button title="Prev" className="splide__arrow splide__arrow--prev !-mt-8">
+                <button title="Prev" className="splide__arrow splide__arrow--prev !-mt-8 focus:outline-none focus:ring focus:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
-                <button title="Next" className="splide__arrow splide__arrow--next !-mt-8">
+                <button title="Next" className="splide__arrow splide__arrow--next !-mt-8 focus:outline-none focus:ring focus:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
               </div>
@@ -174,7 +174,7 @@ export default function Home() {
 
       <div className="mt-10 flex items-center justify-between">
         <Heading className="">Albums</Heading>
-        <Link href={`dashboard/album`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium">
+        <Link href={`dashboard/album`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus:outline-none focus:ring focus:ring-emerald-500 rounded">
           View All
         </Link>
       </div>
@@ -192,7 +192,7 @@ export default function Home() {
             <div>
               <SplideTrack>
                 <SplideSlide>
-                  <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 p-1">
                     {albums?.slice(0, 5).map((item, index) =>
                       <SongItem key={index} href={`dashboard/album/detail/${item.id}`}
                         imageSrc={item.cover}
@@ -215,10 +215,10 @@ export default function Home() {
                 </SplideSlide>
               </SplideTrack>
               <div className="splide__arrows">
-                <button title="Prev" className="splide__arrow splide__arrow--prev !-mt-8">
+                <button title="Prev" className="splide__arrow splide__arrow--prev !-mt-8 focus:outline-none focus:ring focus:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
-                <button title="Next" className="splide__arrow splide__arrow--next !-mt-8">
+                <button title="Next" className="splide__arrow splide__arrow--next !-mt-8 focus:outline-none focus:ring focus:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
               </div>
@@ -256,7 +256,7 @@ export default function Home() {
 
       <div className="mt-10 flex items-center justify-between">
         <Heading className="">Artists</Heading>
-        <Link href={`dashboard/artist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium">
+        <Link href={`dashboard/artist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus:outline-none focus:ring focus:ring-emerald-500 rounded">
           View All
         </Link>
       </div>
@@ -290,7 +290,7 @@ export default function Home() {
 
       <div className="mt-10 flex items-center justify-between">
         <Heading className="">Playlists</Heading>
-        <Link href={`dashboard/playlist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium">
+        <Link href={`dashboard/playlist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus:outline-none focus:ring focus:ring-emerald-500 rounded">
           View All
         </Link>
       </div>

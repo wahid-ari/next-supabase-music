@@ -73,7 +73,7 @@ export default function Artist({ id }) {
           :
           <>
             <Title>Artist Detail</Title>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center sm:block">
               <Shimer className="!rounded-full mt-8 !h-72 !w-72" />
             </div>
           </>

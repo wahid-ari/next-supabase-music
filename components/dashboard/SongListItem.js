@@ -10,7 +10,7 @@ export default function SongListItem({ noPlayer, onPlay, href = "#", imageSrc = 
 
   if(noPlayer) {
     return (
-      <Link {...props} href={href} className={`p-2 border dark:border-neutral-800 rounded group ${className}`}>
+      <Link {...props} href={href} className={`p-2 border dark:border-neutral-800 rounded group focus:outline-none focus:ring focus:ring-emerald-500 ${className}`}>
         <div className="flex items-center gap-2">
           <div className="relative h-12 w-12 overflow-hidden rounded">
             <Image
@@ -34,7 +34,7 @@ export default function SongListItem({ noPlayer, onPlay, href = "#", imageSrc = 
 
   return (
     <div className={`p-2 flex items-center justify-between gap-2 border dark:border-neutral-800 rounded ${className}`}>
-      <Link {...props} href={href} className="group">
+      <Link {...props} href={href} className="group focus:outline-none focus:ring focus:ring-emerald-500">
         <div className="flex items-center gap-2">
           <div className="relative h-12 w-12 overflow-hidden rounded">
             <Image
@@ -53,7 +53,7 @@ export default function SongListItem({ noPlayer, onPlay, href = "#", imageSrc = 
           </div>
         </div>
       </Link>
-      <button title="Play Preview" onClick={onPlay} className="text-neutral-600 hover:text-emerald-500 dark:text-neutral-200 dark:hover:text-emerald-500 transition-all duration-300">
+      <button title="Play Preview" onClick={onPlay} className="text-neutral-600 hover:text-emerald-500 dark:text-neutral-200 dark:hover:text-emerald-500 focus:outline-none focus:ring focus:ring-emerald-500 rounded transition-all duration-300">
         <PlayIcon className="h-7 w-7 " />
       </button>
     </div>

@@ -8,7 +8,7 @@ export default function ArtistItem({ href = "#", imageSrc = "/genre/pop.webp", t
   const sizes = `(max-width: 360px) 100vw, (max-width: 480px) 50vw, 33vw`;
 
   return (
-    <Link href={href} className="group text-center p-2" {...props}>
+    <Link href={href} className="group text-center p-2 focus:outline-none focus:ring focus:ring-emerald-500 rounded" {...props}>
       <div className="relative h-44 w-44 mb-2 overflow-hidden mx-auto">
         <Image
           alt={title}
