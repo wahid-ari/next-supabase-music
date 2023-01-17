@@ -191,7 +191,7 @@ export default function Genre() {
               <TableSimple.tr key={index}>
                 <TableSimple.td small>{index + 1}</TableSimple.td>
                 <TableSimple.td>
-                  <Link href={`genre/detail/${item.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+                  <Link href={`genre/detail/${item.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-emerald-500 rounded">
                     {item.name}
                   </Link>  
                 </TableSimple.td>

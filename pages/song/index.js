@@ -81,7 +81,7 @@ export default function Album() {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`song/detail/${values.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+            <Link href={`song/detail/${values.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-emerald-500 rounded">
               {values.name}
             </Link>
           )
@@ -94,7 +94,7 @@ export default function Album() {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`album/detail/${original.album?.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+            <Link href={`album/detail/${original.album?.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-emerald-500 rounded">
               {original.album?.name}
             </Link>
           )
@@ -107,7 +107,7 @@ export default function Album() {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`artist/detail/${original?.artists?.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+            <Link href={`artist/detail/${original?.artists?.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-emerald-500 rounded">
               {original?.artists?.name}
             </Link>
           )

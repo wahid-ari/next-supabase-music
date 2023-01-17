@@ -113,7 +113,7 @@ export default function Album({ id }) {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`/song/detail/${original.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+            <Link href={`/song/detail/${original.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-emerald-500 rounded">
               {values.name}
             </Link>
           )
@@ -163,7 +163,7 @@ export default function Album({ id }) {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`/album/detail/${original.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium">
+            <Link href={`/album/detail/${original.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-emerald-500 rounded">
               {values.name}
             </Link>
           )
@@ -232,7 +232,7 @@ export default function Album({ id }) {
           }
         </div>
         :
-        <Shimer className="!h-60" />
+        <Shimer className="!h-72 !w-72" />
       }
 
       {data ?
@@ -252,7 +252,7 @@ export default function Album({ id }) {
           <ReactTable columns={songColumn} data={data[0].songs} ref={songTableInstance} page_size={10} />
         </div>
         :
-        <Shimer className="!h-60" />
+        <Shimer className="!h-60 mt-10" />
       }
 
       <hr className="mt-10 dark:border-neutral-700"/>
