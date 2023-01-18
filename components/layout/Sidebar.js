@@ -78,7 +78,7 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className={clsx("pt-4 px-4 border-t dark:border-neutral-800 flex flex-nowrap flex-col flex-grow overflow-auto",
+      <div className={clsx("pt-4 px-4 border-t dark:border-neutral-800 flex flex-nowrap flex-col sm:flex-grow overflow-auto",
         "scrollbar scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-800"
       )}>
 
@@ -180,8 +180,8 @@ export default function Sidebar() {
         }
       </div>
 
-      <hr className="dark:border-neutral-800" />
-      <div className="px-4 py-2">
+      <hr className="mt-2 dark:border-neutral-800" />
+      <div className="px-3 py-2">
         {mounted &&
           admin.name ?
           <button
