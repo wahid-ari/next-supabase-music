@@ -13,6 +13,7 @@ import PlaylistItem from "@components/dashboard/PlaylistItem";
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import { ArrowRightIcon } from "@heroicons/react/outline";
+import SongListItem from "@components/dashboard/SongListItem";
 
 const fetcher = url => fetch(url).then(result => result.json())
 
@@ -109,33 +110,35 @@ export default function Home() {
             <div>
               <SplideTrack>
                 <SplideSlide>
-                  <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 p-1">
-                    {songs?.slice(0, 5).map((item, index) =>
-                      <SongItem key={index} href={`/dashboard/song/detail/${item.id}`}
+                  <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4 p-1">
+                    {songs?.slice(0, 9).map((item, index) =>
+                      <SongListItem key={index} href={`/dashboard/song/detail/${item.id}`}
                         imageSrc={item.cover_url}
                         title={item.name}
                         artist={item.artists.name}
+                        noPlayer
                       />
                     )}
                   </div>
                 </SplideSlide>
                 <SplideSlide>
-                  <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
-                    {songs?.slice(5, 10).map((item, index) =>
-                      <SongItem key={index} href={`/dashboard/song/detail/${item.id}`}
+                  <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4 p-1">
+                    {songs?.slice(9, 18).map((item, index) =>
+                      <SongListItem key={index} href={`/dashboard/song/detail/${item.id}`}
                         imageSrc={item.cover_url}
                         title={item.name}
                         artist={item.artists.name}
+                        noPlayer
                       />
                     )}
                   </div>
                 </SplideSlide>
               </SplideTrack>
               <div className="splide__arrows">
-                <button title="Prev" className="splide__arrow splide__arrow--prev !-mt-8 focus:outline-none focus:ring focus:ring-emerald-500">
+                <button title="Prev" className="splide__arrow splide__arrow--prev focus:outline-none focus:ring focus:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
-                <button title="Next" className="splide__arrow splide__arrow--next !-mt-8 focus:outline-none focus:ring focus:ring-emerald-500">
+                <button title="Next" className="splide__arrow splide__arrow--next focus:outline-none focus:ring focus:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
               </div>
@@ -154,11 +157,12 @@ export default function Home() {
 
       <div className="xl:hidden mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
         {songs ?
-          songs.slice(0, 5).map((item, index) =>
-            <SongItem key={index} href={`/dashboard/song/detail/${item.id}`}
+          songs.slice(0, 12).map((item, index) =>
+            <SongListItem key={index} href={`/dashboard/song/detail/${item.id}`}
               imageSrc={item.cover_url}
               title={item.name}
               artist={item.artists.name}
+              noPlayer
             />
           )
           :
@@ -194,7 +198,7 @@ export default function Home() {
                 <SplideSlide>
                   <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 p-1">
                     {albums?.slice(0, 5).map((item, index) =>
-                      <SongItem key={index} href={`dashboard/album/detail/${item.id}`}
+                      <AlbumItem key={index} href={`dashboard/album/detail/${item.id}`}
                         imageSrc={item.cover}
                         title={item.name}
                         artist={item.artists.name}
@@ -205,7 +209,7 @@ export default function Home() {
                 <SplideSlide>
                   <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
                     {albums?.slice(5, 10).map((item, index) =>
-                      <SongItem key={index} href={`dashboard/album/detail/${item.id}`}
+                      <AlbumItem key={index} href={`dashboard/album/detail/${item.id}`}
                         imageSrc={item.cover}
                         title={item.name}
                         artist={item.artists.name}
@@ -236,7 +240,7 @@ export default function Home() {
       }
       <div className="xl:hidden mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
         {albums ?
-          albums.slice(0, 5).map((item, index) =>
+          albums.slice(0, 6).map((item, index) =>
             <AlbumItem key={index} href={`dashboard/album/detail/${item.id}`}
               imageSrc={item.cover}
               title={item.name}
