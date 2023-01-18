@@ -13,7 +13,7 @@ import AlbumItem from "@components/dashboard/AlbumItem";
 import PlaylistItem from "@components/dashboard/PlaylistItem";
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import { ArrowRightIcon } from "@heroicons/react/outline";
+import { ArrowRightIcon, XIcon } from "@heroicons/react/outline";
 import SongListItem from "@components/dashboard/SongListItem";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
@@ -42,6 +42,12 @@ export default function Home() {
       setUrl(null)
     }
     setShowPlayer(true)
+  }
+
+  function handleClosePlayer() {
+    setName("")
+    setUrl("")
+    setShowPlayer(false)
   }
 
   if (errorGenre || errorSongs || errorAlbums || errorArtists || errorPlaylists || errorArtistByGenre) {
@@ -340,9 +346,15 @@ export default function Home() {
         enter="transition-opacity duration-700"
         enterFrom="opacity-0"
         enterTo="opacity-100"
+        leave="transition-opacity duration-300"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
       >
         {url ?
-          <div className="fixed bottom-4 left-4 right-6 lg:left-64">
+          <div className="fixed bottom-4 left-4 right-6 lg:left-64 z-50">
+            <button onClick={handleClosePlayer} className="absolute right-2 top-2" id="close" aria-label="Close Player" title="Close Player">
+              <XIcon className="w-5 h-5 text-gray-500 hover:text-gray-700 dark:text-neutral-400 dark:hover:text-neutral-200 transition-all" />
+            </button>
             <AudioPlayer
               autoPlay={true}
               src={url}
