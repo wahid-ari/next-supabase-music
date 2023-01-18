@@ -169,16 +169,17 @@ export default function Home() {
           </Splide>
           : null
         :
-        <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
-          <Shimer className="w-full !h-60" />
-          <Shimer className="w-full !h-60" />
-          <Shimer className="w-full !h-60" />
-          <Shimer className="w-full !h-60" />
-          <Shimer className="w-full !h-60" />
+        <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
+          <Shimer className="w-full !h-16" />
+          <Shimer className="w-full !h-16" />
+          <Shimer className="w-full !h-16" />
+          <Shimer className="w-full !h-16" />
+          <Shimer className="w-full !h-16" />
+          <Shimer className="w-full !h-16" />
         </div>
       }
 
-      <div className="xl:hidden mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div className="xl:hidden mt-2 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
         {songs ?
           songs.slice(0, 12).map((item, index) =>
             <SongListItem key={index} href={`/dashboard/song/detail/${item.id}`}
@@ -190,11 +191,9 @@ export default function Home() {
           )
           :
           <>
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
-            <Shimer className="w-full !h-60" />
+            <Shimer className="w-full !h-16" />
+            <Shimer className="w-full !h-16" />
+            <Shimer className="w-full !h-16" />
           </>
         }
       </div>
