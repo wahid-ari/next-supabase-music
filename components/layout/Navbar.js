@@ -22,11 +22,11 @@ export default function Navbar() {
 
   return (
     <div className={clsx("lg:hidden sticky top-0 z-40 h-11 bg-white dark:bg-neutral-900 dark:text-neutral-50",
-      "w-full flex justify-between items-center gap-4 pl-2 pr-3 sm:pl-3 sm:pr-4 border-b dark:border-neutral-800")
+      "w-full flex justify-between items-center gap-4 p-3 sm:px-4 border-b dark:border-neutral-800")
     }>
-      <div className="flex gap-x-4">
+      <div className="flex gap-x-2">
         <button className="outline-none" id="menu" aria-label="Menu">
-          <MenuIcon className="h-5 w-5" onClick={showMenu} />
+          <MenuIcon className="h-5 w-5 text-gray-500 hover:text-gray-700 dark:text-neutral-400 dark:hover:text-neutral-200 transition-all" onClick={showMenu} />
         </button>
         <Link href="/" className="text-base tracking-wide text-center font-semibold lg:text-2xl text-neutral-800 dark:text-neutral-100 no-underline">
           MyMusic
