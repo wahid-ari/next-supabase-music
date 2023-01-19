@@ -8,7 +8,7 @@ export default function SongItem({ href = "#", imageSrc = "/genre/pop.webp", cla
   const sizes = `(max-width: 360px) 100vw, (max-width: 480px) 50vw, 33vw`;
 
   return (
-    <Link {...props} href={href} className={`p-0 group border dark:border-neutral-800 rounded focus:outline-none focus:ring focus:ring-emerald-500 ${className}`}>
+    <Link {...props} href={href} className={`p-0 group border dark:border-neutral-800 rounded focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 ${className}`}>
       <div className="relative h-52 sm:h-44 overflow-hidden">
         <Image
           alt={title}

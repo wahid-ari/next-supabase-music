@@ -5,7 +5,7 @@ export default function PlaylistItem({ href = "#", title = "Genre", index, ...pr
   const color = Math.random().toString(16).substr(-6)
 
   return (
-    <Link href={href} className="group focus:outline-none focus:ring focus:ring-emerald-500 rounded" {...props}>
+    <Link href={href} className="group focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded" {...props}>
       {/* <div style={{ backgroundColor: "#" + color }} className={`brightness-90 group-hover:brightness-110 transition-all duration-500 h-40 rounded flex items-center justify-center mb-2`}> */}
       {/* <div style={{ backgroundColor: colors[index] }} className={`brightness-90 group-hover:brightness-110 shadow-lg transition-all duration-500 h-32 rounded flex items-center justify-center mb-2`}> */}
       <div

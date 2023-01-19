@@ -149,7 +149,7 @@ export default function Playlist({ id }) {
             {data?.playlist_song?.map((item, index) => {
               return (
                 <div key={index} className={`p-2 flex items-center justify-between gap-2 border dark:border-neutral-800 rounded`}>
-                  <Link href={`/dashboard/song/detail/${item.song_id}`} className="group focus:outline-none focus:ring focus:ring-emerald-500 rounded">
+                  <Link href={`/dashboard/song/detail/${item.song_id}`} className="group focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded">
                     <div className="flex items-center gap-2">
                       <div className="relative h-12 w-12 overflow-hidden rounded">
                         <Image
@@ -170,7 +170,7 @@ export default function Playlist({ id }) {
                   </Link>
                   <div className="flex gap-2">
                     <button title="Play Preview" onClick={() => handlePlay(item?.song_name, item?.song_preview_url)}
-                      className="text-neutral-600 hover:text-emerald-500 dark:text-neutral-200 dark:hover:text-emerald-500 focus:outline-none focus:ring focus:ring-emerald-500 rounded transition-all duration-300">
+                      className="text-neutral-600 hover:text-emerald-500 dark:text-neutral-200 dark:hover:text-emerald-500 focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded transition-all duration-300">
                       <PlayIcon className="h-7 w-7 " />
                     </button>
                     <div className="border-l dark:border-neutral-700"></div>

@@ -25,7 +25,7 @@ export default function NavAccordion({ title, routeName, icon, children }) {
         <Disclosure defaultOpen={isOpen}>
           {({ open }) => (
             <>
-              <Disclosure.Button className="transition-all outline-none w-full pl-3 py-3 flex justify-start items-center gap-2 rounded-lg text-gray-700 dark:text-neutral-300 hover:text-emerald-600 dark:hover:text-emerald-500">
+              <Disclosure.Button className="transition-all outline-none w-full pl-3 py-2 mb-1 flex justify-start items-center gap-2 rounded text-gray-700 dark:text-neutral-300 hover:text-emerald-600 dark:hover:text-emerald-500 focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500">
                 <div className="flex-grow text-left text-sm">
                   <div className="flex items-center gap-2">
                     {icon}
@@ -44,7 +44,7 @@ export default function NavAccordion({ title, routeName, icon, children }) {
                 leaveFrom="max-h-screen"
                 leaveTo="max-h-0"
               >
-                <Disclosure.Panel className="relative pl-4 transition-all overflow-hidden">
+                <Disclosure.Panel className="relative pl-4 pr-1 py-1 transition-all overflow-hidden">
                   {children}
                 </Disclosure.Panel>
               </Transition>

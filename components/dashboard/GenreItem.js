@@ -8,7 +8,7 @@ export default function GenreItem({ href = "#", title = "Genre", index, ...props
   const sizes = `(max-width: 360px) 100vw, (max-width: 480px) 50vw, 33vw`;
 
   return (
-    <Link href={href} className="group focus:outline-none focus:ring focus:ring-emerald-500 rounded" {...props}>
+    <Link href={href} className="group focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded" {...props}>
       <div className="relative h-52 mb-2">
         {title.toLowerCase() == "pop" ?
           <Image alt={title} src="/genre/pop.webp" className={className} fill sizes={sizes} />

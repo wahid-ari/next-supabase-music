@@ -115,7 +115,7 @@ export default function Home() {
 
       <div className="mt-10 flex items-center justify-between">
         <Heading className="">Songs</Heading>
-        <Link href={`dashboard/song`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus:outline-none focus:ring focus:ring-emerald-500 rounded">
+        <Link href={`dashboard/song`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded">
           View All
         </Link>
       </div>
@@ -158,10 +158,10 @@ export default function Home() {
                 </SplideSlide>
               </SplideTrack>
               <div className="splide__arrows">
-                <button title="Prev" className="splide__arrow splide__arrow--prev focus:outline-none focus:ring focus:ring-emerald-500">
+                <button title="Prev" className="splide__arrow splide__arrow--prev focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
-                <button title="Next" className="splide__arrow splide__arrow--next focus:outline-none focus:ring focus:ring-emerald-500">
+                <button title="Next" className="splide__arrow splide__arrow--next focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
               </div>
@@ -200,7 +200,7 @@ export default function Home() {
 
       <div className="mt-10 flex items-center justify-between">
         <Heading className="">Albums</Heading>
-        <Link href={`dashboard/album`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus:outline-none focus:ring focus:ring-emerald-500 rounded">
+        <Link href={`dashboard/album`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded">
           View All
         </Link>
       </div>
@@ -241,10 +241,10 @@ export default function Home() {
                 </SplideSlide>
               </SplideTrack>
               <div className="splide__arrows">
-                <button title="Prev" className="splide__arrow splide__arrow--prev !-mt-8 focus:outline-none focus:ring focus:ring-emerald-500">
+                <button title="Prev" className="splide__arrow splide__arrow--prev !-mt-8 focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
-                <button title="Next" className="splide__arrow splide__arrow--next !-mt-8 focus:outline-none focus:ring focus:ring-emerald-500">
+                <button title="Next" className="splide__arrow splide__arrow--next !-mt-8 focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500">
                   <ArrowRightIcon />
                 </button>
               </div>
@@ -282,7 +282,7 @@ export default function Home() {
 
       <div className="mt-10 flex items-center justify-between">
         <Heading className="">Artists</Heading>
-        <Link href={`dashboard/artist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus:outline-none focus:ring focus:ring-emerald-500 rounded">
+        <Link href={`dashboard/artist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded">
           View All
         </Link>
       </div>
@@ -316,7 +316,7 @@ export default function Home() {
 
       <div className="mt-10 flex items-center justify-between">
         <Heading className="">Playlists</Heading>
-        <Link href={`dashboard/playlist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus:outline-none focus:ring focus:ring-emerald-500 rounded">
+        <Link href={`dashboard/playlist`} className="text-emerald-500 hover:text-emerald-600 text-[15px] font-medium focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded">
           View All
         </Link>
       </div>

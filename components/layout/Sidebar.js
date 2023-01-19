@@ -78,7 +78,7 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className={clsx("pt-4 px-4 border-t dark:border-neutral-800 flex flex-nowrap flex-col sm:flex-grow overflow-auto",
+      <div className={clsx("pt-4 px-4 border-t dark:border-neutral-800 flex gap-1 flex-nowrap flex-col sm:flex-grow overflow-auto",
         "scrollbar scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-800"
       )}>
 
@@ -126,20 +126,20 @@ export default function Sidebar() {
                 className={clsx("mt-1 transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2",
                   "rounded text-sm font-medium text-gray-600 dark:text-neutral-300 hover:text-emerald-600",
                   "dark:hover:text-emerald-500 hover:bg-gray-100 dark:hover:bg-neutral-800",
-                  "focus:outline-none focus:ring focus:ring-emerald-500")}
+                  "focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500")}
                 target="_blank" rel="noopener noreferrer">
                 <ExternalLinkIcon className="w-4 h-4" />
                 Docs
               </a>
 
               {/* <NavAccordion title="Design" routeName="design" icon={<TemplateIcon className="w-4 h-4" />}>
-              <NavLink
-                href="/design"
-                icon={<TemplateIcon className="w-4 h-4" />}
-              >
-                Example
-              </NavLink>
-            </NavAccordion> */}
+                <NavLink
+                  href="/design"
+                  icon={<TemplateIcon className="w-4 h-4" />}
+                >
+                  Example
+                </NavLink>
+              </NavAccordion> */}
             </>
             :
             <>
@@ -169,7 +169,7 @@ export default function Sidebar() {
                 className={clsx("mt-1 transition-all w-full px-3 py-2 mb-1 flex justify-start items-center gap-2",
                   "rounded text-sm font-medium text-gray-600 dark:text-neutral-300 hover:text-emerald-600",
                   "dark:hover:text-emerald-500 hover:bg-gray-100 dark:hover:bg-neutral-800",
-                  "focus:outline-none focus:ring focus:ring-emerald-500")}
+                  "focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500")}
                 target="_blank" rel="noopener noreferrer">
                 <ExternalLinkIcon className="w-4 h-4" />
                 Docs
@@ -188,7 +188,7 @@ export default function Sidebar() {
             onClick={handleLogout}
             className={clsx("transition-all w-full px-4 py-2 flex justify-start items-center gap-2 text-sm font-semibold",
               "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-red-600",
-              "focus:outline-none focus:ring focus:ring-red-500")}
+              "focus-visible:outline-none focus-visible:ring focus-visible:ring-red-500")}
           >
             <LogoutIcon className="w-4 h-4" />
             Logout
@@ -198,7 +198,7 @@ export default function Sidebar() {
             href="/login"
             className={clsx("transition-all w-full px-4 py-2 flex justify-start items-center gap-2 text-sm font-semibold",
               "rounded hover:bg-red-100 dark:hover:bg-neutral-800 text-emerald-600",
-              "focus:outline-none focus:ring focus:ring-emerald-500")}
+              "focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500")}
           >
             <LoginIcon className="w-4 h-4" />
             Login
