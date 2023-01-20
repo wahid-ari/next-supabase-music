@@ -67,7 +67,7 @@ export default function Sidebar() {
     >
 
       <div className="flex justify-between items-center gap-2 px-4">
-        <button className="lg:hidden" onClick={hideMenu} id="closemenu" aria-label="Close Menu">
+        <button className="lg:hidden focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded" onClick={hideMenu} id="closemenu" aria-label="Close Menu">
           <XIcon className="w-5 h-5 text-gray-500 hover:text-gray-700 dark:text-neutral-400 dark:hover:text-neutral-200 transition-all" />
         </button>
         <p className="tracking-wide text-base text-left font-semibold py-2.5 text-neutral-800 dark:text-neutral-100">

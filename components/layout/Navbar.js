@@ -25,10 +25,10 @@ export default function Navbar() {
       "w-full flex justify-between items-center gap-4 p-3 sm:px-4 border-b dark:border-neutral-800")
     }>
       <div className="flex gap-x-2">
-        <button className="outline-none" id="menu" aria-label="Menu">
+        <button className="rounded focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500" id="menu" aria-label="Menu">
           <MenuIcon className="h-5 w-5 text-gray-500 hover:text-gray-700 dark:text-neutral-400 dark:hover:text-neutral-200 transition-all" onClick={showMenu} />
         </button>
-        <Link href="/" className="text-base tracking-wide text-center font-semibold lg:text-2xl text-neutral-800 dark:text-neutral-100 no-underline">
+        <Link href="/" className="text-base tracking-wide text-center font-semibold lg:text-2xl text-neutral-800 dark:text-neutral-100 no-underline rounded focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500">
           MyMusic
         </Link>
       </div>
