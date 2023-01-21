@@ -34,7 +34,7 @@ export default function SongListItem({ noPlayer, onPlay, href = "#", imageSrc = 
 
   return (
     <div className={`p-2 flex items-center justify-between gap-2 border dark:border-neutral-800 rounded ${className}`}>
-      <Link {...props} href={href} className="group focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500">
+      <Link {...props} href={href} className="group focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded">
         <div className="flex items-center gap-2">
           <div className="relative h-12 w-12 overflow-hidden rounded">
             <Image
