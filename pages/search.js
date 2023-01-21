@@ -167,7 +167,7 @@ export default function Search() {
             <>
               <div className="mt-6 flex items-center justify-between">
                 <Heading h3 >Recent Search</Heading>
-                <button onClick={resetAllSearchHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                <button onClick={resetAllSearchHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-500 rounded">
                   Clear All
                 </button>
               </div>
@@ -176,7 +176,7 @@ export default function Search() {
                 <>
                   <div className="mt-6 flex items-center justify-between">
                     <Heading>Songs</Heading>
-                    <button onClick={resetSongsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                    <button onClick={resetSongsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-500 rounded">
                       Clear
                     </button>
                   </div>
@@ -198,7 +198,7 @@ export default function Search() {
                 <>
                   <div className="mt-6 flex items-center justify-between">
                     <Heading>Albums</Heading>
-                    <button onClick={resetAlbumsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                    <button onClick={resetAlbumsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-500 rounded">
                       Clear
                     </button>
                   </div>
@@ -219,7 +219,7 @@ export default function Search() {
                 <>
                   <div className="mt-6 flex items-center justify-between">
                     <Heading>Artists</Heading>
-                    <button onClick={resetArtistsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                    <button onClick={resetArtistsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-500 rounded">
                       Clear
                     </button>
                   </div>
@@ -241,7 +241,7 @@ export default function Search() {
                 <>
                   <div className="mt-6 flex items-center justify-between">
                     <Heading>Playlists</Heading>
-                    <button onClick={resetPlaylistsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium">
+                    <button onClick={resetPlaylistsHistory} className="text-red-500 hover:text-red-600 text-[15px] font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-500 rounded">
                       Clear
                     </button>
                   </div>
@@ -267,7 +267,7 @@ export default function Search() {
 
       <Heading className="mt-6">Browse Categories</Heading>
       <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-        <Link href="/dashboard/song" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-cyan-500 to-purple-500">
+        <Link href="/dashboard/song" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-cyan-500 to-purple-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500">
           <div className="flex items-center gap-2 px-4 py-2 transition-all ease-in duration-300 bg-white dark:bg-neutral-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
             <MusicNoteIcon className="w-8 h-8 text-cyan-500 group-hover:text-white transition-all ease-in duration-300" />
             <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-purple-500 group-hover:text-white transition-all ease-in duration-300">
@@ -275,7 +275,7 @@ export default function Search() {
             </h2>
           </div>
         </Link>
-        <Link href="/dashboard/album" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-red-500 to-yellow-500">
+        <Link href="/dashboard/album" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-red-500 to-yellow-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-500">
           <div className="flex items-center gap-2 px-4 py-2 transition-all ease-in duration-300 bg-white dark:bg-neutral-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
             <CollectionIcon className="w-8 h-8 text-red-500 group-hover:text-white transition-all ease-in duration-300" />
             <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-yellow-500 group-hover:text-white transition-all ease-in duration-300">
@@ -283,7 +283,7 @@ export default function Search() {
             </h2>
           </div>
         </Link>
-        <Link href="/dashboard/artist" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-emerald-500 to-blue-500">
+        <Link href="/dashboard/artist" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-emerald-500 to-blue-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500">
           <div className="flex items-center gap-2 px-4 py-2 transition-all ease-in duration-300 bg-white dark:bg-neutral-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
             <UserGroupIcon className="w-8 h-8 text-emerald-500 group-hover:text-white transition-all ease-in duration-300" />
             <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-blue-500 group-hover:text-white transition-all ease-in duration-300">
@@ -291,7 +291,7 @@ export default function Search() {
             </h2>
           </div>
         </Link>
-        <Link href="/dashboard/playlist" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-violet-500 to-pink-500">
+        <Link href="/dashboard/playlist" className="h-20 p-0.5 rounded-lg group bg-gradient-to-br from-violet-500 to-pink-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-500">
           <div className="flex items-center gap-2 px-4 py-2 transition-all ease-in duration-300 bg-white dark:bg-neutral-900 rounded-md group-hover:bg-opacity-0 w-full h-full">
             <BookmarkIcon className="w-8 h-8 text-violet-500 group-hover:text-white transition-all ease-in duration-300" />
             <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-pink-500 group-hover:text-white transition-all ease-in duration-300">
