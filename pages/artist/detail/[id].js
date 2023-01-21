@@ -113,7 +113,7 @@ export default function Album({ id }) {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`/song/detail/${original.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-emerald-500 rounded">
+            <Link href={`/song/detail/${original.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500 rounded">
               {values.name}
             </Link>
           )
@@ -163,7 +163,7 @@ export default function Album({ id }) {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`/album/detail/${original.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus:outline-none focus:ring-1 focus:ring-emerald-500 rounded">
+            <Link href={`/album/detail/${original.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500 rounded">
               {values.name}
             </Link>
           )
