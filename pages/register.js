@@ -177,7 +177,7 @@ export default function Register() {
             <Button.success onClick={handleRegister} className="w-full !text-base">{loading ? "Registering..." : "Register"}</Button.success>
 
             <p className="dark:text-neutral-800 font-normal mt-4 text-center">Already have an account? {" "}
-              <Link href="/login" className="hover:underline text-emerald-600 hover:text-emerald-500 transition-all duration-300 font-medium focus:outline-none focus:ring-1 focus:ring-emerald-500 rounded">
+              <Link href="/login" className="hover:underline text-emerald-600 hover:text-emerald-500 transition-all duration-300 font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500 rounded">
                 Login Now
               </Link>
             </p>
