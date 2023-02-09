@@ -97,7 +97,7 @@ export default function Home() {
               <Bar
                 options={optionsBarChart(theme)}
                 data={dataSongByAlbum}
-                height={100}
+                height={windowWidth > 500 ? 100 : 250}
               />
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function Home() {
               <Bar
                 options={optionsHorizontalBarChart(theme, windowWidth)}
                 data={dataSongByArtist}
-                height={100}
+                height={windowWidth > 500 ? 100 : 250}
               />
             </div>
           </div>
@@ -141,7 +141,7 @@ export default function Home() {
               <Line
                 options={optionsLineChart(theme)}
                 data={dataSongByPlaylist}
-                height={100}
+                height={windowWidth > 500 ? 100 : 250}
               />
             </div>
           </div>
