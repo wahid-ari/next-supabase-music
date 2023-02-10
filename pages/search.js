@@ -26,22 +26,80 @@ export default function Search() {
   const songsHistory = useSearchHistoryStore(state => state.songsHistory)
   const setSongsHistory = useSearchHistoryStore(state => state.setSongsHistory)
   const resetSongsHistory = useSearchHistoryStore(state => state.resetSongsHistory)
+  
   const albumsHistory = useSearchHistoryStore(state => state.albumsHistory)
   const setAlbumsHistory = useSearchHistoryStore(state => state.setAlbumsHistory)
   const resetAlbumsHistory = useSearchHistoryStore(state => state.resetAlbumsHistory)
+  
   const artistsHistory = useSearchHistoryStore(state => state.artistsHistory)
   const setArtistsHistory = useSearchHistoryStore(state => state.setArtistsHistory)
   const resetArtistsHistory = useSearchHistoryStore(state => state.resetArtistsHistory)
+  
   const playlistsHistory = useSearchHistoryStore(state => state.playlistsHistory)
   const setPlaylistsHistory = useSearchHistoryStore(state => state.setPlaylistsHistory)
   const resetPlaylistsHistory = useSearchHistoryStore(state => state.resetPlaylistsHistory)
+  
   const resetAllSearchHistory = useSearchHistoryStore(state => state.resetAllSearchHistory)
 
+  function compareSearchResult(history, newResults) {
+    let newHistory = history
+    // iterate each search result
+    for (const b of newResults) {
+      // check if new result already in the history
+      const exists = history.findIndex(item => item.id == b.id) > -1;
+      if (!exists) {
+        newHistory.push(b)
+      }
+    }
+    return newHistory
+  }
+
   useEffect(() => {
-    if (data?.songs?.length > 0) setSongsHistory(data?.songs)
-    if (data?.albums?.length > 0) setAlbumsHistory(data?.albums)
-    if (data?.artists?.length > 0) setArtistsHistory(data?.artists)
-    if (data?.playlists?.length > 0) setPlaylistsHistory(data?.playlists)
+    if (data?.songs?.length > 0) {
+      // if already searching
+      if (songsHistory.length > 0) {
+        // compare history with new search result
+        let newSongs = compareSearchResult(songsHistory, data?.songs)
+        if (newSongs != songsHistory) {
+          setSongsHistory(newSongs)
+        }
+      } else { // first time searching, set search result to search history directly
+        setSongsHistory(data?.songs)
+      }
+    }
+    // Album
+    if (data?.albums?.length > 0) {
+      if (albumsHistory.length > 0) {
+        let newAlbums = compareSearchResult(albumsHistory, data?.albums)
+        if (newAlbums != albumsHistory) {
+          setAlbumsHistory(newAlbums)
+        }
+      } else {
+        setAlbumsHistory(data?.albums)
+      }
+    }
+    // Artist
+    if (data?.artists?.length > 0) {
+      if (artistsHistory.length > 0) {
+        let newArtists = compareSearchResult(artistsHistory, data?.artists)
+        if (newArtists != artistsHistory) {
+          setArtistsHistory(newArtists)
+        }
+      } else {
+        setArtistsHistory(data?.artists)
+      }
+    }
+    // Playlist
+    if (data?.playlists?.length > 0) {
+      if (playlistsHistory.length > 0) {
+        let newPlaylists = compareSearchResult(playlistsHistory, data?.playlists)
+        if (newPlaylists != playlistsHistory) {
+          setPlaylistsHistory(newPlaylists)
+        }
+      } else {
+        setPlaylistsHistory(data?.playlists)
+      }
+    }
   }, [data])
 
   function handleSubmit(e) {
