@@ -87,7 +87,7 @@ export default async function handler(req) {
               color: '#fff',
             }}
           >
-            Information and statistics about movies, actors, directors and other film industry.
+            With MyMusic, its easy to find the right music for every moment.
           </p>
         </div>
       ),
