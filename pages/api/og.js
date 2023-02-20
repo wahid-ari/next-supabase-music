@@ -61,7 +61,7 @@ export default async function handler(req) {
           </div>
 
           <h1
-            tw='mx-20 my-auto relative'
+            tw='mx-20 my-auto relative pr-4'
             style={{
               fontSize: 64,
               lineHeight: 1.1,
