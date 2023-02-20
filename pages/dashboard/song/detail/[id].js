@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import useSWR from "swr";
+import useSWR, { SWRConfig } from "swr";
 import axios from "axios";
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
@@ -10,14 +10,26 @@ const fetcher = url => axios.get(url).then(res => res.data)
 
 export async function getServerSideProps(context) {
   const { id } = context.params
+  const res = await fetcher(`${process.env.API_ROUTE}/api/song?id=${id}`)
   return {
     props: {
-      id: id
+      id: id,
+      fallback: {
+        [`${process.env.API_ROUTE}/api/song?id=${id}`]: res
+      }
     }, // will be passed to the page component as props
   }
 }
 
-export default function Album({ id }) {
+export default function Song({ id, fallback }) {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <Page id={id} />
+    </SWRConfig>
+  );
+}
+
+function Page({ id }) {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song?id=${id}`, fetcher)
   const [isLoading, setLoading] = useState(true)
 
@@ -30,7 +42,10 @@ export default function Album({ id }) {
   }
 
   return (
-    <Layout title={`${data ? data[0]?.name + " - MyMusic" : 'Song Detail - MyMusic'}`}>
+    <Layout 
+      title={`${data ? data[0]?.name + " - " + data[0]?.artists?.name + " - MyMusic" : 'Song Detail - MyMusic'}`}
+      description={`${data ? "Listen to " + data[0]?.name + " by " + data[0]?.artists?.name + " - MyMusic" : 'Song Detail - MyMusic'}`}
+    >
       <div className="flex flex-wrap justify-between items-center mb-6 gap-y-3">
         {data ?
           <Title>{data[0]?.name}</Title>
@@ -66,7 +81,7 @@ export default function Album({ id }) {
               <iframe className="rounded my-6 object-cover object-center h-full w-full"
                 src={`https://www.youtube.com/embed/${data[0].youtube_url}`}
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
               </iframe>
