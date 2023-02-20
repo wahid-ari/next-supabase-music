@@ -81,7 +81,7 @@ export default function Album() {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`song/detail/${values.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500 rounded">
+            <Link href={`song/detail/${values.id}`} className="hover:text-emerald-500 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500 rounded transition-all duration-200">
               {values.name}
             </Link>
           )
@@ -94,7 +94,7 @@ export default function Album() {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`album/detail/${original.album?.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500 rounded">
+            <Link href={`album/detail/${original.album?.id}`} className="hover:text-emerald-500 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500 rounded transition-all duration-200">
               {original.album?.name}
             </Link>
           )
@@ -107,7 +107,7 @@ export default function Album() {
         Cell: (row) => {
           const { values, original } = row.cell.row;
           return (
-            <Link href={`artist/detail/${original?.artists?.id}`} className="text-emerald-500 hover:text-emerald-600 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500 rounded">
+            <Link href={`artist/detail/${original?.artists?.id}`} className="hover:text-emerald-500 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500 rounded transition-all duration-200">
               {original?.artists?.name}
             </Link>
           )
