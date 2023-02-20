@@ -30,7 +30,7 @@ export default function Albums() {
   }
 
   return (
-    <Layout title="Albums - MyMusic">
+    <Layout title="Albums - MyMusic" description="Browse albums - MyMusic">
       <Title>Albums</Title>
 
       <LabeledInput

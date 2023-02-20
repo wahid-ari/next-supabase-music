@@ -30,7 +30,7 @@ export default function Playlist() {
   }
 
   return (
-    <Layout title="Playlist - MyMusic">
+    <Layout title="Playlist - MyMusic" description="Browse playlists - MyMusic">
       <Title>Playlist</Title>
 
       <LabeledInput

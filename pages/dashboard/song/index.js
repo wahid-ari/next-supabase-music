@@ -47,7 +47,7 @@ export default function Songs() {
   }
 
   return (
-    <Layout title="Songs - MyMusic">
+    <Layout title="Songs - MyMusic" description="Browse songs - MyMusic">
       <Title>Songs</Title>
 
       <LabeledInput

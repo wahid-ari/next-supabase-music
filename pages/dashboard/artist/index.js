@@ -30,7 +30,7 @@ export default function Artist() {
   }
 
   return (
-    <Layout title="Artists - MyMusic">
+    <Layout title="Artists - MyMusic" description="Browse artists - MyMusic">
       <Title>Artists</Title>
 
       <LabeledInput

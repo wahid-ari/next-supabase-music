@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useSWR from "swr";
+import useSWR, { SWRConfig } from "swr";
 import axios from "axios";
 import { Transition } from '@headlessui/react';
 import Layout from "@components/layout/Layout";
@@ -14,14 +14,26 @@ const fetcher = url => axios.get(url).then(res => res.data)
 
 export async function getServerSideProps(context) {
   const { id } = context.params
+  const res = await fetcher(`${process.env.API_ROUTE}/api/dashboard/album/detail?id=${id}`)
   return {
     props: {
-      id: id
+      id: id,
+      fallback: {
+        [`${process.env.API_ROUTE}/api/dashboard/album/detail?id=${id}`]: res
+      }
     }, // will be passed to the page component as props
   }
 }
 
-export default function Album({ id }) {
+export default function Album({ id, fallback }) {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <Page id={id} />
+    </SWRConfig>
+  );
+}
+
+function Page({ id }) {
   const { data, error } = useSWR(`${process.env.API_ROUTE}/api/dashboard/album/detail?id=${id}`, fetcher)
   const [name, setName] = useState("")
   const [url, setUrl] = useState("")
@@ -45,9 +57,12 @@ export default function Album({ id }) {
       </Layout>
     )
   }
-  
+
   return (
-    <Layout title={`${data ? data?.data[0]?.name + " - MyMusic" : 'Album Detail - MyMusic'}`}>
+    <Layout
+      title={`${data ? data?.data[0]?.name + " - " + data?.artist[0]?.name + " - MyMusic" : 'Album Detail - MyMusic'}`}
+      description={`${data ? "Listen to " + data?.data[0]?.name + " by " + data?.artist[0]?.name + " - MyMusic" : 'Album Detail - MyMusic'}`}
+    >
 
       <div className="mb-6">
         {data ?

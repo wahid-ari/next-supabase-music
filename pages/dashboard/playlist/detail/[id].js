@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useSWR from "swr";
+import useSWR, { SWRConfig } from "swr";
 import axios from "axios";
 import { Transition } from '@headlessui/react';
 import Layout from "@components/layout/Layout";
@@ -13,14 +13,26 @@ const fetcher = url => axios.get(url).then(res => res.data)
 
 export async function getServerSideProps(context) {
   const { id } = context.params
+  const res = await fetcher(`${process.env.API_ROUTE}/api/dashboard/playlist/detail?id=${id}`)
   return {
     props: {
-      id: id
+      id: id,
+      fallback: {
+        [`${process.env.API_ROUTE}/api/dashboard/playlist/detail?id=${id}`]: res
+      }
     }, // will be passed to the page component as props
   }
 }
 
-export default function Playlist({ id }) {
+export default function Playlist({ id, fallback }) {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <Page id={id} />
+    </SWRConfig>
+  );
+}
+
+function Page({ id }) {
   const { data: detailPlaylist, error: errorDetailPlaylist } = useSWR(`${process.env.API_ROUTE}/api/dashboard/playlist/detail?id=${id}`, fetcher)
   const [name, setName] = useState("")
   const [url, setUrl] = useState("")
@@ -46,7 +58,10 @@ export default function Playlist({ id }) {
   }
 
   return (
-    <Layout title={detailPlaylist ? detailPlaylist?.playlist[0]?.name + " - MyMusic" : "Playlist - MyMusic"}>
+    <Layout
+      title={detailPlaylist ? detailPlaylist?.playlist[0]?.name + " - MyMusic" : "Playlist - MyMusic"}
+      description={detailPlaylist ? "Listen to " + detailPlaylist?.playlist[0]?.name + " - MyMusic" : "Playlist - MyMusic"}
+    >
       <Title>{detailPlaylist ? detailPlaylist?.playlist[0]?.name : "Playlist"}</Title>
       <div className="mt-8 grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4">
         {detailPlaylist ?
