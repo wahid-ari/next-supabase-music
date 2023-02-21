@@ -17,7 +17,8 @@ export default async function handler(req, res) {
           total: playlist.playlist_song.length
         })
       }
-      res.status(200).json(items);
+      let sortedData = items.sort((a, b) => b.total - a.total).slice(0, 10);
+      res.status(200).json(sortedData);
       break;
 
     default:
