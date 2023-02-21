@@ -15,6 +15,8 @@ export default async function handler(req, res) {
           .select(`*, artists (*), album (*)`)
           .eq('id', query.id)
           .order('id');
+        // res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
+        res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59')
         res.status(200).json(data);
       }
       break;
