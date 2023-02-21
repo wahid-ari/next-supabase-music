@@ -12,8 +12,9 @@ import 'react-h5-audio-player/lib/styles.css';
 const fetcher = url => axios.get(url).then(res => res.data)
 
 export async function getServerSideProps(context) {
-  // res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
-  res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59')
+  // https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props#caching-with-server-side-rendering-ssr
+  // context.res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
+  context.res.setHeader('Cache-Control', 'public, s-maxage=10, stale-while-revalidate=59')
   const { id } = context.params
   const res = await fetcher(`${process.env.API_ROUTE}/api/dashboard/playlist/detail?id=${id}`)
   return {
