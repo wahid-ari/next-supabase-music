@@ -76,7 +76,7 @@ export default function Register() {
 
   return (
     <>
-      <HeadSeo title="Register" description="Register to MyMusic" />
+      <HeadSeo title="Register - MyMusic" description="Register - MyMusic" />
 
       <div className="text-sm font-medium dark:bg-white min-h-screen w-screen sm:grid sm:grid-cols-2 ">
         <div className="sm:hidden banner p-8 flex flex-col justify-between gap-2">
