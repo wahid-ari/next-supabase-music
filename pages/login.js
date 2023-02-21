@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Head from "next/head";
 import Router from "next/router";
 import axios from "axios";
 import useToast from "@utils/useToast";
@@ -9,6 +8,7 @@ import Heading from "@components/systems/Heading";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import nookies from "nookies";
 import Link from "next/link";
+import HeadSeo from "@components/layout/HeadSeo";
 
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
@@ -82,13 +82,10 @@ export default function Login() {
   }
 
   return (
-    <div className="text-sm font-medium dark:bg-white">
+    <>
+      <HeadSeo title="Register" description="Register to MyMusic" />
 
-      <Head>
-        <title>Login - MyMusic</title>
-      </Head>
-
-      <div className="min-h-screen w-screen sm:grid sm:grid-cols-2">
+      <div className="text-sm font-medium dark:bg-white min-h-screen w-screen sm:grid sm:grid-cols-2">
         <div className="sm:hidden banner p-8 flex flex-col justify-between gap-2">
           <div>
             <h1 className="text-white font-bold text-4xl">MyMusic</h1>
@@ -177,7 +174,6 @@ export default function Login() {
         </div>
 
       </div>
-
-    </div>
+    </>
   );
 }
