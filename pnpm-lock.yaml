@@ -27,6 +27,7 @@ specifiers:
   react-dom: ^18.2.0
   react-h5-audio-player: ^3.8.6
   react-hot-toast: ^2.2.0
+  react-lite-youtube-embed: ^2.3.52
   react-loading-skeleton: ^3.0.2
   react-table: ^7.8.0
   swr: ^2.0.0
@@ -58,6 +59,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-h5-audio-player: 3.8.6_biqbaboplfbrettd7655fr4n2y
   react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
+  react-lite-youtube-embed: 2.3.52_biqbaboplfbrettd7655fr4n2y
   react-loading-skeleton: 3.1.0_react@18.2.0
   react-table: 7.8.0_react@18.2.0
   swr: 2.0.0_react@18.2.0
@@ -2656,6 +2658,16 @@ packages:
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
+
+  /react-lite-youtube-embed/2.3.52_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-G010PvCavA4EqL8mZ/Sv9XXiHnjMfONW+lmNeCRnSEPluPdptv2lZ0cNlngrj7K9j7luc8pbpyrmNpKbD9VMmw==}
+    peerDependencies:
+      react: '>=16.0.8'
+      react-dom: '>=16.0.8'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /react-loading-skeleton/3.1.0_react@18.2.0:
     resolution: {integrity: sha512-j1U1CWWs68nBPOg7tkQqnlFcAMFF6oEK6MgqAo15f8A5p7mjH6xyKn2gHbkcimpwfO0VQXqxAswnSYVr8lWzjw==}

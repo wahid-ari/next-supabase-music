@@ -5,6 +5,8 @@ import axios from "axios";
 import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 const fetcher = url => axios.get(url).then(res => res.data)
 
@@ -45,7 +47,7 @@ function Page({ id }) {
   }
 
   return (
-    <Layout 
+    <Layout
       title={`${data ? data[0]?.name + " - " + data[0]?.artists?.name + " - MyMusic" : 'Song Detail - MyMusic'}`}
       description={`${data ? "Listen to " + data[0]?.name + " by " + data[0]?.artists?.name + " - MyMusic" : 'Song Detail - MyMusic'}`}
     >
@@ -80,14 +82,19 @@ function Page({ id }) {
             </div>
           }
           {data[0].youtube_url &&
-            <div className="w-full sm:w-1/2 aspect-video">
-              <iframe className="rounded my-6 object-cover object-center h-full w-full"
+            <div className="w-full sm:w-2/3 md:w-1/2 aspect-video">
+              {/* <iframe className="rounded my-6 object-cover object-center h-full w-full"
                 src={`https://www.youtube.com/embed/${data[0].youtube_url}`}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen>
-              </iframe>
+              </iframe> */}
+              <LiteYouTubeEmbed
+                id={data[0].youtube_url}
+                title="Youtube Video"
+                wrapperClass="yt-lite rounded my-6"
+              />
             </div>
           }
         </div>

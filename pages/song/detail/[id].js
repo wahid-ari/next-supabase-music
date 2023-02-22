@@ -6,6 +6,8 @@ import Layout from "@components/layout/Layout";
 import Title from "@components/systems/Title";
 import Shimer from "@components/systems/Shimer";
 import nookies from "nookies";
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 export async function getServerSideProps(context) {
   const { id } = context.params
@@ -71,14 +73,19 @@ export default function Album({ id }) {
             </div>
           }
           {data[0].youtube_url &&
-            <div className="w-full md:w-1/2 aspect-video">
-              <iframe className="rounded my-6 object-cover object-center h-full w-full"
-                src={`https://www.youtube.com/embed/${data[0].youtube_url}`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen>
-              </iframe>
+            <div className="w-full sm:w-2/3 md:w-1/2 aspect-video">
+              {/* <iframe className="rounded my-6 object-cover object-center h-full w-full"
+                  src={`https://www.youtube.com/embed/${data[0].youtube_url}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen>
+                </iframe> */}
+              <LiteYouTubeEmbed
+                id={data[0].youtube_url}
+                title="Youtube Video"
+                wrapperClass="yt-lite rounded my-6"
+              />
             </div>
           }
         </div>

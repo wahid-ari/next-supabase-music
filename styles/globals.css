@@ -142,3 +142,17 @@ html[class="dark"] {
 #nprogress .spinner-icon {
 	display: none;
 }
+
+/* React Lite youtube embed play button */
+.yt-lite > .lty-playbtn {
+	transition: all 0.4s !important;
+}
+
+.yt-lite:hover > .lty-playbtn {
+	background-color: #ff0000;
+}
+
+.yt-lite::before {
+	height: 100% !important;
+	background-size: contain;
+}
