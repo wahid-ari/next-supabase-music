@@ -49,6 +49,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	font-size: 16px !important;
 }
 
+/* Splide Carousel SLider  */
 .splide__arrow {
 	background: rgb(0, 0, 0) !important;
 	height: 2.5em !important;
@@ -82,6 +83,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	outline-offset: 3px;
 }
 
+/* React H5 Audio Player  */
 .rhap_main-controls {
 	margin-left: 64px;
 }
@@ -120,4 +122,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .rhap_header {
 	font-size: 15px !important;
+}
+
+/* NProgress */
+/* Progress Bar on Top of Page  */
+html[class="light"] {
+	--nprogress-color: #10B981;
+}
+
+html[class="dark"] {
+	--nprogress-color: #10B981;
+}
+
+#nprogress .bar {
+	/* background: var(--nprogress-color) !important; */
+	@apply !bg-emerald-500 dark:!bg-emerald-400 !shadow-emerald-500/50 dark:!shadow-emerald-400/50;
+}
+
+#nprogress .spinner-icon {
+	display: none;
 }
