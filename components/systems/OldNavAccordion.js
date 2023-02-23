@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
-import { ChevronRightIcon } from "@heroicons/react/solid";
-import { useRef, useState, useEffect } from "react";
+import { useRouter } from 'next/router';
+import { ChevronRightIcon } from '@heroicons/react/solid';
+import { useRef, useState, useEffect } from 'react';
 
 export default function OldNavAccordion({ routeName, title, children }) {
   const router = useRouter();
@@ -23,25 +23,21 @@ export default function OldNavAccordion({ routeName, title, children }) {
     <div>
       <button
         onClick={handleToggle}
-        className={`transition-all outline-none w-full px-4 py-3 flex justify-start items-center gap-2 rounded-lg font-bold text-gray-500 dark:text-neutral-500 hover:text-blue-800 dark:hover:text-neutral-400`}
+        className={`flex w-full items-center justify-start gap-2 rounded-lg px-4 py-3 font-bold text-gray-500 outline-none transition-all hover:text-blue-800 dark:text-neutral-500 dark:hover:text-neutral-400`}
       >
-        <span className="flex-grow text-left font-bold text-sm">{title}</span>
-        <ChevronRightIcon
-          className={`${
-            expand ? "rotate-90" : "rotate-0"
-          } transition-all w-5 h-5`}
-        />
+        <span className='flex-grow text-left text-sm font-bold'>{title}</span>
+        <ChevronRightIcon className={`${expand ? 'rotate-90' : 'rotate-0'} h-5 w-5 transition-all`} />
       </button>
       <div
         ref={boxRef}
         style={{
           maxHeight: expand ? `${boxRef.current.scrollHeight ?? 0}px` : 0,
         }}
-        className={`relative pl-4 transition-all overflow-hidden`}
+        className={`relative overflow-hidden pl-4 transition-all`}
       >
         {children}
       </div>
-      <hr className="dark:border-neutral-800" />
+      <hr className='dark:border-neutral-800' />
     </div>
   );
 }

@@ -2,157 +2,152 @@
 @tailwind components;
 @tailwind utilities;
 
-html[class="light"] {
-	--primary-text-color: rgb(51, 50, 50);
+html[class='light'] {
+  --primary-text-color: rgb(51, 50, 50);
 }
 
-html[class="dark"] {
-	--primary-text-color: rgb(238, 230, 230);
+html[class='dark'] {
+  --primary-text-color: rgb(238, 230, 230);
 }
 
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-	overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 .scrollbar-track-rounded::-webkit-scrollbar-track {
-	border-radius: 999px;
+  border-radius: 999px;
 }
 
 .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
-	border-radius: 999px;
+  border-radius: 999px;
 }
 
 .banner {
-	background: linear-gradient(
-			145deg,
-			rgba(4, 120, 87, 0.5) 34%,
-			transparent 34%,
-			transparent 64%,
-			rgba(5, 150, 105, 0.5) 64%,
-			rgba(5, 150, 105, 0.5) 100%
-		),
-		linear-gradient(
-			40deg,
-			rgb(4, 120, 87) 0%,
-			/* rgb(4, 120, 87) 62%, */ rgb(16, 185, 129) 62%,
-			rgb(16, 185, 129) 100%
-		);
+  background: linear-gradient(
+      145deg,
+      rgba(4, 120, 87, 0.5) 34%,
+      transparent 34%,
+      transparent 64%,
+      rgba(5, 150, 105, 0.5) 64%,
+      rgba(5, 150, 105, 0.5) 100%
+    ),
+    linear-gradient(40deg, rgb(4, 120, 87) 0%, /* rgb(4, 120, 87) 62%, */ rgb(16, 185, 129) 62%, rgb(16, 185, 129) 100%);
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-	cursor: pointer;
-	filter: invert(0.6);
-	font-size: 16px !important;
+input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.6);
+  font-size: 16px !important;
 }
 
 /* Splide Carousel SLider  */
 .splide__arrow {
-	background: rgb(0, 0, 0) !important;
-	height: 2.5em !important;
-	width: 2.5em !important;
-	opacity: 1 !important;
-	color: rgb(226, 225, 225);
+  background: rgb(0, 0, 0) !important;
+  height: 2.5em !important;
+  width: 2.5em !important;
+  opacity: 1 !important;
+  color: rgb(226, 225, 225);
 }
 
 .splide__arrow svg {
-	width: 1.3em !important;
-	height: 1.3em !important;
+  width: 1.3em !important;
+  height: 1.3em !important;
 }
 
 .splide__arrow:hover {
-	transition: all;
-	transition-duration: 300ms;
-	color: rgb(11, 173, 79) !important;
+  transition: all;
+  transition-duration: 300ms;
+  color: rgb(11, 173, 79) !important;
 }
 
 .splide__arrow:disabled {
-	display: none;
-	opacity: 0 !important;
+  display: none;
+  opacity: 0 !important;
 }
 
 .splide__arrow:hover:not(:disabled) {
-	opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 .splide.is-focus-in .splide__arrow:focus {
-	outline: 3px solid rgba(0, 187, 255, 0) !important;
-	outline-offset: 3px;
+  outline: 3px solid rgba(0, 187, 255, 0) !important;
+  outline-offset: 3px;
 }
 
 /* React H5 Audio Player  */
 .rhap_main-controls {
-	margin-left: 64px;
+  margin-left: 64px;
 }
 
 @media (max-width: 575.98px) {
-	.rhap_main-controls {
-		margin-left: 0px;
-	}
+  .rhap_main-controls {
+    margin-left: 0px;
+  }
 
-	#rhap_current-time {
-		display: none;
-	}
+  #rhap_current-time {
+    display: none;
+  }
 
-	.rhap_time.rhap_total-time {
-		display: none;
-	}
+  .rhap_time.rhap_total-time {
+    display: none;
+  }
 
-	.rhap_progress-container {
-		margin: 0 !important;
-	}
+  .rhap_progress-container {
+    margin: 0 !important;
+  }
 }
 
 #rhap_current-time {
-	color: var(--primary-text-color);
-	font-size: 14px !important;
+  color: var(--primary-text-color);
+  font-size: 14px !important;
 }
 
 .rhap_time.rhap_total-time {
-	color: var(--primary-text-color);
-	font-size: 14px !important;
+  color: var(--primary-text-color);
+  font-size: 14px !important;
 }
 
 .rhap_additional-controls {
-	display: none !important;
+  display: none !important;
 }
 
 .rhap_header {
-	font-size: 15px !important;
+  font-size: 15px !important;
 }
 
 /* NProgress */
 /* Progress Bar on Top of Page  */
-html[class="light"] {
-	--nprogress-color: #10B981;
+html[class='light'] {
+  --nprogress-color: #10b981;
 }
 
-html[class="dark"] {
-	--nprogress-color: #10B981;
+html[class='dark'] {
+  --nprogress-color: #10b981;
 }
 
 #nprogress .bar {
-	/* background: var(--nprogress-color) !important; */
-	@apply !bg-emerald-500 dark:!bg-emerald-400 !shadow-emerald-500/50 dark:!shadow-emerald-400/50;
+  /* background: var(--nprogress-color) !important; */
+  @apply !bg-emerald-500 !shadow-emerald-500/50 dark:!bg-emerald-400 dark:!shadow-emerald-400/50;
 }
 
 #nprogress .spinner-icon {
-	display: none;
+  display: none;
 }
 
 /* React Lite youtube embed play button */
 .yt-lite > .lty-playbtn {
-	transition: all 0.4s !important;
+  transition: all 0.4s !important;
 }
 
 .yt-lite:hover > .lty-playbtn {
-	background-color: #ff0000;
+  background-color: #ff0000;
 }
 
 .yt-lite::before {
-	height: 100% !important;
-	background-size: contain;
+  height: 100% !important;
+  background-size: contain;
 }

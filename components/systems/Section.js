@@ -1,7 +1,7 @@
 export default function Section({ className, children }) {
   return (
     <section
-      className={`${className} py-4 lg:py-8 p-8 mb-2 rounded-md border dark:border-neutral-800 bg-white dark:bg-[#1F1F1F]`}
+      className={`${className} mb-2 rounded-md border bg-white p-8 py-4 dark:border-neutral-800 dark:bg-[#1F1F1F] lg:py-8`}
     >
       {children}
     </section>
@@ -11,7 +11,7 @@ export default function Section({ className, children }) {
 Section.small = ({ className, children }) => {
   return (
     <section
-      className={`${className} py-2 my-2 p-8 mb-2 rounded-md border dark:border-neutral-800 bg-white dark:bg-[#1F1F1F]`}
+      className={`${className} my-2 mb-2 rounded-md border bg-white p-8 py-2 dark:border-neutral-800 dark:bg-[#1F1F1F]`}
     >
       {children}
     </section>

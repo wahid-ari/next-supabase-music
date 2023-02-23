@@ -1,15 +1,15 @@
 import { supabase } from '@libs/supabase';
-import { hash, compare } from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { hash, compare } from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {
-  const { method, body } = req
+  const { method, body } = req;
 
   // async function pass() {
   //   let hashed = await hash('password', 8);
   //   // save hashed to db
   //   console.log(hashed)
-  //   // compare hashed from db and password from a form that submitted 
+  //   // compare hashed from db and password from a form that submitted
   //   let isMatch = await compare(form.password, hashed);
   //   console.log(isMatch)
   // }
@@ -25,26 +25,27 @@ export default async function handler(req, res) {
   // const user = jwt.verify(token, process.env.JWT_SECRET);
 
   switch (method) {
-    case "POST":
+    case 'POST':
       if (!body.username) {
-        res.status(422).json({ error: "Username required" })
+        res.status(422).json({ error: 'Username required' });
       } else if (!body.password) {
-        res.status(422).json({ error: "Password required" })
+        res.status(422).json({ error: 'Password required' });
       } else {
-        const { data, error } = await supabase.from('admin')
+        const { data, error } = await supabase
+          .from('admin')
           .select(`*`)
           .eq('username', body.username)
           .limit(1)
           .single();
         if (error) {
-          res.status(422).json({ error: "User not found" })
+          res.status(422).json({ error: 'User not found' });
         }
         const isMatch = await compare(body.password, data?.password);
         if (!isMatch) {
-          return res.status(422).json({ error: "Password mismatch" });
+          return res.status(422).json({ error: 'Password mismatch' });
         }
-        delete data.password
-        delete data.created_at
+        delete data.password;
+        delete data.created_at;
         const token = jwt.sign(
           {
             username: data.username,
@@ -59,7 +60,7 @@ export default async function handler(req, res) {
       break;
 
     default:
-      res.status(200).json("Method required");
+      res.status(200).json('Method required');
       break;
   }
 }

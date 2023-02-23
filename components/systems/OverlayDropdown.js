@@ -2,10 +2,8 @@ export default function OverlayDropdown({ show, children }) {
   return (
     <div
       className={`${
-        show
-          ? "max-h-64 dark:border-neutral-800 border z-[1]"
-          : "max-h-0 border-transparent"
-      } text-sm transition-all bg-white dark:bg-neutral-900 shadow-sm absolute w-full rounded-lg overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-800`}
+        show ? 'z-[1] max-h-64 border dark:border-neutral-800' : 'max-h-0 border-transparent'
+      } absolute w-full overflow-y-auto rounded-lg bg-white text-sm shadow-sm transition-all scrollbar scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-300 dark:bg-neutral-900 dark:scrollbar-thumb-neutral-800`}
     >
       {children}
     </div>
@@ -14,10 +12,10 @@ export default function OverlayDropdown({ show, children }) {
 
 OverlayDropdown.item = ({ children, ...rest }) => {
   return (
-    <div className="flex">
+    <div className='flex'>
       <button
-        type="button"
-        className="text-sm outline-none flex-grow px-4 py-[0.6rem] border-b dark:border-neutral-800 flex items-center gap-2 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-800 cursor-pointer"
+        type='button'
+        className='flex flex-grow cursor-pointer items-center gap-2 border-b px-4 py-[0.6rem] text-sm outline-none hover:bg-gray-50 dark:border-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-800'
         {...rest}
       >
         {children}

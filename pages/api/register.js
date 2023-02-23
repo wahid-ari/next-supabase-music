@@ -1,15 +1,15 @@
 import { supabase } from '@libs/supabase';
-import { hash, compare } from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { hash, compare } from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {
-  const { method, body } = req
+  const { method, body } = req;
 
   // async function pass() {
   //   let hashed = await hash('password', 8);
   //   // save hashed to db
   //   console.log(hashed)
-  //   // compare hashed from db and password from a form that submitted 
+  //   // compare hashed from db and password from a form that submitted
   //   let isMatch = await compare(form.password, hashed);
   //   console.log(isMatch)
   // }
@@ -25,15 +25,16 @@ export default async function handler(req, res) {
   // const user = jwt.verify(token, process.env.JWT_SECRET);
 
   switch (method) {
-    case "POST":
+    case 'POST':
       if (!body.name) {
-        res.status(422).json({ error: "Name required" })
+        res.status(422).json({ error: 'Name required' });
       } else if (!body.username) {
-        res.status(422).json({ error: "Username required" })
+        res.status(422).json({ error: 'Username required' });
       } else if (!body.password) {
-        res.status(422).json({ error: "Password required" })
+        res.status(422).json({ error: 'Password required' });
       } else {
-        const { data: userNameExist } = await supabase.from('admin')
+        const { data: userNameExist } = await supabase
+          .from('admin')
           .select(`*`)
           .eq('username', body.username)
           .limit(1)
@@ -41,19 +42,18 @@ export default async function handler(req, res) {
         if (userNameExist === null) {
           // if username not exist, hash password and inset to db
           const passwordHashed = await hash(body.password, 8);
-          const { data: insertUser } = await supabase
-            .from('admin')
-            .insert([
-              {
-                username: body.username,
-                name: body.name,
-                type: "user",
-                password: passwordHashed
-              },
-            ])
+          const { data: insertUser } = await supabase.from('admin').insert([
+            {
+              username: body.username,
+              name: body.name,
+              type: 'user',
+              password: passwordHashed,
+            },
+          ]);
           // if no error after inserting user
           if (insertUser == null) {
-            const { data: user } = await supabase.from('admin')
+            const { data: user } = await supabase
+              .from('admin')
               .select(`*`)
               .eq('username', body.username)
               .limit(1)
@@ -65,18 +65,18 @@ export default async function handler(req, res) {
               },
               process.env.JWT_SECRET
             );
-            const { id, type } = user
-            const { username, name } = body
+            const { id, type } = user;
+            const { username, name } = body;
             res.status(200).json({ id, type, username, name, token });
           }
         } else {
-          res.status(422).json({ error: "Username already exist" });
+          res.status(422).json({ error: 'Username already exist' });
         }
       }
       break;
 
     default:
-      res.status(200).json("Method required");
+      res.status(200).json('Method required');
       break;
   }
 }

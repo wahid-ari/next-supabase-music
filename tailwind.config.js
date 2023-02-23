@@ -1,9 +1,6 @@
 module.exports = {
-  darkMode: "class",
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+  darkMode: 'class',
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       // fontFamily: {
@@ -15,11 +12,7 @@ module.exports = {
     },
   },
   variants: {
-    scrollbar: ["dark", "rounded"],
+    scrollbar: ['dark', 'rounded'],
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require("tailwind-scrollbar"),
-    require("tailwindcss-radix")(),
-  ],
+  plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar'), require('tailwindcss-radix')()],
 };
