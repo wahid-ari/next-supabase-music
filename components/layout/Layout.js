@@ -19,7 +19,7 @@ export default function Layout({ children, title, description }) {
     <>
       <HeadSeo title={title} description={description} />
 
-      <div className="min-h-screen w-screen lg:grid text-sm font-inter bg-white dark:bg-neutral-900"
+      <div className="min-h-screen w-full lg:grid text-sm font-inter bg-white dark:bg-neutral-900"
         style={{ gridTemplateColumns: "auto 1fr" }}>
 
         <Sidebar />
@@ -29,15 +29,19 @@ export default function Layout({ children, title, description }) {
           <Navbar />
 
           {/* Show on Mobile */}
-          <div className={clsx("lg:hidden flex gap-x-4 items-center justify-between border-b dark:border-neutral-800 px-2 sm:px-3 py-3",
+          <div className={clsx("lg:hidden flex gap-x-4 items-center justify-between border-b dark:border-neutral-800 px-4 py-3",
             "bg-white/95 dark:bg-neutral-900/90 overflow-x-auto",
             "scrollbar scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-800")}>
             <Breadcrumb />
           </div>
 
           {/* Show on Desktop */}
-          <div className={clsx("hidden lg:flex gap-x-4 items-center justify-between border-b dark:border-neutral-800 px-2 sm:px-3 py-3",
-            "z-40 sticky top-0 bg-white/95 dark:bg-neutral-900/90 supports-[backdrop-filter]:backdrop-blur-sm")}>
+          <div className={clsx(
+            'hidden items-center justify-between gap-x-4 border-b py-3 dark:border-neutral-800 px-4 lg:flex',
+            'sticky top-0 z-40',
+            'bg-white/50 dark:bg-neutral-900/30',
+            'backdrop-blur-md backdrop-filter'
+          )}>
             <Breadcrumb />
 
             {mounted &&
@@ -48,7 +52,7 @@ export default function Layout({ children, title, description }) {
             }
           </div>
 
-          <div className="px-4 sm:px-5 py-4">
+          <div className="px-5 py-5">
             {children}
           </div>
 

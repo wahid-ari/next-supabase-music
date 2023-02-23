@@ -33,7 +33,7 @@ export default function NavAccordion({ title, routeName, icon, children }) {
                   </div>
                 </div>
                 <ChevronRightIcon
-                  className={`transition-all durat duration-300 w-5 h-5 ${open ? 'transform rotate-90 transition-transform' : 'transition-transform'}`}
+                  className={`text-gray-500 dark:text-neutral-400 transition-all duration-300 w-5 h-5 ${open ? 'transform rotate-90 transition-transform' : 'transition-transform'}`}
                 />
               </Disclosure.Button>
               <Transition

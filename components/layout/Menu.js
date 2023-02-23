@@ -17,8 +17,8 @@ export default function Akun({ className }) {
     <Menu as="div" className={`relative ${className && className}`}>
       {({ open }) => (
         <>
-          <Menu.Button className={clsx("inline-flex items-center w-full justify-center rounded pr-1.5",
-            "text-gray-600 hover:text-gray-700 dark:text-neutral-300 dark:hover:text-neutral-200 focus:outline-none",
+          <Menu.Button className={clsx("inline-flex items-center w-full justify-center rounded",
+            "text-gray-700 hover:text-gray-900 dark:text-neutral-300 dark:hover:text-neutral-100 focus:outline-none",
             "focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500")}>
               
             {mounted && admin?.name}
@@ -50,7 +50,7 @@ export default function Akun({ className }) {
                   {({ active }) => (
                     <Link href="/settings"
                       className={`${active ? 'bg-gray-100 text-emerald-600 dark:text-emerald-500 dark:bg-neutral-900 transition-all'
-                        : 'text-gray-500 dark:text-neutral-300'
+                        : 'text-gray-700 dark:text-neutral-300'
                         } flex w-full rounded px-2 py-1.5 text-sm`}
                     >
                       Setting

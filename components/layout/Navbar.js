@@ -21,11 +21,15 @@ export default function Navbar() {
   };
 
   return (
-    <div className={clsx("lg:hidden sticky top-0 z-40 h-11 bg-white dark:bg-neutral-900 dark:text-neutral-50",
-      "w-full flex justify-between items-center gap-4 p-3 sm:px-4 border-b dark:border-neutral-800")
-    }>
-      <div className="flex gap-x-2">
-        <button className="rounded focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500" id="menu" aria-label="Menu">
+    <div className={clsx(
+      'sticky top-0 z-40 h-11 dark:text-neutral-50 lg:hidden',
+      'flex w-full items-center justify-between gap-4 border-b p-3 dark:border-neutral-800 px-5',
+      'bg-white/50 dark:bg-neutral-900/30',
+      'backdrop-blur-md backdrop-filter'
+    )}
+    >
+      <div className="flex gap-x-3">
+        <button className="-ml-0.5 rounded focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500" id="menu" aria-label="Menu">
           <MenuIcon className="h-5 w-5 text-gray-500 hover:text-gray-700 dark:text-neutral-400 dark:hover:text-neutral-200 transition-all" onClick={showMenu} />
         </button>
         <Link href="/" className="text-base tracking-wide text-center font-semibold lg:text-2xl text-neutral-800 dark:text-neutral-100 no-underline rounded focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500">

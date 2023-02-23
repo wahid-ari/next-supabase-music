@@ -33,9 +33,9 @@ export default function Breadcrumb() {
       aria-label="Breadcrumb"
     >
       <ol className="inline-flex whitespace-nowrap flex-nowrap items-center space-x-1 md:space-x-1">
-        <li className="inline-flex items-center">
-          <Link href="/" passHref className="transition-all inline-flex items-center text-gray-600 dark:text-neutral-300 hover:text-gray-800 dark:hover:text-neutral-200 focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded">
-            <ChevronRightIcon className="w-5 h-5 mr-1 text-gray-500 dark:text-neutral-400" />
+        <li className="-ml-0.5 inline-flex items-center">
+          <Link href="/" passHref className="transition-all inline-flex items-center text-gray-700 dark:text-neutral-300 hover:text-gray-900 dark:hover:text-neutral-100 focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500 rounded">
+            <ChevronRightIcon className="w-5 h-5 mr-1 text-gray-400" />
             Home
           </Link>
         </li>
