@@ -54,7 +54,7 @@ export default function Login() {
     // jika tidak ada error save data
     if (!isError) {
       const toastId = pushToast({
-        message: 'Login Admin...',
+        message: 'Login...',
         isLoading: true,
       });
       try {
