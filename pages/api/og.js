@@ -28,7 +28,7 @@ export default async function handler(req) {
             alt='bg'
             width='100%'
             height='100%'
-            src={`${process.env.API_ROUTE}/ogs.png`}
+            src={`${process.env.NEXT_PUBLIC_API_ROUTE}/ogs.png`}
             style={{
               position: 'absolute',
             }}

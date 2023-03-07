@@ -23,13 +23,16 @@ const fetcher = (url) => fetch(url).then((result) => result.json());
 export default function Home() {
   const router = useRouter();
   const { query } = router;
-  const { data: genre, error: errorGenre } = useSWR(`${process.env.API_ROUTE}/api/genre`, fetcher);
-  const { data: songs, error: errorSongs } = useSWR(`${process.env.API_ROUTE}/api/song`, fetcher);
-  const { data: albums, error: errorAlbums } = useSWR(`${process.env.API_ROUTE}/api/album`, fetcher);
-  const { data: artists, error: errorArtists } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher);
-  const { data: playlists, error: errorPlaylists } = useSWR(`${process.env.API_ROUTE}/api/playlist`, fetcher);
+  const { data: genre, error: errorGenre } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/genre`, fetcher);
+  const { data: songs, error: errorSongs } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song`, fetcher);
+  const { data: albums, error: errorAlbums } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/album`, fetcher);
+  const { data: artists, error: errorArtists } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`, fetcher);
+  const { data: playlists, error: errorPlaylists } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_ROUTE}/api/playlist`,
+    fetcher
+  );
   const { data: artistByGenre, error: errorArtistByGenre } = useSWR(
-    `${process.env.API_ROUTE}/api/genre?id=${query.genre}`,
+    `${process.env.NEXT_PUBLIC_API_ROUTE}/api/genre?id=${query.genre}`,
     fetcher
   );
   const [name, setName] = useState('');

@@ -33,9 +33,9 @@ export async function getServerSideProps(context) {
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Song({ id }) {
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song?id=${id}`, fetcher);
-  const { data: artist, error: errorArtist } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher);
-  const { data: album, error: errorAlbum } = useSWR(`${process.env.API_ROUTE}/api/album`, fetcher);
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song?id=${id}`, fetcher);
+  const { data: artist, error: errorArtist } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`, fetcher);
+  const { data: album, error: errorAlbum } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/album`, fetcher);
   const { updateToast, pushToast, dismissToast } = useToast();
   const [editItem, setEditItem] = useState({
     name: '',
@@ -94,7 +94,7 @@ export default function Song({ id }) {
       isLoading: true,
     });
     try {
-      const res = await axios.put(`${process.env.API_ROUTE}/api/song?id=${id}`, editItem);
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song?id=${id}`, editItem);
       if (res.status == 201) {
         setEditItem({ name: '', cover_url: '', preview_url: '', youtube_url: '', artist_id: null, album_id: null });
         updateToast({ toastId, message: res.data.message, isError: false });
@@ -104,7 +104,7 @@ export default function Song({ id }) {
       console.error(error);
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/song`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song`);
     }
   }
 

@@ -29,7 +29,7 @@ export async function getServerSideProps(context) {
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Album({ id }) {
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/song?id=${id}`, fetcher);
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song?id=${id}`, fetcher);
   const [isLoading, setLoading] = useState(true);
 
   if (error) {

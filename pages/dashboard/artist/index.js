@@ -9,7 +9,7 @@ import LabeledInput from '@components/systems/LabeledInput';
 const fetcher = (url) => fetch(url).then((result) => result.json());
 
 export default function Artist() {
-  const { data: artists, error: errorArtists } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher);
+  const { data: artists, error: errorArtists } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`, fetcher);
   const [query, setQuery] = useState('');
   const filteredArtists =
     query === ''

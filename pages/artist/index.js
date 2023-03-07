@@ -31,8 +31,8 @@ export async function getServerSideProps(context) {
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Artist() {
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher);
-  const { data: genre, error: errorGenre } = useSWR(`${process.env.API_ROUTE}/api/genre`, fetcher);
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`, fetcher);
+  const { data: genre, error: errorGenre } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/genre`, fetcher);
   const { updateToast, pushToast, dismissToast } = useToast();
   const [openCreateDialog, setOpenCreateDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
@@ -47,7 +47,7 @@ export default function Artist() {
       isLoading: true,
     });
     try {
-      const res = await axios.post(`${process.env.API_ROUTE}/api/artist`, createItem);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`, createItem);
       if (res.status == 200) {
         setOpenCreateDialog(false);
         setCreateItem({ name: '', cover_url: '', genre_id: null });
@@ -57,7 +57,7 @@ export default function Artist() {
       console.error(error);
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/artist`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`);
     }
   }
 
@@ -67,7 +67,7 @@ export default function Artist() {
       isLoading: true,
     });
     try {
-      const res = await axios.put(`${process.env.API_ROUTE}/api/artist`, editItem);
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`, editItem);
       if (res.status == 201) {
         setOpenEditDialog(false);
         setEditItem({ id: null, name: '' });
@@ -77,7 +77,7 @@ export default function Artist() {
       console.error(error);
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/artist`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`);
     }
   }
 
@@ -87,7 +87,7 @@ export default function Artist() {
       isLoading: true,
     });
     try {
-      const res = await axios.delete(`${process.env.API_ROUTE}/api/artist?id=${deleteItem.id}`);
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist?id=${deleteItem.id}`);
       if (res.status == 200) {
         setOpenDeleteDialog(false);
         setDeleteItem({ id: null, name: '' });
@@ -97,7 +97,7 @@ export default function Artist() {
       console.error(error);
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/artist`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`);
     }
   }
 

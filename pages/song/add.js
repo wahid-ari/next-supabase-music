@@ -30,8 +30,8 @@ export async function getServerSideProps(context) {
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function AddSong() {
-  const { data: artist, error: errorArtist } = useSWR(`${process.env.API_ROUTE}/api/artist`, fetcher);
-  const { data: album, error: errorAlbum } = useSWR(`${process.env.API_ROUTE}/api/album`, fetcher);
+  const { data: artist, error: errorArtist } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist`, fetcher);
+  const { data: album, error: errorAlbum } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/album`, fetcher);
   const { updateToast, pushToast, dismissToast } = useToast();
   const [createItem, setCreateItem] = useState({
     name: '',
@@ -67,7 +67,7 @@ export default function AddSong() {
       isLoading: true,
     });
     try {
-      const res = await axios.post(`${process.env.API_ROUTE}/api/song`, createItem);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song`, createItem);
       if (res.status == 200) {
         setCreateItem({ name: '', cover_url: '', preview_url: '', youtube_url: '', artist_id: null, album_id: null });
         updateToast({ toastId, message: res.data.message, isError: false });
@@ -77,7 +77,7 @@ export default function AddSong() {
       console.error(error);
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/song`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song`);
     }
   }
 

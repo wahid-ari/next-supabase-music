@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Album({ id }) {
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/artist?id=${id}`, fetcher);
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist?id=${id}`, fetcher);
   const [isLoading, setLoading] = useState(true);
   const { updateToast, pushToast, dismissToast } = useToast();
   const [openDeleteDialogSong, setOpenDeleteDialogSong] = useState(false);
@@ -48,7 +48,7 @@ export default function Album({ id }) {
       isLoading: true,
     });
     try {
-      const res = await axios.delete(`${process.env.API_ROUTE}/api/song`, { data: deleteItemSong.id });
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song`, { data: deleteItemSong.id });
       if (res.status == 200) {
         setOpenDeleteDialogSong(false);
         setDeleteItemSong({ id: null, name: '' });
@@ -58,8 +58,8 @@ export default function Album({ id }) {
       console.error(error);
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/song`);
-      mutate(`${process.env.API_ROUTE}/api/artist?id=${id}`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist?id=${id}`);
     }
   }
 
@@ -69,7 +69,7 @@ export default function Album({ id }) {
       isLoading: true,
     });
     try {
-      const res = await axios.delete(`${process.env.API_ROUTE}/api/album`, { data: deleteItemAlbum.id });
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/album`, { data: deleteItemAlbum.id });
       if (res.status == 200) {
         setOpenDeleteDialogAlbum(false);
         setDeleteItemAlbum({ id: null, name: '' });
@@ -79,8 +79,8 @@ export default function Album({ id }) {
       console.error(error);
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/album`);
-      mutate(`${process.env.API_ROUTE}/api/artist?id=${id}`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/album`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/artist?id=${id}`);
     }
   }
 

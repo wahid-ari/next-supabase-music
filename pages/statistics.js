@@ -40,23 +40,23 @@ const fetcher = (url) => axios.get(url).then((res) => res.data);
 export default function Home() {
   const { theme } = useTheme();
   const { data: artistByGenre, error: errorArtistByGenre } = useSWR(
-    `${process.env.API_ROUTE}/api/statistics/artist-by-genre`,
+    `${process.env.NEXT_PUBLIC_API_ROUTE}/api/statistics/artist-by-genre`,
     fetcher
   );
   const { data: albumByArtist, error: errorAlbumByArtist } = useSWR(
-    `${process.env.API_ROUTE}/api/statistics/album-by-artist`,
+    `${process.env.NEXT_PUBLIC_API_ROUTE}/api/statistics/album-by-artist`,
     fetcher
   );
   const { data: songByAlbum, error: errorSongByAlbum } = useSWR(
-    `${process.env.API_ROUTE}/api/statistics/song-by-album`,
+    `${process.env.NEXT_PUBLIC_API_ROUTE}/api/statistics/song-by-album`,
     fetcher
   );
   const { data: songByArtist, error: errorSongByArtist } = useSWR(
-    `${process.env.API_ROUTE}/api/statistics/song-by-artist`,
+    `${process.env.NEXT_PUBLIC_API_ROUTE}/api/statistics/song-by-artist`,
     fetcher
   );
   const { data: songByPlaylist, error: errorSongByPlaylist } = useSWR(
-    `${process.env.API_ROUTE}/api/statistics/song-by-playlist`,
+    `${process.env.NEXT_PUBLIC_API_ROUTE}/api/statistics/song-by-playlist`,
     fetcher
   );
 

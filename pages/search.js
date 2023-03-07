@@ -21,7 +21,7 @@ export default function Search() {
   const router = useRouter();
   const search = router.query.q;
   const query = useRef(search);
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/search?q=${search}`, fetcher);
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/search?q=${search}`, fetcher);
 
   const songsHistory = useSearchHistoryStore((state) => state.songsHistory);
   const setSongsHistory = useSearchHistoryStore((state) => state.setSongsHistory);

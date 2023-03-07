@@ -31,7 +31,7 @@ export async function getServerSideProps(context) {
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export default function Album({ id }) {
-  const { data, error } = useSWR(`${process.env.API_ROUTE}/api/album/detail?id=${id}`, fetcher);
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/album/detail?id=${id}`, fetcher);
   const { updateToast, pushToast, dismissToast } = useToast();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deleteItem, setDeleteItem] = useState({ name: '', cover_url: '', artist_id: null });
@@ -42,7 +42,9 @@ export default function Album({ id }) {
       isLoading: true,
     });
     try {
-      const res = await axios.put(`${process.env.API_ROUTE}/api/album/detail?id=${id}&song_id=${deleteItem.id}`);
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_ROUTE}/api/album/detail?id=${id}&song_id=${deleteItem.id}`
+      );
       if (res.status == 201) {
         setOpenDeleteDialog(false);
         setDeleteItem({ id: null, name: '' });
@@ -52,7 +54,7 @@ export default function Album({ id }) {
       console.error(error);
       updateToast({ toastId, message: error.response.data.error, isError: true });
     } finally {
-      mutate(`${process.env.API_ROUTE}/api/album/detail?id=${id}`);
+      mutate(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/album/detail?id=${id}`);
     }
   }
 

@@ -58,7 +58,7 @@ export default function Login() {
         isLoading: true,
       });
       try {
-        const res = await axios.post(`${process.env.API_ROUTE}/api/login`, form);
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/login`, form);
         if (res.status == 200) {
           nookies.set(null, 'id', res.data.id, { path: '/' });
           nookies.set(null, 'username', res.data.username, { path: '/' });

@@ -12,7 +12,9 @@ export default function HeadSeo({ title, description }) {
   let ogTitle = title.split('- MyMusic');
 
   const socialCard =
-    route === '/' ? `${process.env.API_ROUTE}/og.png` : `${process.env.API_ROUTE}/api/og?title=${ogTitle[0]}`;
+    route === '/'
+      ? `${process.env.NEXT_PUBLIC_API_ROUTE}/og.png`
+      : `${process.env.NEXT_PUBLIC_API_ROUTE}/api/og?title=${ogTitle[0]}`;
 
   return (
     <Head>
@@ -23,9 +25,9 @@ export default function HeadSeo({ title, description }) {
       <meta name='og:image' content={socialCard} />
 
       <meta name='twitter:card' content='summary_large_image' />
-      <meta name='twitter:site:domain' content={process.env.API_ROUTE} />
-      <meta name='twitter:site' content={process.env.API_ROUTE} />
-      <meta name='twitter:url' content={process.env.API_ROUTE} />
+      <meta name='twitter:site:domain' content={process.env.NEXT_PUBLIC_API_ROUTE} />
+      <meta name='twitter:site' content={process.env.NEXT_PUBLIC_API_ROUTE} />
+      <meta name='twitter:url' content={process.env.NEXT_PUBLIC_API_ROUTE} />
       <meta name='twitter:image' content={socialCard} />
 
       <meta name='apple-mobile-web-app-title' content={headTitle} />

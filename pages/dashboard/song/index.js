@@ -12,7 +12,7 @@ import 'react-h5-audio-player/lib/styles.css';
 const fetcher = (url) => fetch(url).then((result) => result.json());
 
 export default function Songs() {
-  const { data: songs, error: errorSongs } = useSWR(`${process.env.API_ROUTE}/api/song`, fetcher);
+  const { data: songs, error: errorSongs } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/song`, fetcher);
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
   const [showPlayer, setShowPlayer] = useState(false);
