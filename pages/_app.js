@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </>
   ) : (
-    <ThemeProvider attribute='class' storageKey='theme'>
+    <ThemeProvider attribute='class' storageKey='theme' enableSystem={false} defaultTheme='light'>
       <GlobalProvider>
         {/* <AxiosConfigProvider> */}
         <main className={inter.className}>
