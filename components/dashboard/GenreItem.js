@@ -30,23 +30,23 @@ export default function GenreItem({ href = '#', title = 'Genre', index, ...props
     >
       <div className='relative mb-2 h-52'>
         {title.toLowerCase() == 'pop' ? (
-          <Image alt={title} src='/genre/pop.webp' className={className} fill sizes={sizes} />
+          <Image alt={title} src='/genre/pop.webp' className={className} fill sizes={sizes} unoptimized/>
         ) : title.toLowerCase() == 'rock' ? (
-          <Image alt={title} src='/genre/rock.webp' className={className} fill sizes={sizes} />
+          <Image alt={title} src='/genre/rock.webp' className={className} fill sizes={sizes} unoptimized/>
         ) : title.toLowerCase() == 'alternative' ? (
-          <Image alt={title} src='/genre/alternative.webp' className={className} fill sizes={sizes} />
+          <Image alt={title} src='/genre/alternative.webp' className={className} fill sizes={sizes} unoptimized/>
         ) : title.toLowerCase() == 'electronic' ? (
-          <Image alt={title} src='/genre/electronic.webp' className={className} fill sizes={sizes} />
+          <Image alt={title} src='/genre/electronic.webp' className={className} fill sizes={sizes} unoptimized/>
         ) : title.toLowerCase() == 'classical' ? (
-          <Image alt={title} src='/genre/classical.webp' className={className} fill sizes={sizes} />
+          <Image alt={title} src='/genre/classical.webp' className={className} fill sizes={sizes} unoptimized/>
         ) : title.toLowerCase() == 'country' ? (
-          <Image alt={title} src='/genre/country.webp' className={className} fill sizes={sizes} />
+          <Image alt={title} src='/genre/country.webp' className={className} fill sizes={sizes} unoptimized/>
         ) : title.toLowerCase() == 'hiphop' ? (
-          <Image alt={title} src='/genre/hiphop.webp' className={className} fill sizes={sizes} />
+          <Image alt={title} src='/genre/hiphop.webp' className={className} fill sizes={sizes} unoptimized/>
         ) : title.toLowerCase() == 'jazz' ? (
-          <Image alt={title} src='/genre/jazz.webp' className={className} fill sizes={sizes} />
+          <Image alt={title} src='/genre/jazz.webp' className={className} fill sizes={sizes} unoptimized/>
         ) : title.toLowerCase() == 'rnb' ? (
-          <Image alt={title} src='/genre/rnb.webp' className={className} fill sizes={sizes} />
+          <Image alt={title} src='/genre/rnb.webp' className={className} fill sizes={sizes} unoptimized/>
         ) : (
           <div
             style={{ background: `linear-gradient(${colors[index]}, ${colors[index + 2]})` }}

@@ -110,7 +110,7 @@ export default function Login() {
 
         <div className='flex w-full items-center justify-center px-8 py-16 md:px-16 md:py-0'>
           <div className='w-full sm:max-w-md'>
-            <Image alt='Logo' src='/icon.jpg' width={100} height={100} className='mx-auto mb-16 hidden sm:block' />
+            <Image alt='Logo' src='/icon.jpg' width={100} height={100} className='mx-auto mb-16 hidden sm:block' unoptimized />
 
             <Heading h1 className='mb-6 font-semibold !text-neutral-800'>
               Login

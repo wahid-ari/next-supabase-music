@@ -229,6 +229,7 @@ export default function Album({ id }) {
                 height={300}
                 className={`my-4 rounded ${isLoading ? 'blur-2xl' : 'blur-0'}`}
                 onLoadingComplete={() => setLoading(false)}
+                unoptimized
               />
             </div>
           )}

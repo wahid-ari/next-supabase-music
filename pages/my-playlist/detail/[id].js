@@ -158,6 +158,7 @@ export default function Playlist({ id }) {
                           className={`transform rounded-t brightness-90 transition duration-500 ease-in-out will-change-auto group-hover:brightness-110`}
                           fill
                           sizes={`(max-width: 120px) 100vw, (max-width: 120px) 50vw, (max-width: 120px) 33vw`}
+                          unoptimized
                         />
                       </div>
                       <div>

@@ -22,6 +22,7 @@ export default function ArtistItem({ href = '#', imageSrc = '/genre/pop.webp', t
           fill
           sizes={sizes}
           onLoadingComplete={() => setLoading(false)}
+          unoptimized
         />
       </div>
       <Text.medium className='transition-all duration-500 group-hover:text-emerald-500'>{title}</Text.medium>

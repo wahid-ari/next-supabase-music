@@ -35,6 +35,7 @@ export default function SongListItem({
               fill
               sizes={sizes}
               onLoadingComplete={() => setLoading(false)}
+              unoptimized
             />
           </div>
           <div>
@@ -63,6 +64,7 @@ export default function SongListItem({
               fill
               sizes={sizes}
               onLoadingComplete={() => setLoading(false)}
+              unoptimized
             />
           </div>
           <div>

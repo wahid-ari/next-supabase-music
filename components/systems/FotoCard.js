@@ -11,6 +11,7 @@ export default function FotoCard({ id, image, title, onDelete }) {
           src={image}
           layout='fill'
           className='absolute inset-0 block h-full w-full rounded-lg object-cover object-center opacity-50'
+          unoptimized
         />
         <div className='relative z-10 w-full text-center'>
           <Heading h2 className='text-white'>

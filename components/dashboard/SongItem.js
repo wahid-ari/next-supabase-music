@@ -30,6 +30,7 @@ export default function SongItem({
           fill
           sizes={sizes}
           onLoadingComplete={() => setLoading(false)}
+          unoptimized
         />
       </div>
       <div className='p-4'>

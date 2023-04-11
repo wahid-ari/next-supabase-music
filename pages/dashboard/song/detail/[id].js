@@ -76,6 +76,7 @@ function Page({ id }) {
                 height={300}
                 className={`mt-6 rounded ${isLoading ? 'blur-2xl' : 'blur-0'}`}
                 onLoadingComplete={() => setLoading(false)}
+                unoptimized
               />
             </div>
           )}
