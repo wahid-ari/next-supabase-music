@@ -13,7 +13,7 @@ type Props = {
 export default function Radio({ label, name, value, onChange, checked, ...props }: Props) {
   return (
     <div className='mb-3 text-sm'>
-      <label className='group relative cursor-pointer select-none pl-6 pb-0.5 text-gray-800 dark:text-neutral-300'>
+      <label className='group relative cursor-pointer select-none pb-0.5 pl-6 text-gray-800 dark:text-neutral-300'>
         {label}
         <input
           {...props}
@@ -33,7 +33,7 @@ export default function Radio({ label, name, value, onChange, checked, ...props 
             'peer-checked:bg-emerald-800 dark:peer-checked:bg-emerald-500'
           )}
         />
-        <CheckIcon className='absolute top-[0.05rem] left-[0.05rem] mt-[0.05rem] hidden h-3.5 w-3.5 text-white peer-checked:block' />
+        <CheckIcon className='absolute left-[0.05rem] top-[0.05rem] mt-[0.05rem] hidden h-3.5 w-3.5 text-white peer-checked:block' />
       </label>
     </div>
   );
@@ -49,7 +49,7 @@ type DisabledProps = {
 Radio.disabled = ({ label, name, checked, ...props }: DisabledProps) => {
   return (
     <div className='mb-3 cursor-not-allowed text-sm'>
-      <label className='pointer-events-none relative select-none pl-6 pb-0.5 text-gray-800 dark:text-neutral-300'>
+      <label className='pointer-events-none relative select-none pb-0.5 pl-6 text-gray-800 dark:text-neutral-300'>
         {label}
         <input
           {...props}
@@ -66,7 +66,7 @@ Radio.disabled = ({ label, name, checked, ...props }: DisabledProps) => {
             'peer-checked:border-emerald-800 peer-checked:bg-emerald-800 dark:peer-checked:border-emerald-500 dark:peer-checked:bg-emerald-500'
           )}
         />
-        <CheckIcon className='absolute top-[0.05rem] left-[0.05rem] mt-[0.05rem] hidden h-3.5 w-3.5 text-white peer-checked:block' />
+        <CheckIcon className='absolute left-[0.05rem] top-[0.05rem] mt-[0.05rem] hidden h-3.5 w-3.5 text-white peer-checked:block' />
       </label>
     </div>
   );

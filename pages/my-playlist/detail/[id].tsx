@@ -45,7 +45,7 @@ export default function Playlist({ id }) {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [createItem, setCreateItem] = useState({ id_song: null, id_playlist: id });
   const [deleteItem, setDeleteItem] = useState({ id: null, name: '' });
-  const [selectedSong, setSelectedSong] = useState();
+  const [selectedSong, setSelectedSong] = useState(null);
   const [querySong, setQuerySong] = useState('');
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
@@ -59,7 +59,6 @@ export default function Playlist({ id }) {
         );
 
   useEffect(() => {
-    // @ts-ignore
     if (selectedSong) setCreateItem({ ...createItem, id_song: selectedSong.id });
   }, [selectedSong]);
 

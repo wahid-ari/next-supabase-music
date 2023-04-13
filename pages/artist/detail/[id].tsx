@@ -133,7 +133,7 @@ export default function Album({ id }) {
                 Edit
               </Button> */}
               <Button.danger
-                className='!py-[2px] !px-[6px]'
+                className='!px-[6px] !py-[2px]'
                 onClick={() => handleShowDeleteModalSong(original.id, values.name)}
               >
                 Delete
@@ -185,7 +185,7 @@ export default function Album({ id }) {
                 Edit
               </Button> */}
               <Button.danger
-                className='!py-[2px] !px-[6px]'
+                className='!px-[6px] !py-[2px]'
                 onClick={() => handleShowDeleteModalAlbum(original.id, values.name)}
               >
                 Delete

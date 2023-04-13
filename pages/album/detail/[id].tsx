@@ -102,7 +102,7 @@ export default function Album({ id }) {
                   </TableSimple.td>
                   <TableSimple.td>
                     <Button.danger
-                      className='!py-[2px] !px-[6px]'
+                      className='!px-[6px] !py-[2px]'
                       onClick={() => handleShowDeleteModal(item.id, item.name)}
                     >
                       Delete

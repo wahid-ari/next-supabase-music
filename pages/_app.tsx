@@ -5,7 +5,7 @@ import { GlobalProvider } from '@utils/GlobalContext';
 // import { AxiosConfigProvider } from "@utils/useAxiosConfig";
 import '../styles/globals.css';
 import { useRouter } from 'next/router';
-import { Inter } from '@next/font/google';
+import { Inter } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
@@ -22,7 +22,7 @@ const inter = Inter({ subsets: ['latin'] });
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  function handleStart(url) {
+  function handleStart(url: string) {
     let splitUrl = url.split('/');
     // Show progress only in Detail Pages
     if (splitUrl.includes('detail')) {

@@ -35,7 +35,7 @@ ChartJS.register(
   Legend
 );
 
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 export default function Home() {
   const { theme } = useTheme();
@@ -60,11 +60,11 @@ export default function Home() {
     fetcher
   );
 
-  const [dataArtistByGenre, setDataArtistByGenre] = useState();
-  const [dataAlbumByArtist, setDataAlbumByArtist] = useState();
-  const [dataSongByAlbum, setDataSongByAlbum] = useState();
-  const [dataSongByArtist, setDataSongByArtist] = useState();
-  const [dataSongByPlaylist, setDataSongByPlaylist] = useState();
+  const [dataArtistByGenre, setDataArtistByGenre] = useState(null);
+  const [dataAlbumByArtist, setDataAlbumByArtist] = useState(null);
+  const [dataSongByAlbum, setDataSongByAlbum] = useState(null);
+  const [dataSongByArtist, setDataSongByArtist] = useState(null);
+  const [dataSongByPlaylist, setDataSongByPlaylist] = useState(null);
 
   const [windowWidth, setWindowWidth] = useState(0);
   useEffect(() => {
@@ -72,15 +72,10 @@ export default function Home() {
   }, [windowWidth]);
 
   useEffect(() => {
-    // @ts-ignore
     if (artistByGenre !== undefined) setDataArtistByGenre(populateData(artistByGenre, 'genre'));
-    // @ts-ignore
     if (albumByArtist !== undefined) setDataAlbumByArtist(populateData(albumByArtist, 'album'));
-    // @ts-ignore
     if (songByAlbum !== undefined) setDataSongByAlbum(populateData(songByAlbum, 'song'));
-    // @ts-ignore
     if (songByArtist !== undefined) setDataSongByArtist(populateData(songByArtist, 'song'));
-    // @ts-ignore
     if (songByPlaylist !== undefined) setDataSongByPlaylist(populateData(songByPlaylist, 'song'));
   }, [artistByGenre, albumByArtist, songByAlbum, songByArtist, songByPlaylist]);
 

@@ -131,12 +131,12 @@ export default function Album() {
             <div>
               <Link
                 href={`song/edit/${values.id}`}
-                className='mr-2 rounded bg-sky-600 py-[3px] px-[6px] text-sm font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-400'
+                className='mr-2 rounded bg-sky-600 px-[6px] py-[3px] text-sm font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-400'
               >
                 Edit
               </Link>
               <Button.danger
-                className='!py-[2px] !px-[6px]'
+                className='!px-[6px] !py-[2px]'
                 onClick={() => handleShowDeleteModal(values.id, values.name)}
               >
                 Delete

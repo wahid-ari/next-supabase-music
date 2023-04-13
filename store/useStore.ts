@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export const useSearchHistoryStore = create((set) => ({
+export const useSearchHistoryStore: any = create((set: any) => ({
   songsHistory: [],
   albumsHistory: [],
   artistsHistory: [],

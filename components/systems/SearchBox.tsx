@@ -48,7 +48,7 @@ export default function SearchBox({
         >
           <Combobox.Options className='absolute z-10 max-h-40 w-full overflow-auto rounded-md bg-white py-1 text-sm shadow-lg dark:bg-neutral-800'>
             {filtered.length === 0 && query !== '' ? (
-              <div className='relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-white'>
+              <div className='relative cursor-default select-none px-4 py-2 text-gray-700 dark:text-white'>
                 Nothing found.
               </div>
             ) : (

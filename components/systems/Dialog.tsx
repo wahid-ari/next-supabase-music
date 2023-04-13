@@ -61,13 +61,13 @@ export default function Dialog({
             className={clsx(
               'fixed z-50',
               'w-[90%] max-w-lg rounded-lg',
-              'top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]',
+              'left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]',
               'bg-white dark:bg-neutral-900'
             )}
           >
             <DialogRadix.Close
               className={
-                'absolute top-3.5 right-3.5 rounded p-1 focus-visible:outline-none focus-visible:ring dark:focus-visible:ring-neutral-500'
+                'absolute right-3.5 top-3.5 rounded p-1 focus-visible:outline-none focus-visible:ring dark:focus-visible:ring-neutral-500'
               }
             >
               <XIcon className='h-4 w-4 text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-400' />

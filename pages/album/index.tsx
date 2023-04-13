@@ -179,13 +179,13 @@ export default function Album() {
 								<a className="text-blue-500 hover:text-blue-700 text-sm font-medium">Edit</a>
 							</Link> */}
               <Button
-                className='mr-2 !py-[2px] !px-[6px]'
+                className='mr-2 !px-[6px] !py-[2px]'
                 onClick={() => handleShowEditModal(values.id, values.name, original.cover, original.artists.id)}
               >
                 Edit
               </Button>
               <Button.danger
-                className='!py-[2px] !px-[6px]'
+                className='!px-[6px] !py-[2px]'
                 onClick={() => handleShowDeleteModal(values.id, values.name)}
               >
                 Delete

@@ -154,7 +154,7 @@ export const ReactTable = forwardRef(({ columns, data, page_size = 5, className,
         </table>
       </div>
 
-      <div className='grid grid-cols-1 gap-4 pt-3 pb-5 sm:grid-cols-2 sm:p-3'>
+      <div className='grid grid-cols-1 gap-4 pb-5 pt-3 sm:grid-cols-2 sm:p-3'>
         <div className='flex items-center justify-center gap-2 sm:justify-start'>
           <button
             onClick={() => gotoPage(0)}

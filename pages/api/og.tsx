@@ -10,7 +10,7 @@ const wrapperClassName = {
   width: '100%',
   height: '100%',
   display: 'flex',
-  position: 'relative',
+  position: 'relative' as 'relative',
 };
 
 export default async function handler(req: NextApiRequest) {
@@ -23,7 +23,6 @@ export default async function handler(req: NextApiRequest) {
 
     return new ImageResponse(
       (
-        // @ts-ignore
         <div style={wrapperClassName}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

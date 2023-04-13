@@ -207,11 +207,11 @@ export default function Playlist({ id }) {
                 </TableSimple.td>
                 <TableSimple.td>{item.playlist_user_song.length}</TableSimple.td>
                 <TableSimple.td>
-                  <Button className='mr-2 !py-[2px] !px-[6px]' onClick={() => handleShowEditModal(item.id, item.name)}>
+                  <Button className='mr-2 !px-[6px] !py-[2px]' onClick={() => handleShowEditModal(item.id, item.name)}>
                     Edit
                   </Button>
                   <Button.danger
-                    className='!py-[2px] !px-[6px]'
+                    className='!px-[6px] !py-[2px]'
                     onClick={() => handleShowDeleteModal(item.id, item.name)}
                   >
                     Delete

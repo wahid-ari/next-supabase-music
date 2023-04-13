@@ -23,36 +23,24 @@ export default function Search() {
   const query = useRef(search);
   const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/search?q=${search}`, fetcher);
 
-  // @ts-ignore
-  const songsHistory = useSearchHistoryStore((state) => state.songsHistory);
-  // @ts-ignore
-  const setSongsHistory = useSearchHistoryStore((state) => state.setSongsHistory);
-  // @ts-ignore
-  const resetSongsHistory = useSearchHistoryStore((state) => state.resetSongsHistory);
+  const songsHistory = useSearchHistoryStore((state: any) => state.songsHistory);
 
-  // @ts-ignore
-  const albumsHistory = useSearchHistoryStore((state) => state.albumsHistory);
-  // @ts-ignore
-  const setAlbumsHistory = useSearchHistoryStore((state) => state.setAlbumsHistory);
-  // @ts-ignore
-  const resetAlbumsHistory = useSearchHistoryStore((state) => state.resetAlbumsHistory);
+  const setSongsHistory = useSearchHistoryStore((state: any) => state.setSongsHistory);
+  const resetSongsHistory = useSearchHistoryStore((state: any) => state.resetSongsHistory);
 
-  // @ts-ignore
-  const artistsHistory = useSearchHistoryStore((state) => state.artistsHistory);
-  // @ts-ignore
-  const setArtistsHistory = useSearchHistoryStore((state) => state.setArtistsHistory);
-  // @ts-ignore
-  const resetArtistsHistory = useSearchHistoryStore((state) => state.resetArtistsHistory);
+  const albumsHistory = useSearchHistoryStore((state: any) => state.albumsHistory);
+  const setAlbumsHistory = useSearchHistoryStore((state: any) => state.setAlbumsHistory);
+  const resetAlbumsHistory = useSearchHistoryStore((state: any) => state.resetAlbumsHistory);
 
-  // @ts-ignore
-  const playlistsHistory = useSearchHistoryStore((state) => state.playlistsHistory);
-  // @ts-ignore
-  const setPlaylistsHistory = useSearchHistoryStore((state) => state.setPlaylistsHistory);
-  // @ts-ignore
-  const resetPlaylistsHistory = useSearchHistoryStore((state) => state.resetPlaylistsHistory);
+  const artistsHistory = useSearchHistoryStore((state: any) => state.artistsHistory);
+  const setArtistsHistory = useSearchHistoryStore((state: any) => state.setArtistsHistory);
+  const resetArtistsHistory = useSearchHistoryStore((state: any) => state.resetArtistsHistory);
 
-  // @ts-ignore
-  const resetAllSearchHistory = useSearchHistoryStore((state) => state.resetAllSearchHistory);
+  const playlistsHistory = useSearchHistoryStore((state: any) => state.playlistsHistory);
+  const setPlaylistsHistory = useSearchHistoryStore((state: any) => state.setPlaylistsHistory);
+  const resetPlaylistsHistory = useSearchHistoryStore((state: any) => state.resetPlaylistsHistory);
+
+  const resetAllSearchHistory = useSearchHistoryStore((state: any) => state.resetAllSearchHistory);
 
   function compareSearchResult(history: any, newResults: any) {
     let newHistory = history;
@@ -116,7 +104,7 @@ export default function Search() {
     }
   }, [data]);
 
-  function handleSubmit(e) {
+  function handleSubmit(e: any) {
     e.preventDefault();
     if (query.current !== '') {
       router.push(`?q=${query.current}`);
@@ -171,7 +159,7 @@ export default function Search() {
                 Songs
               </Heading>
               <div className='mt-2 grid grid-cols-1 gap-4 pb-4 min-[500px]:grid-cols-2 md:grid-cols-3'>
-                {data?.songs?.map((item, index) => (
+                {data?.songs?.map((item: any, index: number) => (
                   <SongListItem
                     key={index}
                     href={`dashboard/song/detail/${item.id}`}
@@ -191,7 +179,7 @@ export default function Search() {
                 Albums
               </Heading>
               <div className='mt-2 grid grid-cols-1 gap-4 pb-4 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5'>
-                {data?.albums?.map((item, index) => (
+                {data?.albums?.map((item: any, index: number) => (
                   <AlbumItem
                     key={index}
                     href={`dashboard/album/detail/${item.id}`}
@@ -210,7 +198,7 @@ export default function Search() {
                 Artists
               </Heading>
               <div className='mt-2 grid grid-cols-1 gap-4 pb-4 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-                {data?.artists?.map((item, index) => (
+                {data?.artists?.map((item: any, index: number) => (
                   <ArtistItem
                     key={index}
                     href={`dashboard/artist/detail/${item.id}`}
@@ -228,7 +216,7 @@ export default function Search() {
                 Playlists
               </Heading>
               <div className='mt-2 grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 xl:grid-cols-4'>
-                {data?.playlists?.map((item, index) => (
+                {data?.playlists?.map((item: any, index: number) => (
                   <PlaylistItem
                     key={index}
                     index={index}
@@ -269,7 +257,7 @@ export default function Search() {
                     </button>
                   </div>
                   <div className='mt-2 grid grid-cols-1 gap-4 pb-4 min-[500px]:grid-cols-2 md:grid-cols-3'>
-                    {songsHistory?.map((item, index) => (
+                    {songsHistory?.map((item: any, index: number) => (
                       <SongListItem
                         key={index}
                         href={`dashboard/song/detail/${item.id}`}
@@ -295,7 +283,7 @@ export default function Search() {
                     </button>
                   </div>
                   <div className='mt-2 grid grid-cols-1 gap-4 pb-4 min-[500px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5'>
-                    {albumsHistory?.map((item, index) => (
+                    {albumsHistory?.map((item: any, index: number) => (
                       <AlbumItem
                         key={index}
                         href={`dashboard/album/detail/${item.id}`}
@@ -320,7 +308,7 @@ export default function Search() {
                     </button>
                   </div>
                   <div className='mt-2 grid grid-cols-1 gap-4 pb-4 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-                    {artistsHistory?.map((item, index) => (
+                    {artistsHistory?.map((item: any, index: number) => (
                       <ArtistItem
                         key={index}
                         href={`dashboard/artist/detail/${item.id}`}
@@ -344,7 +332,7 @@ export default function Search() {
                     </button>
                   </div>
                   <div className='mt-2 grid grid-cols-1 gap-4 pb-4 sm:grid-cols-2 xl:grid-cols-4'>
-                    {playlistsHistory?.map((item, index) => (
+                    {playlistsHistory?.map((item: any, index: number) => (
                       <PlaylistItem
                         key={index}
                         index={index}

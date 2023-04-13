@@ -131,7 +131,7 @@ export default function Sidebar() {
               <a
                 href='https://my-music-docs.vercel.app'
                 className={clsx(
-                  'mt-1 mb-1 flex w-full items-center justify-start gap-2 px-3 py-2 transition-all',
+                  'my-1 flex w-full items-center justify-start gap-2 px-3 py-2 transition-all',
                   'rounded text-sm font-medium text-gray-600 hover:text-emerald-600 dark:text-neutral-300',
                   'hover:bg-gray-100 dark:hover:bg-neutral-800 dark:hover:text-emerald-500',
                   'focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500'
@@ -179,7 +179,7 @@ export default function Sidebar() {
               <a
                 href='https://my-music-docs.vercel.app'
                 className={clsx(
-                  'mt-1 mb-1 flex w-full items-center justify-start gap-2 px-3 py-2 transition-all',
+                  'mb-1 mt-1 flex w-full items-center justify-start gap-2 px-3 py-2 transition-all',
                   'rounded text-sm font-medium text-gray-600 hover:text-emerald-600 dark:text-neutral-300',
                   'hover:bg-gray-100 dark:hover:bg-neutral-800 dark:hover:text-emerald-500',
                   'focus-visible:outline-none focus-visible:ring focus-visible:ring-emerald-500'

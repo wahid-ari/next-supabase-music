@@ -1,6 +1,6 @@
 const BASE_URL = `${process.env.NEXT_PUBLIC_API_ROUTE}`;
 
-function generateSiteMap(songs, albums, artists, playlists) {
+function generateSiteMap(songs: any, albums: any, artists: any, playlists: any) {
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
 
@@ -54,9 +54,9 @@ function generateSiteMap(songs, albums, artists, playlists) {
         <priority>0.80</priority>
       </url>
 
-  <!-- Automatically generate dynamic songs page-->
+  <!-- Automatically generate dynamic : any page-->
   ${songs
-    .map((song) => {
+    .map((song: any) => {
       return `
       <url>
         <loc>${`${BASE_URL}/dashboard/song/detail/${song.id}`}</loc>
@@ -68,7 +68,7 @@ function generateSiteMap(songs, albums, artists, playlists) {
   
   <!-- Automatically generate dynamic albums page-->
   ${albums
-    .map((album) => {
+    .map((album: any) => {
       return `
       <url>
         <loc>${`${BASE_URL}/dashboard/album/detail/${album.id}`}</loc>
@@ -80,7 +80,7 @@ function generateSiteMap(songs, albums, artists, playlists) {
     
   <!-- Automatically generate dynamic artists page-->
   ${artists
-    .map((artist) => {
+    .map((artist: any) => {
       return `
       <url>
         <loc>${`${BASE_URL}/dashboard/artist/detail/${artist.id}`}</loc>
@@ -92,7 +92,7 @@ function generateSiteMap(songs, albums, artists, playlists) {
   
   <!-- Automatically generate dynamic playlists page-->
   ${playlists
-    .map((playlist) => {
+    .map((playlist: any) => {
       return `
       <url>
         <loc>${`${BASE_URL}/dashboard/playlist/detail/${playlist.id}`}</loc>
