@@ -81,11 +81,11 @@ export default function Song({ id }) {
   }, [data]);
 
   useEffect(() => {
-    if (selectedArtist) setEditItem({ ...editItem, artist_id: selectedArtist.id });
+    if (selectedArtist) setEditItem((editItem) => ({ ...editItem, artist_id: selectedArtist.id }));
   }, [selectedArtist]);
 
   useEffect(() => {
-    if (selectedAlbum) setEditItem({ ...editItem, album_id: selectedAlbum.id });
+    if (selectedAlbum) setEditItem((editItem) => ({ ...editItem, album_id: selectedAlbum.id }));
   }, [selectedAlbum]);
 
   async function handleEdit() {

@@ -7,9 +7,6 @@ dependencies:
   '@heroicons/react':
     specifier: ^1.0.5
     version: 1.0.6(react@18.2.0)
-  '@next/font':
-    specifier: ^13.0.2
-    version: 13.1.2
   '@radix-ui/react-dialog':
     specifier: ^1.0.2
     version: 1.0.2(@types/react@18.0.22)(react-dom@18.2.0)(react@18.2.0)
@@ -259,11 +256,6 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
-
-  /@next/font@13.1.2:
-    resolution:
-      { integrity: sha512-NXGXGFGiOKEnvBIHq9cdFTKbHO2/4B3Zd9K27M7j1DioIQVar7oVRqZMYs0h3XMVEZLwjjkdAtqRPCzzd3RtXg== }
-    dev: false
 
   /@next/swc-darwin-arm64@13.3.0:
     resolution:

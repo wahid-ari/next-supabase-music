@@ -15,7 +15,6 @@ export default function NavAccordion({ title, routeName, icon, children }: Props
   const [cek, setCek] = useState(false);
   const router = useRouter();
 
-  // set sidebar nav accordion open or close based on route
   useEffect(() => {
     if (router.pathname.includes(routeName)) {
       setIsOpen(true);
@@ -23,7 +22,7 @@ export default function NavAccordion({ title, routeName, icon, children }: Props
       setIsOpen(false);
     }
     setCek(true);
-  }, [router.pathname]);
+  }, [router, routeName]);
 
   return cek ? (
     <>
@@ -60,7 +59,5 @@ export default function NavAccordion({ title, routeName, icon, children }: Props
       </Disclosure>
       <hr className='ml-3 dark:border-neutral-800' />
     </>
-  ) : (
-    ''
-  );
+  ) : null;
 }

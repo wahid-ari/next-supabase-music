@@ -59,7 +59,7 @@ export default function Playlist({ id }) {
         );
 
   useEffect(() => {
-    if (selectedSong) setCreateItem({ ...createItem, id_song: selectedSong.id });
+    if (selectedSong) setCreateItem((createItem) => ({ ...createItem, id_song: selectedSong.id }));
   }, [selectedSong]);
 
   async function handleCreate() {

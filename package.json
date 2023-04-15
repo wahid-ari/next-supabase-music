@@ -12,7 +12,6 @@
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^1.0.5",
-    "@next/font": "^13.0.2",
     "@radix-ui/react-dialog": "^1.0.2",
     "@splidejs/react-splide": "^0.7.5",
     "@supabase/supabase-js": "^2.2.1",

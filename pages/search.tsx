@@ -24,7 +24,6 @@ export default function Search() {
   const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/search?q=${search}`, fetcher);
 
   const songsHistory = useSearchHistoryStore((state: any) => state.songsHistory);
-
   const setSongsHistory = useSearchHistoryStore((state: any) => state.setSongsHistory);
   const resetSongsHistory = useSearchHistoryStore((state: any) => state.resetSongsHistory);
 
@@ -102,6 +101,7 @@ export default function Search() {
         setPlaylistsHistory(data?.playlists);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   function handleSubmit(e: any) {

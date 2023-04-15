@@ -8,7 +8,7 @@ export default function Loading() {
 
   useEffect(() => {
     router.push('/');
-  }, []);
+  }, [router]);
 
   return (
     <Layout title='Loading...'>

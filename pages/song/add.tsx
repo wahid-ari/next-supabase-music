@@ -82,11 +82,11 @@ export default function AddSong() {
   }
 
   useEffect(() => {
-    if (selectedArtist) setCreateItem({ ...createItem, artist_id: selectedArtist.id });
+    if (selectedArtist) setCreateItem((createItem) => ({ ...createItem, artist_id: selectedArtist.id }));
   }, [selectedArtist]);
 
   useEffect(() => {
-    if (selectedAlbum) setCreateItem({ ...createItem, album_id: selectedAlbum.id });
+    if (selectedAlbum) setCreateItem((createItem) => ({ ...createItem, album_id: selectedAlbum.id }));
   }, [selectedAlbum]);
 
   if (errorAlbum || errorArtist) {
