@@ -11,9 +11,10 @@ type Props = {
   onClose?: () => void;
   onConfirm?: () => void;
   showIcon?: boolean;
+  confirmText?: string;
 };
 
-export default function Modal({ open, title, children, isDanger, onClose, onConfirm, showIcon }: Props) {
+export default function Modal({ open, title, children, isDanger, onClose, onConfirm, showIcon, confirmText }: Props) {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='fixed inset-0 z-50 overflow-y-auto' open={open} onClose={onClose}>
@@ -74,7 +75,7 @@ export default function Modal({ open, title, children, isDanger, onClose, onConf
 
                 {isDanger ? (
                   <Button.danger className='w-full sm:w-auto' onClick={onConfirm}>
-                    Delete
+                    {confirmText || 'Delete'}
                   </Button.danger>
                 ) : (
                   <Button className='w-full sm:w-auto' onClick={onConfirm}>

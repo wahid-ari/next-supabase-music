@@ -24,6 +24,7 @@ import Section from '@components/systems/Section';
 import { ArrowSmRightIcon } from '@heroicons/react/outline';
 import Tabs from '@components/systems/Tabs';
 import Dialog from '@components/systems/Dialog';
+import Modal from '@components/systems/Modal';
 import SearchBox from '@components/systems/SearchBox';
 import ReactTable from '@components/systems/ReactTable';
 import { tabledata } from '@utils/tableData';
@@ -46,6 +47,8 @@ const searchBoxData = [
 export default function Example() {
   const [openDialog, setOpenDialog] = useState(false);
   const [openDangerDialog, setOpenDangerDialog] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [openDangerModal, setOpenDangerModal] = useState(false);
   const { updateToast, pushToast, dismissToast } = useToast();
   const [user, setUser] = useState({
     username: '',
@@ -204,6 +207,9 @@ export default function Example() {
             <Link href='#dialog'>Dialog</Link>
           </span>
           <span className='mb-3 block underline'>
+            <Link href='#modal'>Modal</Link>
+          </span>
+          <span className='mb-3 block underline'>
             <Link href='#searchbox'>SearchBox</Link>
           </span>
           <span className='mb-3 block underline'>
@@ -337,6 +343,42 @@ export default function Example() {
         >
           Danger Content Fugiat consectetur nulla qui veniam. Aliquip ipsum dolore eiusmod Lorem ipsum fugiat.
         </Dialog>
+      </Wrapper>
+
+      <Wrapper
+        id='modal'
+        name='Modal'
+        noClassName
+        noProps
+        props={['open', 'title', 'children', 'isDanger', 'onClose', 'onConfirm', 'showIcon']}
+      >
+        <Button onClick={() => setOpenModal(true)}>Open Modal</Button>
+        <br />
+        <br />
+
+        <Modal
+          title='Confirmation'
+          open={openModal}
+          showIcon
+          onClose={() => setOpenModal(false)}
+          onConfirm={() => setOpenModal(false)}
+        >
+          Mollit incididunt ex exercitation sunt incididunt culpa reprehenderit esse magna laborum. Do velit ipsum
+          consectetur aliquip mollit nisi irure quis Lorem eu non sit.
+        </Modal>
+
+        <Button.danger onClick={() => setOpenDangerModal(true)}>Open Danger Modal</Button.danger>
+
+        <Modal
+          title='Delete Confirmation'
+          open={openDangerModal}
+          showIcon
+          isDanger
+          onClose={() => setOpenDangerModal(false)}
+          onConfirm={() => setOpenDangerModal(false)}
+        >
+          Danger Content Fugiat consectetur nulla qui veniam. Aliquip ipsum dolore eiusmod Lorem ipsum fugiat.
+        </Modal>
       </Wrapper>
 
       <Wrapper
